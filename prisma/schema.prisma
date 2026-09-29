@@ -1,0 +1,308 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "./generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// ENUMS PARA EL BACKEND
+// ==========================================
+
+enum Rol {
+  ESTUDIANTE
+  PROFESOR
+  RECEPCIONISTA
+  ADMINISTRADOR
+  SUPERADMIN
+}
+
+enum EstadoUsuario {
+  PENDIENTE
+  ACTIVO
+  SUSPENDIDO
+  INACTIVO
+}
+
+enum TipoPago {
+  EFECTIVO
+  TRANSFERENCIA
+  ONLINE
+}
+
+enum EstadoPago {
+  PENDIENTE
+  APROBADO
+  RECHAZADO
+}
+
+// ==========================================
+// MODULO 1: IDENTIDAD Y USUARIOS
+// ==========================================
+
+model Usuario {
+  id         Int           @id @default(autoincrement())
+  nombres    String        @db.VarChar(100)
+  apellidos  String        @db.VarChar(100)
+  telefono   String?       @db.VarChar(20)
+  email      String        @unique @db.VarChar(255)
+  password   String        @db.VarChar(255)
+  rol        Rol
+  masculino  Boolean       @default(true)
+  estado     EstadoUsuario @default(PENDIENTE)
+  created    DateTime      @default(now())
+  updated    DateTime      @updatedAt
+  deleted    Boolean       @default(false)
+  daletedate DateTime?
+
+  // Relaciones 1:1 (Herencia)
+  profesor   Profesor?
+  estudiante Estudiante?
+
+  // Relación como operador/recepcionista que aprueba pagos
+  pagosOperados Pago[] @relation("OperadorPagos")
+
+  @@map("usuario")
+}
+
+model Especialidad {
+  id         Int        @id @default(autoincrement())
+  nombre     String     @unique @db.VarChar(100)
+  profesores Profesor[]
+  created    DateTime   @default(now())
+  updated    DateTime   @updatedAt
+  deleted    Boolean    @default(false)
+  daletedate DateTime?
+
+  @@map("especialidad")
+}
+
+model Profesor {
+  id_usuario      Int          @id // Compartirá el mismo ID que Usuario
+  usuario         Usuario      @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+  fecha_contrato  DateTime
+  id_especialidad Int
+  especialidad    Especialidad @relation(fields: [id_especialidad], references: [id])
+  created         DateTime     @default(now())
+  updated         DateTime     @updatedAt
+  deleted         Boolean      @default(false)
+  daletedate      DateTime?
+
+  grupos Grupo[]
+
+  @@map("profesor")
+}
+
+model Estudiante {
+  id_usuario Int       @id // Compartirá el mismo ID que Usuario
+  usuario    Usuario   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+  codigo     String    @unique @db.VarChar(20) // Código de matrícula único
+  apoderado  String?   @db.VarChar(200)
+  created    DateTime  @default(now())
+  updated    DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  daletedate DateTime?
+
+  matriculas Matricula[]
+  entregas   Entrega[]
+  pagos      Pago[]      @relation("EstudiantePagos")
+  deudas     Deuda[]
+
+  @@map("estudiante")
+}
+
+// ==========================================
+// MODULO 2 & 3: ESTRUCTURA ACADÉMICA Y MATRÍCULAS
+// ==========================================
+
+model Periodo {
+  id           Int       @id @default(autoincrement())
+  nombre       String    @db.VarChar(100)
+  meses        Int
+  inicio       DateTime
+  fin          DateTime
+  max_creditos Int
+  created      DateTime  @default(now())
+  updated      DateTime  @updatedAt
+  deleted      Boolean   @default(false)
+  daletedate   DateTime?
+
+  grupos Grupo[]
+  deudas Deuda[]
+
+  @@map("periodo")
+}
+
+model Materia {
+  id          Int       @id @default(autoincrement())
+  nombre      String    @db.VarChar(200)
+  creditos    Int
+  inscripcion Decimal   @db.Decimal(10, 2)
+  mensualidad Decimal   @db.Decimal(10, 2)
+  created     DateTime  @default(now())
+  updated     DateTime  @updatedAt
+  deleted     Boolean   @default(false)
+  daletedate  DateTime?
+
+  grupos Grupo[]
+
+  @@map("materia")
+}
+
+model Aula {
+  id         Int       @id @default(autoincrement())
+  nombre     String    @unique @db.VarChar(100)
+  capacidad  Int
+  created    DateTime  @default(now())
+  updated    DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  daletedate DateTime?
+
+  grupos Grupo[]
+
+  @@map("aula")
+}
+
+model Horario {
+  id          Int       @id @default(autoincrement())
+  dia         String    @db.VarChar(50) // Ej: "LUNES", "MARTES"
+  hora_inicio DateTime  @db.Time()
+  hora_fin    DateTime  @db.Time()
+  id_grupo    Int
+  grupo       Grupo     @relation(fields: [id_grupo], references: [id], onDelete: Cascade)
+  created     DateTime  @default(now())
+  updated     DateTime  @updatedAt
+  deleted     Boolean   @default(false)
+  daletedate  DateTime?
+
+  @@map("horario")
+}
+
+model Grupo {
+  id          Int       @id @default(autoincrement())
+  capacidad   Int
+  id_profesor Int
+  profesor    Profesor  @relation(fields: [id_profesor], references: [id_usuario])
+  id_aula     Int
+  aula        Aula      @relation(fields: [id_aula], references: [id])
+  id_materia  Int
+  materia     Materia   @relation(fields: [id_materia], references: [id])
+  id_periodo  Int
+  periodo     Periodo   @relation(fields: [id_periodo], references: [id])
+  created     DateTime  @default(now())
+  updated     DateTime  @updatedAt
+  deleted     Boolean   @default(false)
+  daletedate  DateTime?
+
+  horarios   Horario[]
+  matriculas Matricula[]
+  tareas     Tarea[]
+
+  @@map("grupo")
+}
+
+model Matricula {
+  id            Int        @id @default(autoincrement())
+  id_estudiante Int
+  estudiante    Estudiante @relation(fields: [id_estudiante], references: [id_usuario], onDelete: Cascade)
+  id_grupo      Int
+  grupo         Grupo      @relation(fields: [id_grupo], references: [id])
+  created       DateTime   @default(now())
+  updated       DateTime   @updatedAt
+  deleted       Boolean    @default(false)
+  daletedate    DateTime?
+
+  @@unique([id_estudiante, id_grupo]) // Evita que se matricule dos veces en el mismo grupo
+  @@map("matricula")
+}
+
+// ==========================================
+// MODULO 4: AULA VIRTUAL (LMS)
+// ==========================================
+
+model Tarea {
+  id            Int       @id @default(autoincrement())
+  nombre        String    @db.VarChar(200)
+  instrucciones String    @db.Text
+  fecha_entrega DateTime
+  id_grupo      Int
+  grupo         Grupo     @relation(fields: [id_grupo], references: [id], onDelete: Cascade)
+  created       DateTime  @default(now())
+  updated       DateTime  @updatedAt
+  deleted       Boolean   @default(false)
+  daletedate    DateTime?
+
+  entregas Entrega[]
+
+  @@map("tarea")
+}
+
+model Entrega {
+  id            Int        @id @default(autoincrement())
+  respuesta     String     @db.Text
+  archivo_url   String?    @db.VarChar()
+  calificacion  Int? // Nullable hasta que el profesor califique
+  id_estudiante Int
+  estudiante    Estudiante @relation(fields: [id_estudiante], references: [id_usuario], onDelete: Cascade)
+  id_tarea      Int
+  tarea         Tarea      @relation(fields: [id_tarea], references: [id], onDelete: Cascade)
+  created       DateTime   @default(now())
+  updated       DateTime   @updatedAt
+  deleted       Boolean    @default(false)
+  daletedate    DateTime?
+
+  @@map("entrega")
+}
+
+// ==========================================
+// MODULO 5: CONTROL FINANCIERO
+// ==========================================
+
+model Deuda {
+  id            Int        @id @default(autoincrement())
+  total_deuda   Decimal    @db.Decimal(10, 2)
+  pendiente     Decimal    @db.Decimal(10, 2)
+  deuda_mes     Decimal    @db.Decimal(10, 2)
+  moroso        Boolean    @default(false)
+  id_periodo    Int
+  periodo       Periodo    @relation(fields: [id_periodo], references: [id])
+  id_estudiante Int
+  estudiante    Estudiante @relation(fields: [id_estudiante], references: [id_usuario], onDelete: Cascade)
+  created       DateTime   @default(now())
+  updated       DateTime   @updatedAt
+  deleted       Boolean    @default(false)
+  daletedate    DateTime?
+
+  pagos Pago[]
+
+  @@index([id_estudiante, moroso]) // Índice optimizado para buscar deudas activas rápidamente
+  @@map("deuda")
+}
+
+model Pago {
+  id          Int        @id @default(autoincrement())
+  concepto    String     @db.VarChar(100) // "Inscripción", "Mensualidad Noviembre", etc.
+  monto       Decimal    @db.Decimal(10, 2)
+  tipo_pago   TipoPago
+  estado_pago EstadoPago @default(PENDIENTE)
+  created     DateTime   @default(now())
+  updated     DateTime   @updatedAt
+  deleted     Boolean    @default(false)
+  daletedate  DateTime?
+
+  // Si paga en línea, id_operador es null. Si paga en caja, guarda el ID del Recepcionista/Admin
+  id_operador Int?
+  operador    Usuario? @relation("OperadorPagos", fields: [id_operador], references: [id])
+
+  id_estudiante Int
+  estudiante    Estudiante @relation("EstudiantePagos", fields: [id_estudiante], references: [id_usuario], onDelete: Cascade)
+
+  // Una deuda puede requerir múltiples pagos, o un pago de inscripción inicial puede no tener deuda aún
+  id_deuda Int?
+  deuda    Deuda? @relation(fields: [id_deuda], references: [id])
+
+  @@map("pago")
+}
