@@ -45,7 +45,7 @@ export type HorarioMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type HorarioMaxAggregateOutputType = {
@@ -57,7 +57,7 @@ export type HorarioMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type HorarioCountAggregateOutputType = {
@@ -69,7 +69,7 @@ export type HorarioCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -93,7 +93,7 @@ export type HorarioMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type HorarioMaxAggregateInputType = {
@@ -105,7 +105,7 @@ export type HorarioMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type HorarioCountAggregateInputType = {
@@ -117,7 +117,7 @@ export type HorarioCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -216,7 +216,7 @@ export type HorarioGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: HorarioCountAggregateOutputType | null
   _avg: HorarioAvgAggregateOutputType | null
   _sum: HorarioSumAggregateOutputType | null
@@ -251,7 +251,7 @@ export type HorarioWhereInput = {
   created?: Prisma.DateTimeFilter<"Horario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Horario"> | Date | string
   deleted?: Prisma.BoolFilter<"Horario"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
   grupo?: Prisma.XOR<Prisma.GrupoScalarRelationFilter, Prisma.GrupoWhereInput>
 }
 
@@ -264,7 +264,7 @@ export type HorarioOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   grupo?: Prisma.GrupoOrderByWithRelationInput
 }
 
@@ -280,7 +280,7 @@ export type HorarioWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Horario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Horario"> | Date | string
   deleted?: Prisma.BoolFilter<"Horario"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
   grupo?: Prisma.XOR<Prisma.GrupoScalarRelationFilter, Prisma.GrupoWhereInput>
 }, "id">
 
@@ -293,7 +293,7 @@ export type HorarioOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.HorarioCountOrderByAggregateInput
   _avg?: Prisma.HorarioAvgOrderByAggregateInput
   _max?: Prisma.HorarioMaxOrderByAggregateInput
@@ -313,7 +313,7 @@ export type HorarioScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Horario"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Horario"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Horario"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Horario"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Horario"> | Date | string | null
 }
 
 export type HorarioCreateInput = {
@@ -323,7 +323,7 @@ export type HorarioCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupo: Prisma.GrupoCreateNestedOneWithoutHorariosInput
 }
 
@@ -336,7 +336,7 @@ export type HorarioUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type HorarioUpdateInput = {
@@ -346,7 +346,7 @@ export type HorarioUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupo?: Prisma.GrupoUpdateOneRequiredWithoutHorariosNestedInput
 }
 
@@ -359,7 +359,7 @@ export type HorarioUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HorarioCreateManyInput = {
@@ -371,7 +371,7 @@ export type HorarioCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type HorarioUpdateManyMutationInput = {
@@ -381,7 +381,7 @@ export type HorarioUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HorarioUncheckedUpdateManyInput = {
@@ -393,7 +393,7 @@ export type HorarioUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HorarioCountOrderByAggregateInput = {
@@ -405,7 +405,7 @@ export type HorarioCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HorarioAvgOrderByAggregateInput = {
@@ -422,7 +422,7 @@ export type HorarioMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HorarioMinOrderByAggregateInput = {
@@ -434,7 +434,7 @@ export type HorarioMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type HorarioSumOrderByAggregateInput = {
@@ -501,7 +501,7 @@ export type HorarioCreateWithoutGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type HorarioUncheckedCreateWithoutGrupoInput = {
@@ -512,7 +512,7 @@ export type HorarioUncheckedCreateWithoutGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type HorarioCreateOrConnectWithoutGrupoInput = {
@@ -553,7 +553,7 @@ export type HorarioScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Horario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Horario"> | Date | string
   deleted?: Prisma.BoolFilter<"Horario"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Horario"> | Date | string | null
 }
 
 export type HorarioCreateManyGrupoInput = {
@@ -564,7 +564,7 @@ export type HorarioCreateManyGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type HorarioUpdateWithoutGrupoInput = {
@@ -574,7 +574,7 @@ export type HorarioUpdateWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HorarioUncheckedUpdateWithoutGrupoInput = {
@@ -585,7 +585,7 @@ export type HorarioUncheckedUpdateWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type HorarioUncheckedUpdateManyWithoutGrupoInput = {
@@ -596,7 +596,7 @@ export type HorarioUncheckedUpdateManyWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -610,7 +610,7 @@ export type HorarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["horario"]>
 
@@ -623,7 +623,7 @@ export type HorarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["horario"]>
 
@@ -636,7 +636,7 @@ export type HorarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["horario"]>
 
@@ -649,10 +649,10 @@ export type HorarioSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type HorarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dia" | "hora_inicio" | "hora_fin" | "id_grupo" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["horario"]>
+export type HorarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dia" | "hora_inicio" | "hora_fin" | "id_grupo" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["horario"]>
 export type HorarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }
@@ -677,7 +677,7 @@ export type $HorarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["horario"]>
   composites: {}
 }
@@ -1110,7 +1110,7 @@ export interface HorarioFieldRefs {
   readonly created: Prisma.FieldRef<"Horario", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Horario", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Horario", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Horario", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Horario", 'DateTime'>
 }
     
 

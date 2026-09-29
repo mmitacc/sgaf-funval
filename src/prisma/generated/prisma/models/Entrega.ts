@@ -50,7 +50,7 @@ export type EntregaMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type EntregaMaxAggregateOutputType = {
@@ -63,7 +63,7 @@ export type EntregaMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type EntregaCountAggregateOutputType = {
@@ -76,7 +76,7 @@ export type EntregaCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -105,7 +105,7 @@ export type EntregaMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type EntregaMaxAggregateInputType = {
@@ -118,7 +118,7 @@ export type EntregaMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type EntregaCountAggregateInputType = {
@@ -131,7 +131,7 @@ export type EntregaCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -231,7 +231,7 @@ export type EntregaGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: EntregaCountAggregateOutputType | null
   _avg: EntregaAvgAggregateOutputType | null
   _sum: EntregaSumAggregateOutputType | null
@@ -267,7 +267,7 @@ export type EntregaWhereInput = {
   created?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   updated?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   deleted?: Prisma.BoolFilter<"Entrega"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   tarea?: Prisma.XOR<Prisma.TareaScalarRelationFilter, Prisma.TareaWhereInput>
 }
@@ -282,7 +282,7 @@ export type EntregaOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   estudiante?: Prisma.EstudianteOrderByWithRelationInput
   tarea?: Prisma.TareaOrderByWithRelationInput
 }
@@ -300,7 +300,7 @@ export type EntregaWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   updated?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   deleted?: Prisma.BoolFilter<"Entrega"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   tarea?: Prisma.XOR<Prisma.TareaScalarRelationFilter, Prisma.TareaWhereInput>
 }, "id">
@@ -315,7 +315,7 @@ export type EntregaOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EntregaCountOrderByAggregateInput
   _avg?: Prisma.EntregaAvgOrderByAggregateInput
   _max?: Prisma.EntregaMaxOrderByAggregateInput
@@ -336,7 +336,7 @@ export type EntregaScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Entrega"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Entrega"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Entrega"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Entrega"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Entrega"> | Date | string | null
 }
 
 export type EntregaCreateInput = {
@@ -346,7 +346,7 @@ export type EntregaCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   estudiante: Prisma.EstudianteCreateNestedOneWithoutEntregasInput
   tarea: Prisma.TareaCreateNestedOneWithoutEntregasInput
 }
@@ -361,7 +361,7 @@ export type EntregaUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaUpdateInput = {
@@ -371,7 +371,7 @@ export type EntregaUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutEntregasNestedInput
   tarea?: Prisma.TareaUpdateOneRequiredWithoutEntregasNestedInput
 }
@@ -386,7 +386,7 @@ export type EntregaUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaCreateManyInput = {
@@ -399,7 +399,7 @@ export type EntregaCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaUpdateManyMutationInput = {
@@ -409,7 +409,7 @@ export type EntregaUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaUncheckedUpdateManyInput = {
@@ -422,7 +422,7 @@ export type EntregaUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaListRelationFilter = {
@@ -445,7 +445,7 @@ export type EntregaCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EntregaAvgOrderByAggregateInput = {
@@ -465,7 +465,7 @@ export type EntregaMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EntregaMinOrderByAggregateInput = {
@@ -478,7 +478,7 @@ export type EntregaMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EntregaSumOrderByAggregateInput = {
@@ -587,7 +587,7 @@ export type EntregaCreateWithoutEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   tarea: Prisma.TareaCreateNestedOneWithoutEntregasInput
 }
 
@@ -600,7 +600,7 @@ export type EntregaUncheckedCreateWithoutEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaCreateOrConnectWithoutEstudianteInput = {
@@ -642,7 +642,7 @@ export type EntregaScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   updated?: Prisma.DateTimeFilter<"Entrega"> | Date | string
   deleted?: Prisma.BoolFilter<"Entrega"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Entrega"> | Date | string | null
 }
 
 export type EntregaCreateWithoutTareaInput = {
@@ -652,7 +652,7 @@ export type EntregaCreateWithoutTareaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   estudiante: Prisma.EstudianteCreateNestedOneWithoutEntregasInput
 }
 
@@ -665,7 +665,7 @@ export type EntregaUncheckedCreateWithoutTareaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaCreateOrConnectWithoutTareaInput = {
@@ -703,7 +703,7 @@ export type EntregaCreateManyEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaUpdateWithoutEstudianteInput = {
@@ -713,7 +713,7 @@ export type EntregaUpdateWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   tarea?: Prisma.TareaUpdateOneRequiredWithoutEntregasNestedInput
 }
 
@@ -726,7 +726,7 @@ export type EntregaUncheckedUpdateWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaUncheckedUpdateManyWithoutEstudianteInput = {
@@ -738,7 +738,7 @@ export type EntregaUncheckedUpdateManyWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaCreateManyTareaInput = {
@@ -750,7 +750,7 @@ export type EntregaCreateManyTareaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EntregaUpdateWithoutTareaInput = {
@@ -760,7 +760,7 @@ export type EntregaUpdateWithoutTareaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutEntregasNestedInput
 }
 
@@ -773,7 +773,7 @@ export type EntregaUncheckedUpdateWithoutTareaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EntregaUncheckedUpdateManyWithoutTareaInput = {
@@ -785,7 +785,7 @@ export type EntregaUncheckedUpdateManyWithoutTareaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -800,7 +800,7 @@ export type EntregaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   tarea?: boolean | Prisma.TareaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["entrega"]>
@@ -815,7 +815,7 @@ export type EntregaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   tarea?: boolean | Prisma.TareaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["entrega"]>
@@ -830,7 +830,7 @@ export type EntregaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   tarea?: boolean | Prisma.TareaDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["entrega"]>
@@ -845,10 +845,10 @@ export type EntregaSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type EntregaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "respuesta" | "archivo_url" | "calificacion" | "id_estudiante" | "id_tarea" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["entrega"]>
+export type EntregaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "respuesta" | "archivo_url" | "calificacion" | "id_estudiante" | "id_tarea" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["entrega"]>
 export type EntregaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   tarea?: boolean | Prisma.TareaDefaultArgs<ExtArgs>
@@ -878,7 +878,7 @@ export type $EntregaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["entrega"]>
   composites: {}
 }
@@ -1313,7 +1313,7 @@ export interface EntregaFieldRefs {
   readonly created: Prisma.FieldRef<"Entrega", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Entrega", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Entrega", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Entrega", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Entrega", 'DateTime'>
 }
     
 

@@ -48,7 +48,7 @@ export type PeriodoMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type PeriodoMaxAggregateOutputType = {
@@ -61,7 +61,7 @@ export type PeriodoMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type PeriodoCountAggregateOutputType = {
@@ -74,7 +74,7 @@ export type PeriodoCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -101,7 +101,7 @@ export type PeriodoMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type PeriodoMaxAggregateInputType = {
@@ -114,7 +114,7 @@ export type PeriodoMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type PeriodoCountAggregateInputType = {
@@ -127,7 +127,7 @@ export type PeriodoCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -227,7 +227,7 @@ export type PeriodoGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: PeriodoCountAggregateOutputType | null
   _avg: PeriodoAvgAggregateOutputType | null
   _sum: PeriodoSumAggregateOutputType | null
@@ -263,7 +263,7 @@ export type PeriodoWhereInput = {
   created?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolFilter<"Periodo"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Periodo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Periodo"> | Date | string | null
   grupos?: Prisma.GrupoListRelationFilter
   deudas?: Prisma.DeudaListRelationFilter
 }
@@ -278,7 +278,7 @@ export type PeriodoOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   grupos?: Prisma.GrupoOrderByRelationAggregateInput
   deudas?: Prisma.DeudaOrderByRelationAggregateInput
 }
@@ -296,7 +296,7 @@ export type PeriodoWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolFilter<"Periodo"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Periodo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Periodo"> | Date | string | null
   grupos?: Prisma.GrupoListRelationFilter
   deudas?: Prisma.DeudaListRelationFilter
 }, "id">
@@ -311,7 +311,7 @@ export type PeriodoOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PeriodoCountOrderByAggregateInput
   _avg?: Prisma.PeriodoAvgOrderByAggregateInput
   _max?: Prisma.PeriodoMaxOrderByAggregateInput
@@ -332,7 +332,7 @@ export type PeriodoScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Periodo"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Periodo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Periodo"> | Date | string | null
 }
 
 export type PeriodoCreateInput = {
@@ -344,7 +344,7 @@ export type PeriodoCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoCreateNestedManyWithoutPeriodoInput
   deudas?: Prisma.DeudaCreateNestedManyWithoutPeriodoInput
 }
@@ -359,7 +359,7 @@ export type PeriodoUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutPeriodoInput
   deudas?: Prisma.DeudaUncheckedCreateNestedManyWithoutPeriodoInput
 }
@@ -373,7 +373,7 @@ export type PeriodoUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUpdateManyWithoutPeriodoNestedInput
   deudas?: Prisma.DeudaUpdateManyWithoutPeriodoNestedInput
 }
@@ -388,7 +388,7 @@ export type PeriodoUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutPeriodoNestedInput
   deudas?: Prisma.DeudaUncheckedUpdateManyWithoutPeriodoNestedInput
 }
@@ -403,7 +403,7 @@ export type PeriodoCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type PeriodoUpdateManyMutationInput = {
@@ -415,7 +415,7 @@ export type PeriodoUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type PeriodoUncheckedUpdateManyInput = {
@@ -428,7 +428,7 @@ export type PeriodoUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type PeriodoCountOrderByAggregateInput = {
@@ -441,7 +441,7 @@ export type PeriodoCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PeriodoAvgOrderByAggregateInput = {
@@ -460,7 +460,7 @@ export type PeriodoMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PeriodoMinOrderByAggregateInput = {
@@ -473,7 +473,7 @@ export type PeriodoMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type PeriodoSumOrderByAggregateInput = {
@@ -524,7 +524,7 @@ export type PeriodoCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   deudas?: Prisma.DeudaCreateNestedManyWithoutPeriodoInput
 }
 
@@ -538,7 +538,7 @@ export type PeriodoUncheckedCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   deudas?: Prisma.DeudaUncheckedCreateNestedManyWithoutPeriodoInput
 }
 
@@ -567,7 +567,7 @@ export type PeriodoUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deudas?: Prisma.DeudaUpdateManyWithoutPeriodoNestedInput
 }
 
@@ -581,7 +581,7 @@ export type PeriodoUncheckedUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   deudas?: Prisma.DeudaUncheckedUpdateManyWithoutPeriodoNestedInput
 }
 
@@ -594,7 +594,7 @@ export type PeriodoCreateWithoutDeudasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoCreateNestedManyWithoutPeriodoInput
 }
 
@@ -608,7 +608,7 @@ export type PeriodoUncheckedCreateWithoutDeudasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutPeriodoInput
 }
 
@@ -637,7 +637,7 @@ export type PeriodoUpdateWithoutDeudasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUpdateManyWithoutPeriodoNestedInput
 }
 
@@ -651,7 +651,7 @@ export type PeriodoUncheckedUpdateWithoutDeudasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutPeriodoNestedInput
 }
 
@@ -705,7 +705,7 @@ export type PeriodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupos?: boolean | Prisma.Periodo$gruposArgs<ExtArgs>
   deudas?: boolean | Prisma.Periodo$deudasArgs<ExtArgs>
   _count?: boolean | Prisma.PeriodoCountOutputTypeDefaultArgs<ExtArgs>
@@ -721,7 +721,7 @@ export type PeriodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["periodo"]>
 
 export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -734,7 +734,7 @@ export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["periodo"]>
 
 export type PeriodoSelectScalar = {
@@ -747,10 +747,10 @@ export type PeriodoSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "meses" | "inicio" | "fin" | "max_creditos" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["periodo"]>
+export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "meses" | "inicio" | "fin" | "max_creditos" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["periodo"]>
 export type PeriodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupos?: boolean | Prisma.Periodo$gruposArgs<ExtArgs>
   deudas?: boolean | Prisma.Periodo$deudasArgs<ExtArgs>
@@ -775,7 +775,7 @@ export type $PeriodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["periodo"]>
   composites: {}
 }
@@ -1210,7 +1210,7 @@ export interface PeriodoFieldRefs {
   readonly created: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Periodo", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Periodo", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Periodo", 'DateTime'>
 }
     
 

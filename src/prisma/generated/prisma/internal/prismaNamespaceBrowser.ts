@@ -96,7 +96,7 @@ export const UsuarioScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -108,7 +108,7 @@ export const EspecialidadScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type EspecialidadScalarFieldEnum = (typeof EspecialidadScalarFieldEnum)[keyof typeof EspecialidadScalarFieldEnum]
@@ -121,7 +121,7 @@ export const ProfesorScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type ProfesorScalarFieldEnum = (typeof ProfesorScalarFieldEnum)[keyof typeof ProfesorScalarFieldEnum]
@@ -134,7 +134,7 @@ export const EstudianteScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type EstudianteScalarFieldEnum = (typeof EstudianteScalarFieldEnum)[keyof typeof EstudianteScalarFieldEnum]
@@ -150,7 +150,7 @@ export const PeriodoScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type PeriodoScalarFieldEnum = (typeof PeriodoScalarFieldEnum)[keyof typeof PeriodoScalarFieldEnum]
@@ -165,7 +165,7 @@ export const MateriaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type MateriaScalarFieldEnum = (typeof MateriaScalarFieldEnum)[keyof typeof MateriaScalarFieldEnum]
@@ -178,7 +178,7 @@ export const AulaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type AulaScalarFieldEnum = (typeof AulaScalarFieldEnum)[keyof typeof AulaScalarFieldEnum]
@@ -193,7 +193,7 @@ export const HorarioScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type HorarioScalarFieldEnum = (typeof HorarioScalarFieldEnum)[keyof typeof HorarioScalarFieldEnum]
@@ -209,7 +209,7 @@ export const GrupoScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type GrupoScalarFieldEnum = (typeof GrupoScalarFieldEnum)[keyof typeof GrupoScalarFieldEnum]
@@ -222,7 +222,7 @@ export const MatriculaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type MatriculaScalarFieldEnum = (typeof MatriculaScalarFieldEnum)[keyof typeof MatriculaScalarFieldEnum]
@@ -237,7 +237,7 @@ export const TareaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type TareaScalarFieldEnum = (typeof TareaScalarFieldEnum)[keyof typeof TareaScalarFieldEnum]
@@ -253,7 +253,7 @@ export const EntregaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type EntregaScalarFieldEnum = (typeof EntregaScalarFieldEnum)[keyof typeof EntregaScalarFieldEnum]
@@ -270,7 +270,7 @@ export const DeudaScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate'
+  deletedate: 'deletedate'
 } as const
 
 export type DeudaScalarFieldEnum = (typeof DeudaScalarFieldEnum)[keyof typeof DeudaScalarFieldEnum]
@@ -285,7 +285,7 @@ export const PagoScalarFieldEnum = {
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
-  daletedate: 'daletedate',
+  deletedate: 'deletedate',
   id_operador: 'id_operador',
   id_estudiante: 'id_estudiante',
   id_deuda: 'id_deuda'

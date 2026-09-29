@@ -43,7 +43,7 @@ export type ProfesorMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type ProfesorMaxAggregateOutputType = {
@@ -53,7 +53,7 @@ export type ProfesorMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type ProfesorCountAggregateOutputType = {
@@ -63,7 +63,7 @@ export type ProfesorCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -85,7 +85,7 @@ export type ProfesorMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type ProfesorMaxAggregateInputType = {
@@ -95,7 +95,7 @@ export type ProfesorMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type ProfesorCountAggregateInputType = {
@@ -105,7 +105,7 @@ export type ProfesorCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -202,7 +202,7 @@ export type ProfesorGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: ProfesorCountAggregateOutputType | null
   _avg: ProfesorAvgAggregateOutputType | null
   _sum: ProfesorSumAggregateOutputType | null
@@ -235,7 +235,7 @@ export type ProfesorWhereInput = {
   created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   especialidad?: Prisma.XOR<Prisma.EspecialidadScalarRelationFilter, Prisma.EspecialidadWhereInput>
   grupos?: Prisma.GrupoListRelationFilter
@@ -248,7 +248,7 @@ export type ProfesorOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   usuario?: Prisma.UsuarioOrderByWithRelationInput
   especialidad?: Prisma.EspecialidadOrderByWithRelationInput
   grupos?: Prisma.GrupoOrderByRelationAggregateInput
@@ -264,7 +264,7 @@ export type ProfesorWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   especialidad?: Prisma.XOR<Prisma.EspecialidadScalarRelationFilter, Prisma.EspecialidadWhereInput>
   grupos?: Prisma.GrupoListRelationFilter
@@ -277,7 +277,7 @@ export type ProfesorOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProfesorCountOrderByAggregateInput
   _avg?: Prisma.ProfesorAvgOrderByAggregateInput
   _max?: Prisma.ProfesorMaxOrderByAggregateInput
@@ -295,7 +295,7 @@ export type ProfesorScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Profesor"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Profesor"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Profesor"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Profesor"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Profesor"> | Date | string | null
 }
 
 export type ProfesorCreateInput = {
@@ -303,7 +303,7 @@ export type ProfesorCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
@@ -316,7 +316,7 @@ export type ProfesorUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
@@ -325,7 +325,7 @@ export type ProfesorUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
@@ -338,7 +338,7 @@ export type ProfesorUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
@@ -349,7 +349,7 @@ export type ProfesorCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type ProfesorUpdateManyMutationInput = {
@@ -357,7 +357,7 @@ export type ProfesorUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorUncheckedUpdateManyInput = {
@@ -367,7 +367,7 @@ export type ProfesorUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorNullableScalarRelationFilter = {
@@ -392,7 +392,7 @@ export type ProfesorCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorAvgOrderByAggregateInput = {
@@ -407,7 +407,7 @@ export type ProfesorMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorMinOrderByAggregateInput = {
@@ -417,7 +417,7 @@ export type ProfesorMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorSumOrderByAggregateInput = {
@@ -523,7 +523,7 @@ export type ProfesorCreateWithoutUsuarioInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
 }
@@ -534,7 +534,7 @@ export type ProfesorUncheckedCreateWithoutUsuarioInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
@@ -559,7 +559,7 @@ export type ProfesorUpdateWithoutUsuarioInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
 }
@@ -570,7 +570,7 @@ export type ProfesorUncheckedUpdateWithoutUsuarioInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
@@ -579,7 +579,7 @@ export type ProfesorCreateWithoutEspecialidadInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
 }
@@ -590,7 +590,7 @@ export type ProfesorUncheckedCreateWithoutEspecialidadInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
@@ -630,7 +630,7 @@ export type ProfesorScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
 }
 
 export type ProfesorCreateWithoutGruposInput = {
@@ -638,7 +638,7 @@ export type ProfesorCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
 }
@@ -650,7 +650,7 @@ export type ProfesorUncheckedCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type ProfesorCreateOrConnectWithoutGruposInput = {
@@ -674,7 +674,7 @@ export type ProfesorUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
 }
@@ -686,7 +686,7 @@ export type ProfesorUncheckedUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorCreateManyEspecialidadInput = {
@@ -695,7 +695,7 @@ export type ProfesorCreateManyEspecialidadInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type ProfesorUpdateWithoutEspecialidadInput = {
@@ -703,7 +703,7 @@ export type ProfesorUpdateWithoutEspecialidadInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
 }
@@ -714,7 +714,7 @@ export type ProfesorUncheckedUpdateWithoutEspecialidadInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
@@ -724,7 +724,7 @@ export type ProfesorUncheckedUpdateManyWithoutEspecialidadInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -765,7 +765,7 @@ export type ProfesorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
   grupos?: boolean | Prisma.Profesor$gruposArgs<ExtArgs>
@@ -779,7 +779,7 @@ export type ProfesorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profesor"]>
@@ -791,7 +791,7 @@ export type ProfesorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profesor"]>
@@ -803,10 +803,10 @@ export type ProfesorSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type ProfesorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "fecha_contrato" | "id_especialidad" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["profesor"]>
+export type ProfesorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "fecha_contrato" | "id_especialidad" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["profesor"]>
 export type ProfesorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
@@ -836,7 +836,7 @@ export type $ProfesorPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["profesor"]>
   composites: {}
 }
@@ -1269,7 +1269,7 @@ export interface ProfesorFieldRefs {
   readonly created: Prisma.FieldRef<"Profesor", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Profesor", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Profesor", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Profesor", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Profesor", 'DateTime'>
 }
     
 

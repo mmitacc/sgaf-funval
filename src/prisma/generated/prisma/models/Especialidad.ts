@@ -40,7 +40,7 @@ export type EspecialidadMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type EspecialidadMaxAggregateOutputType = {
@@ -49,7 +49,7 @@ export type EspecialidadMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type EspecialidadCountAggregateOutputType = {
@@ -58,7 +58,7 @@ export type EspecialidadCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -77,7 +77,7 @@ export type EspecialidadMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type EspecialidadMaxAggregateInputType = {
@@ -86,7 +86,7 @@ export type EspecialidadMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type EspecialidadCountAggregateInputType = {
@@ -95,7 +95,7 @@ export type EspecialidadCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -191,7 +191,7 @@ export type EspecialidadGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: EspecialidadCountAggregateOutputType | null
   _avg: EspecialidadAvgAggregateOutputType | null
   _sum: EspecialidadSumAggregateOutputType | null
@@ -223,7 +223,7 @@ export type EspecialidadWhereInput = {
   created?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   updated?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolFilter<"Especialidad"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
   profesores?: Prisma.ProfesorListRelationFilter
 }
 
@@ -233,7 +233,7 @@ export type EspecialidadOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   profesores?: Prisma.ProfesorOrderByRelationAggregateInput
 }
 
@@ -246,7 +246,7 @@ export type EspecialidadWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   updated?: Prisma.DateTimeFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolFilter<"Especialidad"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Especialidad"> | Date | string | null
   profesores?: Prisma.ProfesorListRelationFilter
 }, "id" | "nombre">
 
@@ -256,7 +256,7 @@ export type EspecialidadOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EspecialidadCountOrderByAggregateInput
   _avg?: Prisma.EspecialidadAvgOrderByAggregateInput
   _max?: Prisma.EspecialidadMaxOrderByAggregateInput
@@ -273,7 +273,7 @@ export type EspecialidadScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Especialidad"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Especialidad"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Especialidad"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Especialidad"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Especialidad"> | Date | string | null
 }
 
 export type EspecialidadCreateInput = {
@@ -281,7 +281,7 @@ export type EspecialidadCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesores?: Prisma.ProfesorCreateNestedManyWithoutEspecialidadInput
 }
 
@@ -291,7 +291,7 @@ export type EspecialidadUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesores?: Prisma.ProfesorUncheckedCreateNestedManyWithoutEspecialidadInput
 }
 
@@ -300,7 +300,7 @@ export type EspecialidadUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesores?: Prisma.ProfesorUpdateManyWithoutEspecialidadNestedInput
 }
 
@@ -310,7 +310,7 @@ export type EspecialidadUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesores?: Prisma.ProfesorUncheckedUpdateManyWithoutEspecialidadNestedInput
 }
 
@@ -320,7 +320,7 @@ export type EspecialidadCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadUpdateManyMutationInput = {
@@ -328,7 +328,7 @@ export type EspecialidadUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadUncheckedUpdateManyInput = {
@@ -337,7 +337,7 @@ export type EspecialidadUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadCountOrderByAggregateInput = {
@@ -346,7 +346,7 @@ export type EspecialidadCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadAvgOrderByAggregateInput = {
@@ -359,7 +359,7 @@ export type EspecialidadMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadMinOrderByAggregateInput = {
@@ -368,7 +368,7 @@ export type EspecialidadMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type EspecialidadSumOrderByAggregateInput = {
@@ -399,7 +399,7 @@ export type EspecialidadCreateWithoutProfesoresInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadUncheckedCreateWithoutProfesoresInput = {
@@ -408,7 +408,7 @@ export type EspecialidadUncheckedCreateWithoutProfesoresInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type EspecialidadCreateOrConnectWithoutProfesoresInput = {
@@ -432,7 +432,7 @@ export type EspecialidadUpdateWithoutProfesoresInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EspecialidadUncheckedUpdateWithoutProfesoresInput = {
@@ -441,7 +441,7 @@ export type EspecialidadUncheckedUpdateWithoutProfesoresInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -481,7 +481,7 @@ export type EspecialidadSelect<ExtArgs extends runtime.Types.Extensions.Internal
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   profesores?: boolean | Prisma.Especialidad$profesoresArgs<ExtArgs>
   _count?: boolean | Prisma.EspecialidadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["especialidad"]>
@@ -492,7 +492,7 @@ export type EspecialidadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["especialidad"]>
 
 export type EspecialidadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -501,7 +501,7 @@ export type EspecialidadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["especialidad"]>
 
 export type EspecialidadSelectScalar = {
@@ -510,10 +510,10 @@ export type EspecialidadSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type EspecialidadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["especialidad"]>
+export type EspecialidadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["especialidad"]>
 export type EspecialidadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profesores?: boolean | Prisma.Especialidad$profesoresArgs<ExtArgs>
   _count?: boolean | Prisma.EspecialidadCountOutputTypeDefaultArgs<ExtArgs>
@@ -532,7 +532,7 @@ export type $EspecialidadPayload<ExtArgs extends runtime.Types.Extensions.Intern
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["especialidad"]>
   composites: {}
 }
@@ -962,7 +962,7 @@ export interface EspecialidadFieldRefs {
   readonly created: Prisma.FieldRef<"Especialidad", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Especialidad", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Especialidad", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Especialidad", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Especialidad", 'DateTime'>
 }
     
 

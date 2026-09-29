@@ -1,6 +1,6 @@
 generator client {
   provider     = "prisma-client"
-  output       = "./generated/prisma"
+  output       = "../src/prisma/generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -56,7 +56,7 @@ model Usuario {
   created    DateTime      @default(now())
   updated    DateTime      @updatedAt
   deleted    Boolean       @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   // Relaciones 1:1 (Herencia)
   profesor   Profesor?
@@ -75,7 +75,7 @@ model Especialidad {
   created    DateTime   @default(now())
   updated    DateTime   @updatedAt
   deleted    Boolean    @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   @@map("especialidad")
 }
@@ -89,7 +89,7 @@ model Profesor {
   created         DateTime     @default(now())
   updated         DateTime     @updatedAt
   deleted         Boolean      @default(false)
-  daletedate      DateTime?
+  deletedate      DateTime?
 
   grupos Grupo[]
 
@@ -104,7 +104,7 @@ model Estudiante {
   created    DateTime  @default(now())
   updated    DateTime  @updatedAt
   deleted    Boolean   @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   matriculas Matricula[]
   entregas   Entrega[]
@@ -128,7 +128,7 @@ model Periodo {
   created      DateTime  @default(now())
   updated      DateTime  @updatedAt
   deleted      Boolean   @default(false)
-  daletedate   DateTime?
+  deletedate   DateTime?
 
   grupos Grupo[]
   deudas Deuda[]
@@ -145,7 +145,7 @@ model Materia {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   grupos Grupo[]
 
@@ -159,7 +159,7 @@ model Aula {
   created    DateTime  @default(now())
   updated    DateTime  @updatedAt
   deleted    Boolean   @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   grupos Grupo[]
 
@@ -176,7 +176,7 @@ model Horario {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   @@map("horario")
 }
@@ -195,7 +195,7 @@ model Grupo {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   horarios   Horario[]
   matriculas Matricula[]
@@ -213,7 +213,7 @@ model Matricula {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   @@unique([id_estudiante, id_grupo]) // Evita que se matricule dos veces en el mismo grupo
   @@map("matricula")
@@ -233,7 +233,7 @@ model Tarea {
   created       DateTime  @default(now())
   updated       DateTime  @updatedAt
   deleted       Boolean   @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   entregas Entrega[]
 
@@ -252,7 +252,7 @@ model Entrega {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   @@map("entrega")
 }
@@ -274,7 +274,7 @@ model Deuda {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   pagos Pago[]
 
@@ -291,7 +291,7 @@ model Pago {
   created     DateTime   @default(now())
   updated     DateTime   @updatedAt
   deleted     Boolean    @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   // Si paga en línea, id_operador es null. Si paga en caja, guarda el ID del Recepcionista/Admin
   id_operador Int?

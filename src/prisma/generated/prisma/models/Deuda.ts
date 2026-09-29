@@ -55,7 +55,7 @@ export type DeudaMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type DeudaMaxAggregateOutputType = {
@@ -69,7 +69,7 @@ export type DeudaMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type DeudaCountAggregateOutputType = {
@@ -83,7 +83,7 @@ export type DeudaCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -117,7 +117,7 @@ export type DeudaMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type DeudaMaxAggregateInputType = {
@@ -131,7 +131,7 @@ export type DeudaMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type DeudaCountAggregateInputType = {
@@ -145,7 +145,7 @@ export type DeudaCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -246,7 +246,7 @@ export type DeudaGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: DeudaCountAggregateOutputType | null
   _avg: DeudaAvgAggregateOutputType | null
   _sum: DeudaSumAggregateOutputType | null
@@ -283,7 +283,7 @@ export type DeudaWhereInput = {
   created?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   updated?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   deleted?: Prisma.BoolFilter<"Deuda"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   pagos?: Prisma.PagoListRelationFilter
@@ -300,7 +300,7 @@ export type DeudaOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   periodo?: Prisma.PeriodoOrderByWithRelationInput
   estudiante?: Prisma.EstudianteOrderByWithRelationInput
   pagos?: Prisma.PagoOrderByRelationAggregateInput
@@ -320,7 +320,7 @@ export type DeudaWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   updated?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   deleted?: Prisma.BoolFilter<"Deuda"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   pagos?: Prisma.PagoListRelationFilter
@@ -337,7 +337,7 @@ export type DeudaOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DeudaCountOrderByAggregateInput
   _avg?: Prisma.DeudaAvgOrderByAggregateInput
   _max?: Prisma.DeudaMaxOrderByAggregateInput
@@ -359,7 +359,7 @@ export type DeudaScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Deuda"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Deuda"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Deuda"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Deuda"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Deuda"> | Date | string | null
 }
 
 export type DeudaCreateInput = {
@@ -370,7 +370,7 @@ export type DeudaCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   periodo: Prisma.PeriodoCreateNestedOneWithoutDeudasInput
   estudiante: Prisma.EstudianteCreateNestedOneWithoutDeudasInput
   pagos?: Prisma.PagoCreateNestedManyWithoutDeudaInput
@@ -387,7 +387,7 @@ export type DeudaUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutDeudaInput
 }
 
@@ -399,7 +399,7 @@ export type DeudaUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutDeudasNestedInput
   estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutDeudasNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutDeudaNestedInput
@@ -416,7 +416,7 @@ export type DeudaUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutDeudaNestedInput
 }
 
@@ -431,7 +431,7 @@ export type DeudaCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type DeudaUpdateManyMutationInput = {
@@ -442,7 +442,7 @@ export type DeudaUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeudaUncheckedUpdateManyInput = {
@@ -456,7 +456,7 @@ export type DeudaUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeudaListRelationFilter = {
@@ -480,7 +480,7 @@ export type DeudaCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type DeudaAvgOrderByAggregateInput = {
@@ -503,7 +503,7 @@ export type DeudaMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type DeudaMinOrderByAggregateInput = {
@@ -517,7 +517,7 @@ export type DeudaMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type DeudaSumOrderByAggregateInput = {
@@ -642,7 +642,7 @@ export type DeudaCreateWithoutEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   periodo: Prisma.PeriodoCreateNestedOneWithoutDeudasInput
   pagos?: Prisma.PagoCreateNestedManyWithoutDeudaInput
 }
@@ -657,7 +657,7 @@ export type DeudaUncheckedCreateWithoutEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutDeudaInput
 }
 
@@ -701,7 +701,7 @@ export type DeudaScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   updated?: Prisma.DateTimeFilter<"Deuda"> | Date | string
   deleted?: Prisma.BoolFilter<"Deuda"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Deuda"> | Date | string | null
 }
 
 export type DeudaCreateWithoutPeriodoInput = {
@@ -712,7 +712,7 @@ export type DeudaCreateWithoutPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   estudiante: Prisma.EstudianteCreateNestedOneWithoutDeudasInput
   pagos?: Prisma.PagoCreateNestedManyWithoutDeudaInput
 }
@@ -727,7 +727,7 @@ export type DeudaUncheckedCreateWithoutPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutDeudaInput
 }
 
@@ -765,7 +765,7 @@ export type DeudaCreateWithoutPagosInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   periodo: Prisma.PeriodoCreateNestedOneWithoutDeudasInput
   estudiante: Prisma.EstudianteCreateNestedOneWithoutDeudasInput
 }
@@ -781,7 +781,7 @@ export type DeudaUncheckedCreateWithoutPagosInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type DeudaCreateOrConnectWithoutPagosInput = {
@@ -808,7 +808,7 @@ export type DeudaUpdateWithoutPagosInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutDeudasNestedInput
   estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutDeudasNestedInput
 }
@@ -824,7 +824,7 @@ export type DeudaUncheckedUpdateWithoutPagosInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeudaCreateManyEstudianteInput = {
@@ -837,7 +837,7 @@ export type DeudaCreateManyEstudianteInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type DeudaUpdateWithoutEstudianteInput = {
@@ -848,7 +848,7 @@ export type DeudaUpdateWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutDeudasNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutDeudaNestedInput
 }
@@ -863,7 +863,7 @@ export type DeudaUncheckedUpdateWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutDeudaNestedInput
 }
 
@@ -877,7 +877,7 @@ export type DeudaUncheckedUpdateManyWithoutEstudianteInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeudaCreateManyPeriodoInput = {
@@ -890,7 +890,7 @@ export type DeudaCreateManyPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type DeudaUpdateWithoutPeriodoInput = {
@@ -901,7 +901,7 @@ export type DeudaUpdateWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   estudiante?: Prisma.EstudianteUpdateOneRequiredWithoutDeudasNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutDeudaNestedInput
 }
@@ -916,7 +916,7 @@ export type DeudaUncheckedUpdateWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutDeudaNestedInput
 }
 
@@ -930,7 +930,7 @@ export type DeudaUncheckedUpdateManyWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -975,7 +975,7 @@ export type DeudaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
   pagos?: boolean | Prisma.Deuda$pagosArgs<ExtArgs>
@@ -993,7 +993,7 @@ export type DeudaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deuda"]>
@@ -1009,7 +1009,7 @@ export type DeudaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["deuda"]>
@@ -1025,10 +1025,10 @@ export type DeudaSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type DeudaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "total_deuda" | "pendiente" | "deuda_mes" | "moroso" | "id_periodo" | "id_estudiante" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["deuda"]>
+export type DeudaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "total_deuda" | "pendiente" | "deuda_mes" | "moroso" | "id_periodo" | "id_estudiante" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["deuda"]>
 export type DeudaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   periodo?: boolean | Prisma.PeriodoDefaultArgs<ExtArgs>
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
@@ -1062,7 +1062,7 @@ export type $DeudaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["deuda"]>
   composites: {}
 }
@@ -1499,7 +1499,7 @@ export interface DeudaFieldRefs {
   readonly created: Prisma.FieldRef<"Deuda", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Deuda", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Deuda", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Deuda", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Deuda", 'DateTime'>
 }
     
 

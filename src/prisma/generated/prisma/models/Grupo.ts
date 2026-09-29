@@ -54,7 +54,7 @@ export type GrupoMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type GrupoMaxAggregateOutputType = {
@@ -67,7 +67,7 @@ export type GrupoMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type GrupoCountAggregateOutputType = {
@@ -80,7 +80,7 @@ export type GrupoCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -113,7 +113,7 @@ export type GrupoMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type GrupoMaxAggregateInputType = {
@@ -126,7 +126,7 @@ export type GrupoMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type GrupoCountAggregateInputType = {
@@ -139,7 +139,7 @@ export type GrupoCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -239,7 +239,7 @@ export type GrupoGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: GrupoCountAggregateOutputType | null
   _avg: GrupoAvgAggregateOutputType | null
   _sum: GrupoSumAggregateOutputType | null
@@ -275,7 +275,7 @@ export type GrupoWhereInput = {
   created?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   deleted?: Prisma.BoolFilter<"Grupo"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
   profesor?: Prisma.XOR<Prisma.ProfesorScalarRelationFilter, Prisma.ProfesorWhereInput>
   aula?: Prisma.XOR<Prisma.AulaScalarRelationFilter, Prisma.AulaWhereInput>
   materia?: Prisma.XOR<Prisma.MateriaScalarRelationFilter, Prisma.MateriaWhereInput>
@@ -295,7 +295,7 @@ export type GrupoOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   profesor?: Prisma.ProfesorOrderByWithRelationInput
   aula?: Prisma.AulaOrderByWithRelationInput
   materia?: Prisma.MateriaOrderByWithRelationInput
@@ -318,7 +318,7 @@ export type GrupoWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   deleted?: Prisma.BoolFilter<"Grupo"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
   profesor?: Prisma.XOR<Prisma.ProfesorScalarRelationFilter, Prisma.ProfesorWhereInput>
   aula?: Prisma.XOR<Prisma.AulaScalarRelationFilter, Prisma.AulaWhereInput>
   materia?: Prisma.XOR<Prisma.MateriaScalarRelationFilter, Prisma.MateriaWhereInput>
@@ -338,7 +338,7 @@ export type GrupoOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.GrupoCountOrderByAggregateInput
   _avg?: Prisma.GrupoAvgOrderByAggregateInput
   _max?: Prisma.GrupoMaxOrderByAggregateInput
@@ -359,7 +359,7 @@ export type GrupoScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Grupo"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Grupo"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Grupo"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Grupo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Grupo"> | Date | string | null
 }
 
 export type GrupoCreateInput = {
@@ -367,7 +367,7 @@ export type GrupoCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
@@ -387,7 +387,7 @@ export type GrupoUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
@@ -398,7 +398,7 @@ export type GrupoUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
@@ -418,7 +418,7 @@ export type GrupoUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
@@ -434,7 +434,7 @@ export type GrupoCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type GrupoUpdateManyMutationInput = {
@@ -442,7 +442,7 @@ export type GrupoUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type GrupoUncheckedUpdateManyInput = {
@@ -455,7 +455,7 @@ export type GrupoUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type GrupoListRelationFilter = {
@@ -483,7 +483,7 @@ export type GrupoCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type GrupoAvgOrderByAggregateInput = {
@@ -505,7 +505,7 @@ export type GrupoMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type GrupoMinOrderByAggregateInput = {
@@ -518,7 +518,7 @@ export type GrupoMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type GrupoSumOrderByAggregateInput = {
@@ -745,7 +745,7 @@ export type GrupoCreateWithoutProfesorInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
@@ -763,7 +763,7 @@ export type GrupoUncheckedCreateWithoutProfesorInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
@@ -808,7 +808,7 @@ export type GrupoScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Grupo"> | Date | string
   deleted?: Prisma.BoolFilter<"Grupo"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Grupo"> | Date | string | null
 }
 
 export type GrupoCreateWithoutPeriodoInput = {
@@ -816,7 +816,7 @@ export type GrupoCreateWithoutPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
@@ -834,7 +834,7 @@ export type GrupoUncheckedCreateWithoutPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
@@ -871,7 +871,7 @@ export type GrupoCreateWithoutMateriaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
@@ -889,7 +889,7 @@ export type GrupoUncheckedCreateWithoutMateriaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
@@ -926,7 +926,7 @@ export type GrupoCreateWithoutAulaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
@@ -944,7 +944,7 @@ export type GrupoUncheckedCreateWithoutAulaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
@@ -981,7 +981,7 @@ export type GrupoCreateWithoutHorariosInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
@@ -1000,7 +1000,7 @@ export type GrupoUncheckedCreateWithoutHorariosInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
 }
@@ -1026,7 +1026,7 @@ export type GrupoUpdateWithoutHorariosInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
@@ -1045,7 +1045,7 @@ export type GrupoUncheckedUpdateWithoutHorariosInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
 }
@@ -1055,7 +1055,7 @@ export type GrupoCreateWithoutMatriculasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
@@ -1074,7 +1074,7 @@ export type GrupoUncheckedCreateWithoutMatriculasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
 }
@@ -1100,7 +1100,7 @@ export type GrupoUpdateWithoutMatriculasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
@@ -1119,7 +1119,7 @@ export type GrupoUncheckedUpdateWithoutMatriculasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
 }
@@ -1129,7 +1129,7 @@ export type GrupoCreateWithoutTareasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
   aula: Prisma.AulaCreateNestedOneWithoutGruposInput
   materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
@@ -1148,7 +1148,7 @@ export type GrupoUncheckedCreateWithoutTareasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
 }
@@ -1174,7 +1174,7 @@ export type GrupoUpdateWithoutTareasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
@@ -1193,7 +1193,7 @@ export type GrupoUncheckedUpdateWithoutTareasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
 }
@@ -1207,7 +1207,7 @@ export type GrupoCreateManyProfesorInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type GrupoUpdateWithoutProfesorInput = {
@@ -1215,7 +1215,7 @@ export type GrupoUpdateWithoutProfesorInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
@@ -1233,7 +1233,7 @@ export type GrupoUncheckedUpdateWithoutProfesorInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
@@ -1248,7 +1248,7 @@ export type GrupoUncheckedUpdateManyWithoutProfesorInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type GrupoCreateManyPeriodoInput = {
@@ -1260,7 +1260,7 @@ export type GrupoCreateManyPeriodoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type GrupoUpdateWithoutPeriodoInput = {
@@ -1268,7 +1268,7 @@ export type GrupoUpdateWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
@@ -1286,7 +1286,7 @@ export type GrupoUncheckedUpdateWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
@@ -1301,7 +1301,7 @@ export type GrupoUncheckedUpdateManyWithoutPeriodoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type GrupoCreateManyMateriaInput = {
@@ -1313,7 +1313,7 @@ export type GrupoCreateManyMateriaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type GrupoUpdateWithoutMateriaInput = {
@@ -1321,7 +1321,7 @@ export type GrupoUpdateWithoutMateriaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
@@ -1339,7 +1339,7 @@ export type GrupoUncheckedUpdateWithoutMateriaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
@@ -1354,7 +1354,7 @@ export type GrupoUncheckedUpdateManyWithoutMateriaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type GrupoCreateManyAulaInput = {
@@ -1366,7 +1366,7 @@ export type GrupoCreateManyAulaInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type GrupoUpdateWithoutAulaInput = {
@@ -1374,7 +1374,7 @@ export type GrupoUpdateWithoutAulaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
   materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
@@ -1392,7 +1392,7 @@ export type GrupoUncheckedUpdateWithoutAulaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
@@ -1407,7 +1407,7 @@ export type GrupoUncheckedUpdateManyWithoutAulaInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1469,7 +1469,7 @@ export type GrupoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   profesor?: boolean | Prisma.ProfesorDefaultArgs<ExtArgs>
   aula?: boolean | Prisma.AulaDefaultArgs<ExtArgs>
   materia?: boolean | Prisma.MateriaDefaultArgs<ExtArgs>
@@ -1490,7 +1490,7 @@ export type GrupoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   profesor?: boolean | Prisma.ProfesorDefaultArgs<ExtArgs>
   aula?: boolean | Prisma.AulaDefaultArgs<ExtArgs>
   materia?: boolean | Prisma.MateriaDefaultArgs<ExtArgs>
@@ -1507,7 +1507,7 @@ export type GrupoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   profesor?: boolean | Prisma.ProfesorDefaultArgs<ExtArgs>
   aula?: boolean | Prisma.AulaDefaultArgs<ExtArgs>
   materia?: boolean | Prisma.MateriaDefaultArgs<ExtArgs>
@@ -1524,10 +1524,10 @@ export type GrupoSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type GrupoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "capacidad" | "id_profesor" | "id_aula" | "id_materia" | "id_periodo" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["grupo"]>
+export type GrupoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "capacidad" | "id_profesor" | "id_aula" | "id_materia" | "id_periodo" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["grupo"]>
 export type GrupoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profesor?: boolean | Prisma.ProfesorDefaultArgs<ExtArgs>
   aula?: boolean | Prisma.AulaDefaultArgs<ExtArgs>
@@ -1572,7 +1572,7 @@ export type $GrupoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["grupo"]>
   composites: {}
 }
@@ -2012,7 +2012,7 @@ export interface GrupoFieldRefs {
   readonly created: Prisma.FieldRef<"Grupo", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Grupo", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Grupo", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Grupo", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Grupo", 'DateTime'>
 }
     
 

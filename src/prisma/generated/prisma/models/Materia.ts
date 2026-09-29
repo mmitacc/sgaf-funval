@@ -49,7 +49,7 @@ export type MateriaMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type MateriaMaxAggregateOutputType = {
@@ -61,7 +61,7 @@ export type MateriaMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type MateriaCountAggregateOutputType = {
@@ -73,7 +73,7 @@ export type MateriaCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -101,7 +101,7 @@ export type MateriaMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type MateriaMaxAggregateInputType = {
@@ -113,7 +113,7 @@ export type MateriaMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type MateriaCountAggregateInputType = {
@@ -125,7 +125,7 @@ export type MateriaCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -224,7 +224,7 @@ export type MateriaGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: MateriaCountAggregateOutputType | null
   _avg: MateriaAvgAggregateOutputType | null
   _sum: MateriaSumAggregateOutputType | null
@@ -259,7 +259,7 @@ export type MateriaWhereInput = {
   created?: Prisma.DateTimeFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeFilter<"Materia"> | Date | string
   deleted?: Prisma.BoolFilter<"Materia"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Materia"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Materia"> | Date | string | null
   grupos?: Prisma.GrupoListRelationFilter
 }
 
@@ -272,7 +272,7 @@ export type MateriaOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   grupos?: Prisma.GrupoOrderByRelationAggregateInput
 }
 
@@ -288,7 +288,7 @@ export type MateriaWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeFilter<"Materia"> | Date | string
   deleted?: Prisma.BoolFilter<"Materia"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Materia"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Materia"> | Date | string | null
   grupos?: Prisma.GrupoListRelationFilter
 }, "id">
 
@@ -301,7 +301,7 @@ export type MateriaOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MateriaCountOrderByAggregateInput
   _avg?: Prisma.MateriaAvgOrderByAggregateInput
   _max?: Prisma.MateriaMaxOrderByAggregateInput
@@ -321,7 +321,7 @@ export type MateriaScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Materia"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Materia"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Materia"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Materia"> | Date | string | null
 }
 
 export type MateriaCreateInput = {
@@ -332,7 +332,7 @@ export type MateriaCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoCreateNestedManyWithoutMateriaInput
 }
 
@@ -345,7 +345,7 @@ export type MateriaUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutMateriaInput
 }
 
@@ -357,7 +357,7 @@ export type MateriaUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUpdateManyWithoutMateriaNestedInput
 }
 
@@ -370,7 +370,7 @@ export type MateriaUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutMateriaNestedInput
 }
 
@@ -383,7 +383,7 @@ export type MateriaCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type MateriaUpdateManyMutationInput = {
@@ -394,7 +394,7 @@ export type MateriaUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MateriaUncheckedUpdateManyInput = {
@@ -406,7 +406,7 @@ export type MateriaUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MateriaCountOrderByAggregateInput = {
@@ -418,7 +418,7 @@ export type MateriaCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type MateriaAvgOrderByAggregateInput = {
@@ -437,7 +437,7 @@ export type MateriaMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type MateriaMinOrderByAggregateInput = {
@@ -449,7 +449,7 @@ export type MateriaMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type MateriaSumOrderByAggregateInput = {
@@ -494,7 +494,7 @@ export type MateriaCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type MateriaUncheckedCreateWithoutGruposInput = {
@@ -506,7 +506,7 @@ export type MateriaUncheckedCreateWithoutGruposInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type MateriaCreateOrConnectWithoutGruposInput = {
@@ -533,7 +533,7 @@ export type MateriaUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MateriaUncheckedUpdateWithoutGruposInput = {
@@ -545,7 +545,7 @@ export type MateriaUncheckedUpdateWithoutGruposInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -588,7 +588,7 @@ export type MateriaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupos?: boolean | Prisma.Materia$gruposArgs<ExtArgs>
   _count?: boolean | Prisma.MateriaCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["materia"]>
@@ -602,7 +602,7 @@ export type MateriaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["materia"]>
 
 export type MateriaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -614,7 +614,7 @@ export type MateriaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }, ExtArgs["result"]["materia"]>
 
 export type MateriaSelectScalar = {
@@ -626,10 +626,10 @@ export type MateriaSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type MateriaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "creditos" | "inscripcion" | "mensualidad" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["materia"]>
+export type MateriaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "creditos" | "inscripcion" | "mensualidad" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["materia"]>
 export type MateriaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupos?: boolean | Prisma.Materia$gruposArgs<ExtArgs>
   _count?: boolean | Prisma.MateriaCountOutputTypeDefaultArgs<ExtArgs>
@@ -651,7 +651,7 @@ export type $MateriaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["materia"]>
   composites: {}
 }
@@ -1084,7 +1084,7 @@ export interface MateriaFieldRefs {
   readonly created: Prisma.FieldRef<"Materia", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Materia", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Materia", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Materia", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Materia", 'DateTime'>
 }
     
 

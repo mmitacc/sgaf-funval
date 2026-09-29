@@ -45,7 +45,7 @@ export type TareaMinAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type TareaMaxAggregateOutputType = {
@@ -57,7 +57,7 @@ export type TareaMaxAggregateOutputType = {
   created: Date | null
   updated: Date | null
   deleted: boolean | null
-  daletedate: Date | null
+  deletedate: Date | null
 }
 
 export type TareaCountAggregateOutputType = {
@@ -69,7 +69,7 @@ export type TareaCountAggregateOutputType = {
   created: number
   updated: number
   deleted: number
-  daletedate: number
+  deletedate: number
   _all: number
 }
 
@@ -93,7 +93,7 @@ export type TareaMinAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type TareaMaxAggregateInputType = {
@@ -105,7 +105,7 @@ export type TareaMaxAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
 }
 
 export type TareaCountAggregateInputType = {
@@ -117,7 +117,7 @@ export type TareaCountAggregateInputType = {
   created?: true
   updated?: true
   deleted?: true
-  daletedate?: true
+  deletedate?: true
   _all?: true
 }
 
@@ -216,7 +216,7 @@ export type TareaGroupByOutputType = {
   created: Date
   updated: Date
   deleted: boolean
-  daletedate: Date | null
+  deletedate: Date | null
   _count: TareaCountAggregateOutputType | null
   _avg: TareaAvgAggregateOutputType | null
   _sum: TareaSumAggregateOutputType | null
@@ -251,7 +251,7 @@ export type TareaWhereInput = {
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   deleted?: Prisma.BoolFilter<"Tarea"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   grupo?: Prisma.XOR<Prisma.GrupoScalarRelationFilter, Prisma.GrupoWhereInput>
   entregas?: Prisma.EntregaListRelationFilter
 }
@@ -265,7 +265,7 @@ export type TareaOrderByWithRelationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   grupo?: Prisma.GrupoOrderByWithRelationInput
   entregas?: Prisma.EntregaOrderByRelationAggregateInput
 }
@@ -282,7 +282,7 @@ export type TareaWhereUniqueInput = Prisma.AtLeast<{
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   deleted?: Prisma.BoolFilter<"Tarea"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
   grupo?: Prisma.XOR<Prisma.GrupoScalarRelationFilter, Prisma.GrupoWhereInput>
   entregas?: Prisma.EntregaListRelationFilter
 }, "id">
@@ -296,7 +296,7 @@ export type TareaOrderByWithAggregationInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TareaCountOrderByAggregateInput
   _avg?: Prisma.TareaAvgOrderByAggregateInput
   _max?: Prisma.TareaMaxOrderByAggregateInput
@@ -316,7 +316,7 @@ export type TareaScalarWhereWithAggregatesInput = {
   created?: Prisma.DateTimeWithAggregatesFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Tarea"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Tarea"> | boolean
-  daletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Tarea"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Tarea"> | Date | string | null
 }
 
 export type TareaCreateInput = {
@@ -326,7 +326,7 @@ export type TareaCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupo: Prisma.GrupoCreateNestedOneWithoutTareasInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutTareaInput
 }
@@ -340,7 +340,7 @@ export type TareaUncheckedCreateInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutTareaInput
 }
 
@@ -351,7 +351,7 @@ export type TareaUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupo?: Prisma.GrupoUpdateOneRequiredWithoutTareasNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutTareaNestedInput
 }
@@ -365,7 +365,7 @@ export type TareaUncheckedUpdateInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutTareaNestedInput
 }
 
@@ -378,7 +378,7 @@ export type TareaCreateManyInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type TareaUpdateManyMutationInput = {
@@ -388,7 +388,7 @@ export type TareaUpdateManyMutationInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TareaUncheckedUpdateManyInput = {
@@ -400,7 +400,7 @@ export type TareaUncheckedUpdateManyInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TareaListRelationFilter = {
@@ -422,7 +422,7 @@ export type TareaCountOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type TareaAvgOrderByAggregateInput = {
@@ -439,7 +439,7 @@ export type TareaMaxOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type TareaMinOrderByAggregateInput = {
@@ -451,7 +451,7 @@ export type TareaMinOrderByAggregateInput = {
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
-  daletedate?: Prisma.SortOrder
+  deletedate?: Prisma.SortOrder
 }
 
 export type TareaSumOrderByAggregateInput = {
@@ -527,7 +527,7 @@ export type TareaCreateWithoutGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   entregas?: Prisma.EntregaCreateNestedManyWithoutTareaInput
 }
 
@@ -539,7 +539,7 @@ export type TareaUncheckedCreateWithoutGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutTareaInput
 }
 
@@ -581,7 +581,7 @@ export type TareaScalarWhereInput = {
   created?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   updated?: Prisma.DateTimeFilter<"Tarea"> | Date | string
   deleted?: Prisma.BoolFilter<"Tarea"> | boolean
-  daletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
+  deletedate?: Prisma.DateTimeNullableFilter<"Tarea"> | Date | string | null
 }
 
 export type TareaCreateWithoutEntregasInput = {
@@ -591,7 +591,7 @@ export type TareaCreateWithoutEntregasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
   grupo: Prisma.GrupoCreateNestedOneWithoutTareasInput
 }
 
@@ -604,7 +604,7 @@ export type TareaUncheckedCreateWithoutEntregasInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type TareaCreateOrConnectWithoutEntregasInput = {
@@ -630,7 +630,7 @@ export type TareaUpdateWithoutEntregasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupo?: Prisma.GrupoUpdateOneRequiredWithoutTareasNestedInput
 }
 
@@ -643,7 +643,7 @@ export type TareaUncheckedUpdateWithoutEntregasInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TareaCreateManyGrupoInput = {
@@ -654,7 +654,7 @@ export type TareaCreateManyGrupoInput = {
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
-  daletedate?: Date | string | null
+  deletedate?: Date | string | null
 }
 
 export type TareaUpdateWithoutGrupoInput = {
@@ -664,7 +664,7 @@ export type TareaUpdateWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   entregas?: Prisma.EntregaUpdateManyWithoutTareaNestedInput
 }
 
@@ -676,7 +676,7 @@ export type TareaUncheckedUpdateWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutTareaNestedInput
 }
 
@@ -688,7 +688,7 @@ export type TareaUncheckedUpdateManyWithoutGrupoInput = {
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  daletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -731,7 +731,7 @@ export type TareaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
   entregas?: boolean | Prisma.Tarea$entregasArgs<ExtArgs>
   _count?: boolean | Prisma.TareaCountOutputTypeDefaultArgs<ExtArgs>
@@ -746,7 +746,7 @@ export type TareaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tarea"]>
 
@@ -759,7 +759,7 @@ export type TareaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tarea"]>
 
@@ -772,10 +772,10 @@ export type TareaSelectScalar = {
   created?: boolean
   updated?: boolean
   deleted?: boolean
-  daletedate?: boolean
+  deletedate?: boolean
 }
 
-export type TareaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "instrucciones" | "fecha_entrega" | "id_grupo" | "created" | "updated" | "deleted" | "daletedate", ExtArgs["result"]["tarea"]>
+export type TareaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "instrucciones" | "fecha_entrega" | "id_grupo" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["tarea"]>
 export type TareaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupo?: boolean | Prisma.GrupoDefaultArgs<ExtArgs>
   entregas?: boolean | Prisma.Tarea$entregasArgs<ExtArgs>
@@ -803,7 +803,7 @@ export type $TareaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     created: Date
     updated: Date
     deleted: boolean
-    daletedate: Date | null
+    deletedate: Date | null
   }, ExtArgs["result"]["tarea"]>
   composites: {}
 }
@@ -1237,7 +1237,7 @@ export interface TareaFieldRefs {
   readonly created: Prisma.FieldRef<"Tarea", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Tarea", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Tarea", 'Boolean'>
-  readonly daletedate: Prisma.FieldRef<"Tarea", 'DateTime'>
+  readonly deletedate: Prisma.FieldRef<"Tarea", 'DateTime'>
 }
     
 
