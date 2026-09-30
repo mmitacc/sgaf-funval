@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsString,
   IsNotEmpty,
@@ -9,9 +9,12 @@ import {
   IsEmail,
   IsEnum,
   IsBoolean,
+  ValidateIf,
+  ValidateNested,
 } from 'class-validator';
 import { Rol } from '../../prisma/generated/prisma/enums.js';
 import { Estado } from '../../prisma/generated/prisma/enums.js';
+import { CreateProfesorDto } from '../../profesor/dto/create-profesor.dto.js';
 
 export class CreateUsuarioDto {
   @ApiProperty({
@@ -147,4 +150,19 @@ export class CreateUsuarioDto {
     message: `El estado, debe ser uno de los siguientes valores: ${Object.values(Rol).join(', ')}.`,
   })
   readonly estado?: Estado;
+
+  // Solo cuando el nuevo Usuario tenga el Rol:'PROFESOR'
+  @ApiProperty({ type: CreateProfesorDto, required: false })
+  @ValidateIf((dto: CreateUsuarioDto) => dto.rol === 'PROFESOR')
+  @IsNotEmpty({
+    message: 'Los datos del Profesor son obligatorios cuando el rol=PROFESOR',
+  })
+  @ValidateNested()
+  @Type(() => CreateProfesorDto)
+  readonly datosProfesor?: CreateProfesorDto;
+}
+
+export interface CreateUsuarioConProfesor extends CreateUsuarioDto {
+  fecha_contrato?: Date;
+  id_especialidad?: number;
 }

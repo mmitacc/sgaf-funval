@@ -1,9 +1,8 @@
 import { ApiProperty, IntersectionType, OmitType } from '@nestjs/swagger';
 import { IsDate, IsInt, IsNotEmpty, Min, MinDate } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateUsuarioDto } from '../../usuario/dto/create-usuario.dto.js';
 
-export class CamposSoloProfesorDto {
+export class CreateProfesorDto {
   @ApiProperty({
     example: '2026-09-29',
     description:
@@ -12,7 +11,7 @@ export class CamposSoloProfesorDto {
   @IsNotEmpty({ message: 'La fecha del contrato, es obligatoria.' })
   @Type(() => Date)
   @IsDate({ message: 'La fecha del contrato, debe ser una fecha válida.' })
-  @MinDate(new Date('2020-01-01'), {
+  @MinDate(new Date(Date.UTC(2020, 0, 1)), {
     message: 'La fecha del contrato, no puede ser anterior al año 2020.',
   })
   readonly fecha_contrato: Date;
@@ -27,8 +26,3 @@ export class CamposSoloProfesorDto {
   @Min(0, { message: 'El id_especialidad, no puede ser negativo.' })
   readonly id_especialidad: number;
 }
-
-export class CreateProfesorDto extends IntersectionType(
-  OmitType(CreateUsuarioDto, ['rol', 'estado'] as const),
-  CamposSoloProfesorDto,
-) {}

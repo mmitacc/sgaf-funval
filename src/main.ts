@@ -2,10 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 import 'dotenv/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  //Filtros para orm prisma
+  app.useGlobalFilters(new PrismaExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -15,6 +19,7 @@ async function bootstrap() {
     }),
   );
 
+  //Configuración para documentaciones con Swagger
   const config = new DocumentBuilder()
     .setTitle('"Sistema de Gestión Académica y Financiera - FUNVAL"')
     .setDescription('API RESTful que permite la gestión para sistemas SGAF')

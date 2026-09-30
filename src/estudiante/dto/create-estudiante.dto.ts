@@ -34,6 +34,6 @@ export class CamposSoloEstudianteDto {
 }
 
 export class CreateEstudianteDto extends IntersectionType(
-  OmitType(CreateUsuarioDto, ['rol', 'estado'] as const),
+  OmitType(CreateUsuarioDto, ['rol', 'estado', 'datosProfesor'] as const),
   CamposSoloEstudianteDto,
 ) {}
