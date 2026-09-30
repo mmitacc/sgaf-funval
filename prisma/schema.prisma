@@ -20,7 +20,7 @@ enum Rol {
   SUPERADMIN
 }
 
-enum EstadoUsuario {
+enum Estado {
   PENDIENTE
   ACTIVO
   SUSPENDIDO
@@ -44,18 +44,18 @@ enum EstadoPago {
 // ==========================================
 
 model Usuario {
-  id         Int           @id @default(autoincrement())
-  nombres    String        @db.VarChar(100)
-  apellidos  String        @db.VarChar(100)
-  telefono   String?       @db.VarChar(20)
-  email      String        @unique @db.VarChar(255)
-  password   String        @db.VarChar(255)
-  rol        Rol
-  masculino  Boolean       @default(true)
-  estado     EstadoUsuario @default(PENDIENTE)
-  created    DateTime      @default(now())
-  updated    DateTime      @updatedAt
-  deleted    Boolean       @default(false)
+  id         Int       @id @default(autoincrement())
+  nombres    String    @db.VarChar(100)
+  apellidos  String    @db.VarChar(100)
+  telefono   String?   @db.VarChar(20)
+  email      String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  rol        Rol?      @default(ESTUDIANTE)
+  masculino  Boolean
+  estado     Estado?   @default(PENDIENTE)
+  created    DateTime  @default(now())
+  updated    DateTime  @updatedAt
+  deleted    Boolean   @default(false)
   deletedate DateTime?
 
   // Relaciones 1:1 (Herencia)
@@ -86,10 +86,6 @@ model Profesor {
   fecha_contrato  DateTime
   id_especialidad Int
   especialidad    Especialidad @relation(fields: [id_especialidad], references: [id])
-  created         DateTime     @default(now())
-  updated         DateTime     @updatedAt
-  deleted         Boolean      @default(false)
-  deletedate      DateTime?
 
   grupos Grupo[]
 
@@ -97,14 +93,10 @@ model Profesor {
 }
 
 model Estudiante {
-  id_usuario Int       @id // Compartirá el mismo ID que Usuario
-  usuario    Usuario   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
-  codigo     String    @unique @db.VarChar(20) // Código de matrícula único
-  apoderado  String?   @db.VarChar(200)
-  created    DateTime  @default(now())
-  updated    DateTime  @updatedAt
-  deleted    Boolean   @default(false)
-  deletedate DateTime?
+  id_usuario Int     @id // Compartirá el mismo ID que Usuario
+  usuario    Usuario @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+  codigo     String  @unique @db.VarChar(20) // Código de matrícula único
+  apoderado  String? @db.VarChar(200)
 
   matriculas Matricula[]
   entregas   Entrega[]
@@ -242,7 +234,7 @@ model Tarea {
 
 model Entrega {
   id            Int        @id @default(autoincrement())
-  respuesta     String     @db.Text
+  respuesta     String?    @db.Text
   archivo_url   String?    @db.VarChar()
   calificacion  Int? // Nullable hasta que el profesor califique
   id_estudiante Int

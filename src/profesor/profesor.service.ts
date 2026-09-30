@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProfesorDto } from './dto/create-profesor.dto.js';
 import { UpdateProfesorDto } from './dto/update-profesor.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class ProfesorService {
-  create(createProfesorDto: CreateProfesorDto) {
-    return 'This action adds a new profesor';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findAll() {
+    const usuarios = await this.prisma.profesor.findMany({
+      include: { usuario: { omit: { password: true } } },
+    });
+    return usuarios.filter((est) => est.usuario.rol === 'PROFESOR');
   }
 
-  findAll() {
-    return `This action returns all profesor`;
+  async findOne(id_usuario: number) {
+    return await this.prisma.profesor.findFirst({
+      where: { id_usuario },
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} profesor`;
+  async update(id_usuario: number, updateProfesorDto: UpdateProfesorDto) {
+    return await this.prisma.profesor.update({
+      where: { id_usuario },
+      data: updateProfesorDto,
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 
-  update(id: number, updateProfesorDto: UpdateProfesorDto) {
-    return `This action updates a #${id} profesor`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} profesor`;
+  async remove(id_usuario: number) {
+    return await this.prisma.profesor.update({
+      where: { id_usuario },
+      data: { usuario: { update: { deleted: true, deletedate: new Date() } } },
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 }

@@ -38,30 +38,18 @@ export type EstudianteMinAggregateOutputType = {
   id_usuario: number | null
   codigo: string | null
   apoderado: string | null
-  created: Date | null
-  updated: Date | null
-  deleted: boolean | null
-  deletedate: Date | null
 }
 
 export type EstudianteMaxAggregateOutputType = {
   id_usuario: number | null
   codigo: string | null
   apoderado: string | null
-  created: Date | null
-  updated: Date | null
-  deleted: boolean | null
-  deletedate: Date | null
 }
 
 export type EstudianteCountAggregateOutputType = {
   id_usuario: number
   codigo: number
   apoderado: number
-  created: number
-  updated: number
-  deleted: number
-  deletedate: number
   _all: number
 }
 
@@ -78,30 +66,18 @@ export type EstudianteMinAggregateInputType = {
   id_usuario?: true
   codigo?: true
   apoderado?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
 }
 
 export type EstudianteMaxAggregateInputType = {
   id_usuario?: true
   codigo?: true
   apoderado?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
 }
 
 export type EstudianteCountAggregateInputType = {
   id_usuario?: true
   codigo?: true
   apoderado?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
   _all?: true
 }
 
@@ -195,10 +171,6 @@ export type EstudianteGroupByOutputType = {
   id_usuario: number
   codigo: string
   apoderado: string | null
-  created: Date
-  updated: Date
-  deleted: boolean
-  deletedate: Date | null
   _count: EstudianteCountAggregateOutputType | null
   _avg: EstudianteAvgAggregateOutputType | null
   _sum: EstudianteSumAggregateOutputType | null
@@ -228,10 +200,6 @@ export type EstudianteWhereInput = {
   id_usuario?: Prisma.IntFilter<"Estudiante"> | number
   codigo?: Prisma.StringFilter<"Estudiante"> | string
   apoderado?: Prisma.StringNullableFilter<"Estudiante"> | string | null
-  created?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
-  updated?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
-  deleted?: Prisma.BoolFilter<"Estudiante"> | boolean
-  deletedate?: Prisma.DateTimeNullableFilter<"Estudiante"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   matriculas?: Prisma.MatriculaListRelationFilter
   entregas?: Prisma.EntregaListRelationFilter
@@ -243,10 +211,6 @@ export type EstudianteOrderByWithRelationInput = {
   id_usuario?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   apoderado?: Prisma.SortOrderInput | Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   usuario?: Prisma.UsuarioOrderByWithRelationInput
   matriculas?: Prisma.MatriculaOrderByRelationAggregateInput
   entregas?: Prisma.EntregaOrderByRelationAggregateInput
@@ -261,10 +225,6 @@ export type EstudianteWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EstudianteWhereInput[]
   NOT?: Prisma.EstudianteWhereInput | Prisma.EstudianteWhereInput[]
   apoderado?: Prisma.StringNullableFilter<"Estudiante"> | string | null
-  created?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
-  updated?: Prisma.DateTimeFilter<"Estudiante"> | Date | string
-  deleted?: Prisma.BoolFilter<"Estudiante"> | boolean
-  deletedate?: Prisma.DateTimeNullableFilter<"Estudiante"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   matriculas?: Prisma.MatriculaListRelationFilter
   entregas?: Prisma.EntregaListRelationFilter
@@ -276,10 +236,6 @@ export type EstudianteOrderByWithAggregationInput = {
   id_usuario?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   apoderado?: Prisma.SortOrderInput | Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EstudianteCountOrderByAggregateInput
   _avg?: Prisma.EstudianteAvgOrderByAggregateInput
   _max?: Prisma.EstudianteMaxOrderByAggregateInput
@@ -294,19 +250,11 @@ export type EstudianteScalarWhereWithAggregatesInput = {
   id_usuario?: Prisma.IntWithAggregatesFilter<"Estudiante"> | number
   codigo?: Prisma.StringWithAggregatesFilter<"Estudiante"> | string
   apoderado?: Prisma.StringNullableWithAggregatesFilter<"Estudiante"> | string | null
-  created?: Prisma.DateTimeWithAggregatesFilter<"Estudiante"> | Date | string
-  updated?: Prisma.DateTimeWithAggregatesFilter<"Estudiante"> | Date | string
-  deleted?: Prisma.BoolWithAggregatesFilter<"Estudiante"> | boolean
-  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Estudiante"> | Date | string | null
 }
 
 export type EstudianteCreateInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutEstudianteInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutEstudianteInput
@@ -318,10 +266,6 @@ export type EstudianteUncheckedCreateInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutEstudianteInput
@@ -331,10 +275,6 @@ export type EstudianteUncheckedCreateInput = {
 export type EstudianteUpdateInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutEstudianteNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutEstudianteNestedInput
@@ -346,10 +286,6 @@ export type EstudianteUncheckedUpdateInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -360,29 +296,17 @@ export type EstudianteCreateManyInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
 }
 
 export type EstudianteUpdateManyMutationInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EstudianteUncheckedUpdateManyInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EstudianteNullableScalarRelationFilter = {
@@ -394,10 +318,6 @@ export type EstudianteCountOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   apoderado?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type EstudianteAvgOrderByAggregateInput = {
@@ -408,20 +328,12 @@ export type EstudianteMaxOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   apoderado?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type EstudianteMinOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   codigo?: Prisma.SortOrder
   apoderado?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type EstudianteSumOrderByAggregateInput = {
@@ -524,10 +436,6 @@ export type EstudianteUpdateOneRequiredWithoutPagosNestedInput = {
 export type EstudianteCreateWithoutUsuarioInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoCreateNestedManyWithoutEstudianteInput
@@ -537,10 +445,6 @@ export type EstudianteCreateWithoutUsuarioInput = {
 export type EstudianteUncheckedCreateWithoutUsuarioInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutEstudianteInput
@@ -566,10 +470,6 @@ export type EstudianteUpdateToOneWithWhereWithoutUsuarioInput = {
 export type EstudianteUpdateWithoutUsuarioInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutEstudianteNestedInput
@@ -579,10 +479,6 @@ export type EstudianteUpdateWithoutUsuarioInput = {
 export type EstudianteUncheckedUpdateWithoutUsuarioInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -592,10 +488,6 @@ export type EstudianteUncheckedUpdateWithoutUsuarioInput = {
 export type EstudianteCreateWithoutMatriculasInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutEstudianteInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoCreateNestedManyWithoutEstudianteInput
@@ -606,10 +498,6 @@ export type EstudianteUncheckedCreateWithoutMatriculasInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutEstudianteInput
   deudas?: Prisma.DeudaUncheckedCreateNestedManyWithoutEstudianteInput
@@ -634,10 +522,6 @@ export type EstudianteUpdateToOneWithWhereWithoutMatriculasInput = {
 export type EstudianteUpdateWithoutMatriculasInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutEstudianteNestedInput
@@ -648,10 +532,6 @@ export type EstudianteUncheckedUpdateWithoutMatriculasInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutEstudianteNestedInput
   deudas?: Prisma.DeudaUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -660,10 +540,6 @@ export type EstudianteUncheckedUpdateWithoutMatriculasInput = {
 export type EstudianteCreateWithoutEntregasInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutEstudianteInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoCreateNestedManyWithoutEstudianteInput
@@ -674,10 +550,6 @@ export type EstudianteUncheckedCreateWithoutEntregasInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutEstudianteInput
   deudas?: Prisma.DeudaUncheckedCreateNestedManyWithoutEstudianteInput
@@ -702,10 +574,6 @@ export type EstudianteUpdateToOneWithWhereWithoutEntregasInput = {
 export type EstudianteUpdateWithoutEntregasInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutEstudianteNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUpdateManyWithoutEstudianteNestedInput
@@ -716,10 +584,6 @@ export type EstudianteUncheckedUpdateWithoutEntregasInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutEstudianteNestedInput
   deudas?: Prisma.DeudaUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -728,10 +592,6 @@ export type EstudianteUncheckedUpdateWithoutEntregasInput = {
 export type EstudianteCreateWithoutDeudasInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutEstudianteInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutEstudianteInput
@@ -742,10 +602,6 @@ export type EstudianteUncheckedCreateWithoutDeudasInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutEstudianteInput
   pagos?: Prisma.PagoUncheckedCreateNestedManyWithoutEstudianteInput
@@ -770,10 +626,6 @@ export type EstudianteUpdateToOneWithWhereWithoutDeudasInput = {
 export type EstudianteUpdateWithoutDeudasInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutEstudianteNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutEstudianteNestedInput
@@ -784,10 +636,6 @@ export type EstudianteUncheckedUpdateWithoutDeudasInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutEstudianteNestedInput
   pagos?: Prisma.PagoUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -796,10 +644,6 @@ export type EstudianteUncheckedUpdateWithoutDeudasInput = {
 export type EstudianteCreateWithoutPagosInput = {
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutEstudianteInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaCreateNestedManyWithoutEstudianteInput
@@ -810,10 +654,6 @@ export type EstudianteUncheckedCreateWithoutPagosInput = {
   id_usuario: number
   codigo: string
   apoderado?: string | null
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutEstudianteInput
   entregas?: Prisma.EntregaUncheckedCreateNestedManyWithoutEstudianteInput
   deudas?: Prisma.DeudaUncheckedCreateNestedManyWithoutEstudianteInput
@@ -838,10 +678,6 @@ export type EstudianteUpdateToOneWithWhereWithoutPagosInput = {
 export type EstudianteUpdateWithoutPagosInput = {
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutEstudianteNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUpdateManyWithoutEstudianteNestedInput
@@ -852,10 +688,6 @@ export type EstudianteUncheckedUpdateWithoutPagosInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
   apoderado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutEstudianteNestedInput
   entregas?: Prisma.EntregaUncheckedUpdateManyWithoutEstudianteNestedInput
   deudas?: Prisma.DeudaUncheckedUpdateManyWithoutEstudianteNestedInput
@@ -923,10 +755,6 @@ export type EstudianteSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id_usuario?: boolean
   codigo?: boolean
   apoderado?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   matriculas?: boolean | Prisma.Estudiante$matriculasArgs<ExtArgs>
   entregas?: boolean | Prisma.Estudiante$entregasArgs<ExtArgs>
@@ -939,10 +767,6 @@ export type EstudianteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id_usuario?: boolean
   codigo?: boolean
   apoderado?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estudiante"]>
 
@@ -950,10 +774,6 @@ export type EstudianteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id_usuario?: boolean
   codigo?: boolean
   apoderado?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["estudiante"]>
 
@@ -961,13 +781,9 @@ export type EstudianteSelectScalar = {
   id_usuario?: boolean
   codigo?: boolean
   apoderado?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
 }
 
-export type EstudianteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "codigo" | "apoderado" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["estudiante"]>
+export type EstudianteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "codigo" | "apoderado", ExtArgs["result"]["estudiante"]>
 export type EstudianteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   matriculas?: boolean | Prisma.Estudiante$matriculasArgs<ExtArgs>
@@ -996,10 +812,6 @@ export type $EstudiantePayload<ExtArgs extends runtime.Types.Extensions.Internal
     id_usuario: number
     codigo: string
     apoderado: string | null
-    created: Date
-    updated: Date
-    deleted: boolean
-    deletedate: Date | null
   }, ExtArgs["result"]["estudiante"]>
   composites: {}
 }
@@ -1431,10 +1243,6 @@ export interface EstudianteFieldRefs {
   readonly id_usuario: Prisma.FieldRef<"Estudiante", 'Int'>
   readonly codigo: Prisma.FieldRef<"Estudiante", 'String'>
   readonly apoderado: Prisma.FieldRef<"Estudiante", 'String'>
-  readonly created: Prisma.FieldRef<"Estudiante", 'DateTime'>
-  readonly updated: Prisma.FieldRef<"Estudiante", 'DateTime'>
-  readonly deleted: Prisma.FieldRef<"Estudiante", 'Boolean'>
-  readonly deletedate: Prisma.FieldRef<"Estudiante", 'DateTime'>
 }
     
 

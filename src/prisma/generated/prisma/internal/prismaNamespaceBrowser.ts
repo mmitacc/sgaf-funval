@@ -117,11 +117,7 @@ export type EspecialidadScalarFieldEnum = (typeof EspecialidadScalarFieldEnum)[k
 export const ProfesorScalarFieldEnum = {
   id_usuario: 'id_usuario',
   fecha_contrato: 'fecha_contrato',
-  id_especialidad: 'id_especialidad',
-  created: 'created',
-  updated: 'updated',
-  deleted: 'deleted',
-  deletedate: 'deletedate'
+  id_especialidad: 'id_especialidad'
 } as const
 
 export type ProfesorScalarFieldEnum = (typeof ProfesorScalarFieldEnum)[keyof typeof ProfesorScalarFieldEnum]
@@ -130,11 +126,7 @@ export type ProfesorScalarFieldEnum = (typeof ProfesorScalarFieldEnum)[keyof typ
 export const EstudianteScalarFieldEnum = {
   id_usuario: 'id_usuario',
   codigo: 'codigo',
-  apoderado: 'apoderado',
-  created: 'created',
-  updated: 'updated',
-  deleted: 'deleted',
-  deletedate: 'deletedate'
+  apoderado: 'apoderado'
 } as const
 
 export type EstudianteScalarFieldEnum = (typeof EstudianteScalarFieldEnum)[keyof typeof EstudianteScalarFieldEnum]

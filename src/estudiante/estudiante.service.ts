@@ -1,26 +1,59 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto.js';
 import { UpdateEstudianteDto } from './dto/update-estudiante.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { identity } from 'rxjs';
 
 @Injectable()
 export class EstudianteService {
-  create(createEstudianteDto: CreateEstudianteDto) {
-    return 'This action adds a new estudiante';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createEstudianteDto: CreateEstudianteDto) {
+    const ultimoEstudiante = await this.prisma.estudiante.findFirst({
+      orderBy: { id_usuario: 'desc' },
+    });
+    const ultimoCodig = ultimoEstudiante
+      ? Number(ultimoEstudiante.codigo.slice(9))
+      : 0;
+    const { apoderado, ...otroUsuario } = createEstudianteDto;
+    return await this.prisma.estudiante.create({
+      data: {
+        codigo: 'MAT-2026-' + (ultimoCodig + 1),
+        apoderado,
+        usuario: {
+          create: otroUsuario,
+        },
+      },
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 
-  findAll() {
-    return `This action returns all estudiante`;
+  async findAll() {
+    const usuarios = await this.prisma.estudiante.findMany({
+      include: { usuario: { omit: { password: true } } },
+    });
+    return usuarios.filter((est) => est.usuario.rol === 'ESTUDIANTE');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} estudiante`;
+  async findOne(id_usuario: number) {
+    return await this.prisma.estudiante.findFirst({
+      where: { id_usuario },
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 
-  update(id: number, updateEstudianteDto: UpdateEstudianteDto) {
-    return `This action updates a #${id} estudiante`;
+  async update(id_usuario: number, updateEstudianteDto: UpdateEstudianteDto) {
+    return await this.prisma.estudiante.update({
+      where: { id_usuario },
+      data: updateEstudianteDto,
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} estudiante`;
+  async remove(id_usuario: number) {
+    return await this.prisma.estudiante.update({
+      where: { id_usuario },
+      data: { usuario: { update: { deleted: true, deletedate: new Date() } } },
+      include: { usuario: { omit: { password: true } } },
+    });
   }
 }

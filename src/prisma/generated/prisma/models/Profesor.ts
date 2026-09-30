@@ -40,30 +40,18 @@ export type ProfesorMinAggregateOutputType = {
   id_usuario: number | null
   fecha_contrato: Date | null
   id_especialidad: number | null
-  created: Date | null
-  updated: Date | null
-  deleted: boolean | null
-  deletedate: Date | null
 }
 
 export type ProfesorMaxAggregateOutputType = {
   id_usuario: number | null
   fecha_contrato: Date | null
   id_especialidad: number | null
-  created: Date | null
-  updated: Date | null
-  deleted: boolean | null
-  deletedate: Date | null
 }
 
 export type ProfesorCountAggregateOutputType = {
   id_usuario: number
   fecha_contrato: number
   id_especialidad: number
-  created: number
-  updated: number
-  deleted: number
-  deletedate: number
   _all: number
 }
 
@@ -82,30 +70,18 @@ export type ProfesorMinAggregateInputType = {
   id_usuario?: true
   fecha_contrato?: true
   id_especialidad?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
 }
 
 export type ProfesorMaxAggregateInputType = {
   id_usuario?: true
   fecha_contrato?: true
   id_especialidad?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
 }
 
 export type ProfesorCountAggregateInputType = {
   id_usuario?: true
   fecha_contrato?: true
   id_especialidad?: true
-  created?: true
-  updated?: true
-  deleted?: true
-  deletedate?: true
   _all?: true
 }
 
@@ -199,10 +175,6 @@ export type ProfesorGroupByOutputType = {
   id_usuario: number
   fecha_contrato: Date
   id_especialidad: number
-  created: Date
-  updated: Date
-  deleted: boolean
-  deletedate: Date | null
   _count: ProfesorCountAggregateOutputType | null
   _avg: ProfesorAvgAggregateOutputType | null
   _sum: ProfesorSumAggregateOutputType | null
@@ -232,10 +204,6 @@ export type ProfesorWhereInput = {
   id_usuario?: Prisma.IntFilter<"Profesor"> | number
   fecha_contrato?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   id_especialidad?: Prisma.IntFilter<"Profesor"> | number
-  created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   especialidad?: Prisma.XOR<Prisma.EspecialidadScalarRelationFilter, Prisma.EspecialidadWhereInput>
   grupos?: Prisma.GrupoListRelationFilter
@@ -245,10 +213,6 @@ export type ProfesorOrderByWithRelationInput = {
   id_usuario?: Prisma.SortOrder
   fecha_contrato?: Prisma.SortOrder
   id_especialidad?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   usuario?: Prisma.UsuarioOrderByWithRelationInput
   especialidad?: Prisma.EspecialidadOrderByWithRelationInput
   grupos?: Prisma.GrupoOrderByRelationAggregateInput
@@ -261,10 +225,6 @@ export type ProfesorWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProfesorWhereInput | Prisma.ProfesorWhereInput[]
   fecha_contrato?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   id_especialidad?: Prisma.IntFilter<"Profesor"> | number
-  created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   especialidad?: Prisma.XOR<Prisma.EspecialidadScalarRelationFilter, Prisma.EspecialidadWhereInput>
   grupos?: Prisma.GrupoListRelationFilter
@@ -274,10 +234,6 @@ export type ProfesorOrderByWithAggregationInput = {
   id_usuario?: Prisma.SortOrder
   fecha_contrato?: Prisma.SortOrder
   id_especialidad?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProfesorCountOrderByAggregateInput
   _avg?: Prisma.ProfesorAvgOrderByAggregateInput
   _max?: Prisma.ProfesorMaxOrderByAggregateInput
@@ -292,18 +248,10 @@ export type ProfesorScalarWhereWithAggregatesInput = {
   id_usuario?: Prisma.IntWithAggregatesFilter<"Profesor"> | number
   fecha_contrato?: Prisma.DateTimeWithAggregatesFilter<"Profesor"> | Date | string
   id_especialidad?: Prisma.IntWithAggregatesFilter<"Profesor"> | number
-  created?: Prisma.DateTimeWithAggregatesFilter<"Profesor"> | Date | string
-  updated?: Prisma.DateTimeWithAggregatesFilter<"Profesor"> | Date | string
-  deleted?: Prisma.BoolWithAggregatesFilter<"Profesor"> | boolean
-  deletedate?: Prisma.DateTimeNullableWithAggregatesFilter<"Profesor"> | Date | string | null
 }
 
 export type ProfesorCreateInput = {
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
@@ -313,19 +261,11 @@ export type ProfesorUncheckedCreateInput = {
   id_usuario: number
   fecha_contrato: Date | string
   id_especialidad: number
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
 export type ProfesorUpdateInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
@@ -335,10 +275,6 @@ export type ProfesorUncheckedUpdateInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_especialidad?: Prisma.IntFieldUpdateOperationsInput | number
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
@@ -346,28 +282,16 @@ export type ProfesorCreateManyInput = {
   id_usuario: number
   fecha_contrato: Date | string
   id_especialidad: number
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
 }
 
 export type ProfesorUpdateManyMutationInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorUncheckedUpdateManyInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_especialidad?: Prisma.IntFieldUpdateOperationsInput | number
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorNullableScalarRelationFilter = {
@@ -389,10 +313,6 @@ export type ProfesorCountOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   fecha_contrato?: Prisma.SortOrder
   id_especialidad?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorAvgOrderByAggregateInput = {
@@ -404,20 +324,12 @@ export type ProfesorMaxOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   fecha_contrato?: Prisma.SortOrder
   id_especialidad?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorMinOrderByAggregateInput = {
   id_usuario?: Prisma.SortOrder
   fecha_contrato?: Prisma.SortOrder
   id_especialidad?: Prisma.SortOrder
-  created?: Prisma.SortOrder
-  updated?: Prisma.SortOrder
-  deleted?: Prisma.SortOrder
-  deletedate?: Prisma.SortOrder
 }
 
 export type ProfesorSumOrderByAggregateInput = {
@@ -520,10 +432,6 @@ export type ProfesorUpdateOneRequiredWithoutGruposNestedInput = {
 
 export type ProfesorCreateWithoutUsuarioInput = {
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
 }
@@ -531,10 +439,6 @@ export type ProfesorCreateWithoutUsuarioInput = {
 export type ProfesorUncheckedCreateWithoutUsuarioInput = {
   fecha_contrato: Date | string
   id_especialidad: number
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
@@ -556,10 +460,6 @@ export type ProfesorUpdateToOneWithWhereWithoutUsuarioInput = {
 
 export type ProfesorUpdateWithoutUsuarioInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
 }
@@ -567,19 +467,11 @@ export type ProfesorUpdateWithoutUsuarioInput = {
 export type ProfesorUncheckedUpdateWithoutUsuarioInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_especialidad?: Prisma.IntFieldUpdateOperationsInput | number
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
 export type ProfesorCreateWithoutEspecialidadInput = {
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   grupos?: Prisma.GrupoCreateNestedManyWithoutProfesorInput
 }
@@ -587,10 +479,6 @@ export type ProfesorCreateWithoutEspecialidadInput = {
 export type ProfesorUncheckedCreateWithoutEspecialidadInput = {
   id_usuario: number
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   grupos?: Prisma.GrupoUncheckedCreateNestedManyWithoutProfesorInput
 }
 
@@ -627,18 +515,10 @@ export type ProfesorScalarWhereInput = {
   id_usuario?: Prisma.IntFilter<"Profesor"> | number
   fecha_contrato?: Prisma.DateTimeFilter<"Profesor"> | Date | string
   id_especialidad?: Prisma.IntFilter<"Profesor"> | number
-  created?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  updated?: Prisma.DateTimeFilter<"Profesor"> | Date | string
-  deleted?: Prisma.BoolFilter<"Profesor"> | boolean
-  deletedate?: Prisma.DateTimeNullableFilter<"Profesor"> | Date | string | null
 }
 
 export type ProfesorCreateWithoutGruposInput = {
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
   usuario: Prisma.UsuarioCreateNestedOneWithoutProfesorInput
   especialidad: Prisma.EspecialidadCreateNestedOneWithoutProfesoresInput
 }
@@ -647,10 +527,6 @@ export type ProfesorUncheckedCreateWithoutGruposInput = {
   id_usuario: number
   fecha_contrato: Date | string
   id_especialidad: number
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
 }
 
 export type ProfesorCreateOrConnectWithoutGruposInput = {
@@ -671,10 +547,6 @@ export type ProfesorUpdateToOneWithWhereWithoutGruposInput = {
 
 export type ProfesorUpdateWithoutGruposInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   especialidad?: Prisma.EspecialidadUpdateOneRequiredWithoutProfesoresNestedInput
 }
@@ -683,27 +555,15 @@ export type ProfesorUncheckedUpdateWithoutGruposInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_especialidad?: Prisma.IntFieldUpdateOperationsInput | number
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type ProfesorCreateManyEspecialidadInput = {
   id_usuario: number
   fecha_contrato: Date | string
-  created?: Date | string
-  updated?: Date | string
-  deleted?: boolean
-  deletedate?: Date | string | null
 }
 
 export type ProfesorUpdateWithoutEspecialidadInput = {
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutProfesorNestedInput
   grupos?: Prisma.GrupoUpdateManyWithoutProfesorNestedInput
 }
@@ -711,20 +571,12 @@ export type ProfesorUpdateWithoutEspecialidadInput = {
 export type ProfesorUncheckedUpdateWithoutEspecialidadInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   grupos?: Prisma.GrupoUncheckedUpdateManyWithoutProfesorNestedInput
 }
 
 export type ProfesorUncheckedUpdateManyWithoutEspecialidadInput = {
   id_usuario?: Prisma.IntFieldUpdateOperationsInput | number
   fecha_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -762,10 +614,6 @@ export type ProfesorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id_usuario?: boolean
   fecha_contrato?: boolean
   id_especialidad?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
   grupos?: boolean | Prisma.Profesor$gruposArgs<ExtArgs>
@@ -776,10 +624,6 @@ export type ProfesorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id_usuario?: boolean
   fecha_contrato?: boolean
   id_especialidad?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profesor"]>
@@ -788,10 +632,6 @@ export type ProfesorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id_usuario?: boolean
   fecha_contrato?: boolean
   id_especialidad?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profesor"]>
@@ -800,13 +640,9 @@ export type ProfesorSelectScalar = {
   id_usuario?: boolean
   fecha_contrato?: boolean
   id_especialidad?: boolean
-  created?: boolean
-  updated?: boolean
-  deleted?: boolean
-  deletedate?: boolean
 }
 
-export type ProfesorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "fecha_contrato" | "id_especialidad" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["profesor"]>
+export type ProfesorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "fecha_contrato" | "id_especialidad", ExtArgs["result"]["profesor"]>
 export type ProfesorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usuario?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>
   especialidad?: boolean | Prisma.EspecialidadDefaultArgs<ExtArgs>
@@ -833,10 +669,6 @@ export type $ProfesorPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id_usuario: number
     fecha_contrato: Date
     id_especialidad: number
-    created: Date
-    updated: Date
-    deleted: boolean
-    deletedate: Date | null
   }, ExtArgs["result"]["profesor"]>
   composites: {}
 }
@@ -1266,10 +1098,6 @@ export interface ProfesorFieldRefs {
   readonly id_usuario: Prisma.FieldRef<"Profesor", 'Int'>
   readonly fecha_contrato: Prisma.FieldRef<"Profesor", 'DateTime'>
   readonly id_especialidad: Prisma.FieldRef<"Profesor", 'Int'>
-  readonly created: Prisma.FieldRef<"Profesor", 'DateTime'>
-  readonly updated: Prisma.FieldRef<"Profesor", 'DateTime'>
-  readonly deleted: Prisma.FieldRef<"Profesor", 'Boolean'>
-  readonly deletedate: Prisma.FieldRef<"Profesor", 'DateTime'>
 }
     
 

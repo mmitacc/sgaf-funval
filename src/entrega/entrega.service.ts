@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEntregaDto } from './dto/create-entrega.dto.js';
 import { UpdateEntregaDto } from './dto/update-entrega.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class EntregaService {
-  create(createEntregaDto: CreateEntregaDto) {
-    return 'This action adds a new entrega';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createEntregaDto: CreateEntregaDto) {
+    return await this.prisma.entrega.create({ data: createEntregaDto });
   }
 
-  findAll() {
-    return `This action returns all entrega`;
+  async findAll() {
+    return await this.prisma.entrega.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} entrega`;
+  async findOne(id: number) {
+    return await this.prisma.entrega.findFirst({
+      where: { id, deleted: false },
+    });
   }
 
-  update(id: number, updateEntregaDto: UpdateEntregaDto) {
-    return `This action updates a #${id} entrega`;
+  async update(id: number, updateEntregaDto: UpdateEntregaDto) {
+    return await this.prisma.entrega.update({
+      where: { id, deleted: false },
+      data: updateEntregaDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} entrega`;
+  async remove(id: number) {
+    return await this.prisma.entrega.update({
+      where: { id, deleted: false },
+      data: { deleted: true },
+    });
   }
 }

@@ -223,7 +223,7 @@ export type EntregaGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type EntregaGroupByOutputType = {
   id: number
-  respuesta: string
+  respuesta: string | null
   archivo_url: string | null
   calificacion: number | null
   id_estudiante: number
@@ -259,7 +259,7 @@ export type EntregaWhereInput = {
   OR?: Prisma.EntregaWhereInput[]
   NOT?: Prisma.EntregaWhereInput | Prisma.EntregaWhereInput[]
   id?: Prisma.IntFilter<"Entrega"> | number
-  respuesta?: Prisma.StringFilter<"Entrega"> | string
+  respuesta?: Prisma.StringNullableFilter<"Entrega"> | string | null
   archivo_url?: Prisma.StringNullableFilter<"Entrega"> | string | null
   calificacion?: Prisma.IntNullableFilter<"Entrega"> | number | null
   id_estudiante?: Prisma.IntFilter<"Entrega"> | number
@@ -274,7 +274,7 @@ export type EntregaWhereInput = {
 
 export type EntregaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  respuesta?: Prisma.SortOrder
+  respuesta?: Prisma.SortOrderInput | Prisma.SortOrder
   archivo_url?: Prisma.SortOrderInput | Prisma.SortOrder
   calificacion?: Prisma.SortOrderInput | Prisma.SortOrder
   id_estudiante?: Prisma.SortOrder
@@ -292,7 +292,7 @@ export type EntregaWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EntregaWhereInput | Prisma.EntregaWhereInput[]
   OR?: Prisma.EntregaWhereInput[]
   NOT?: Prisma.EntregaWhereInput | Prisma.EntregaWhereInput[]
-  respuesta?: Prisma.StringFilter<"Entrega"> | string
+  respuesta?: Prisma.StringNullableFilter<"Entrega"> | string | null
   archivo_url?: Prisma.StringNullableFilter<"Entrega"> | string | null
   calificacion?: Prisma.IntNullableFilter<"Entrega"> | number | null
   id_estudiante?: Prisma.IntFilter<"Entrega"> | number
@@ -307,7 +307,7 @@ export type EntregaWhereUniqueInput = Prisma.AtLeast<{
 
 export type EntregaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  respuesta?: Prisma.SortOrder
+  respuesta?: Prisma.SortOrderInput | Prisma.SortOrder
   archivo_url?: Prisma.SortOrderInput | Prisma.SortOrder
   calificacion?: Prisma.SortOrderInput | Prisma.SortOrder
   id_estudiante?: Prisma.SortOrder
@@ -328,7 +328,7 @@ export type EntregaScalarWhereWithAggregatesInput = {
   OR?: Prisma.EntregaScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EntregaScalarWhereWithAggregatesInput | Prisma.EntregaScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Entrega"> | number
-  respuesta?: Prisma.StringWithAggregatesFilter<"Entrega"> | string
+  respuesta?: Prisma.StringNullableWithAggregatesFilter<"Entrega"> | string | null
   archivo_url?: Prisma.StringNullableWithAggregatesFilter<"Entrega"> | string | null
   calificacion?: Prisma.IntNullableWithAggregatesFilter<"Entrega"> | number | null
   id_estudiante?: Prisma.IntWithAggregatesFilter<"Entrega"> | number
@@ -340,7 +340,7 @@ export type EntregaScalarWhereWithAggregatesInput = {
 }
 
 export type EntregaCreateInput = {
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   created?: Date | string
@@ -353,7 +353,7 @@ export type EntregaCreateInput = {
 
 export type EntregaUncheckedCreateInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_estudiante: number
@@ -365,7 +365,7 @@ export type EntregaUncheckedCreateInput = {
 }
 
 export type EntregaUpdateInput = {
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,7 +378,7 @@ export type EntregaUpdateInput = {
 
 export type EntregaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_estudiante?: Prisma.IntFieldUpdateOperationsInput | number
@@ -391,7 +391,7 @@ export type EntregaUncheckedUpdateInput = {
 
 export type EntregaCreateManyInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_estudiante: number
@@ -403,7 +403,7 @@ export type EntregaCreateManyInput = {
 }
 
 export type EntregaUpdateManyMutationInput = {
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -414,7 +414,7 @@ export type EntregaUpdateManyMutationInput = {
 
 export type EntregaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_estudiante?: Prisma.IntFieldUpdateOperationsInput | number
@@ -581,7 +581,7 @@ export type NullableIntFieldUpdateOperationsInput = {
 }
 
 export type EntregaCreateWithoutEstudianteInput = {
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   created?: Date | string
@@ -593,7 +593,7 @@ export type EntregaCreateWithoutEstudianteInput = {
 
 export type EntregaUncheckedCreateWithoutEstudianteInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_tarea: number
@@ -634,7 +634,7 @@ export type EntregaScalarWhereInput = {
   OR?: Prisma.EntregaScalarWhereInput[]
   NOT?: Prisma.EntregaScalarWhereInput | Prisma.EntregaScalarWhereInput[]
   id?: Prisma.IntFilter<"Entrega"> | number
-  respuesta?: Prisma.StringFilter<"Entrega"> | string
+  respuesta?: Prisma.StringNullableFilter<"Entrega"> | string | null
   archivo_url?: Prisma.StringNullableFilter<"Entrega"> | string | null
   calificacion?: Prisma.IntNullableFilter<"Entrega"> | number | null
   id_estudiante?: Prisma.IntFilter<"Entrega"> | number
@@ -646,7 +646,7 @@ export type EntregaScalarWhereInput = {
 }
 
 export type EntregaCreateWithoutTareaInput = {
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   created?: Date | string
@@ -658,7 +658,7 @@ export type EntregaCreateWithoutTareaInput = {
 
 export type EntregaUncheckedCreateWithoutTareaInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_estudiante: number
@@ -696,7 +696,7 @@ export type EntregaUpdateManyWithWhereWithoutTareaInput = {
 
 export type EntregaCreateManyEstudianteInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_tarea: number
@@ -707,7 +707,7 @@ export type EntregaCreateManyEstudianteInput = {
 }
 
 export type EntregaUpdateWithoutEstudianteInput = {
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -719,7 +719,7 @@ export type EntregaUpdateWithoutEstudianteInput = {
 
 export type EntregaUncheckedUpdateWithoutEstudianteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_tarea?: Prisma.IntFieldUpdateOperationsInput | number
@@ -731,7 +731,7 @@ export type EntregaUncheckedUpdateWithoutEstudianteInput = {
 
 export type EntregaUncheckedUpdateManyWithoutEstudianteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_tarea?: Prisma.IntFieldUpdateOperationsInput | number
@@ -743,7 +743,7 @@ export type EntregaUncheckedUpdateManyWithoutEstudianteInput = {
 
 export type EntregaCreateManyTareaInput = {
   id?: number
-  respuesta: string
+  respuesta?: string | null
   archivo_url?: string | null
   calificacion?: number | null
   id_estudiante: number
@@ -754,7 +754,7 @@ export type EntregaCreateManyTareaInput = {
 }
 
 export type EntregaUpdateWithoutTareaInput = {
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -766,7 +766,7 @@ export type EntregaUpdateWithoutTareaInput = {
 
 export type EntregaUncheckedUpdateWithoutTareaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_estudiante?: Prisma.IntFieldUpdateOperationsInput | number
@@ -778,7 +778,7 @@ export type EntregaUncheckedUpdateWithoutTareaInput = {
 
 export type EntregaUncheckedUpdateManyWithoutTareaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  respuesta?: Prisma.StringFieldUpdateOperationsInput | string
+  respuesta?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   archivo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   calificacion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   id_estudiante?: Prisma.IntFieldUpdateOperationsInput | number
@@ -870,7 +870,7 @@ export type $EntregaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    respuesta: string
+    respuesta: string | null
     archivo_url: string | null
     calificacion: number | null
     id_estudiante: number

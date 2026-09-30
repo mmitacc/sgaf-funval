@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDeudaDto } from './dto/create-deuda.dto.js';
 import { UpdateDeudaDto } from './dto/update-deuda.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class DeudaService {
-  create(createDeudaDto: CreateDeudaDto) {
-    return 'This action adds a new deuda';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createDeudaDto: CreateDeudaDto) {
+    return await this.prisma.deuda.create({ data: createDeudaDto });
   }
 
-  findAll() {
-    return `This action returns all deuda`;
+  async findAll() {
+    return await this.prisma.deuda.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} deuda`;
+  async findOne(id: number) {
+    return await this.prisma.deuda.findFirst({ where: { id, deleted: false } });
   }
 
-  update(id: number, updateDeudaDto: UpdateDeudaDto) {
-    return `This action updates a #${id} deuda`;
+  async update(id: number, updateDeudaDto: UpdateDeudaDto) {
+    return await this.prisma.deuda.update({
+      where: { id, deleted: false },
+      data: updateDeudaDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} deuda`;
+  async remove(id: number) {
+    return await this.prisma.deuda.update({
+      where: { id, deleted: false },
+      data: { deleted: true, deletedate: new Date() },
+    });
   }
 }

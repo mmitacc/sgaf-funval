@@ -20,14 +20,14 @@ export const Rol = {
 export type Rol = (typeof Rol)[keyof typeof Rol]
 
 
-export const EstadoUsuario = {
+export const Estado = {
   PENDIENTE: 'PENDIENTE',
   ACTIVO: 'ACTIVO',
   SUSPENDIDO: 'SUSPENDIDO',
   INACTIVO: 'INACTIVO'
 } as const
 
-export type EstadoUsuario = (typeof EstadoUsuario)[keyof typeof EstadoUsuario]
+export type Estado = (typeof Estado)[keyof typeof Estado]
 
 
 export const TipoPago = {

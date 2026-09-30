@@ -1,10 +1,11 @@
 import { PrismaService } from '../src/prisma/prisma.service.js';
 import {
   Rol,
+  Estado,
   EstadoPago,
-  EstadoUsuario,
   TipoPago,
-} from './generated/prisma/enums.js';
+} from '../src/prisma/generated/prisma/enums.js';
+
 import { Decimal } from '@prisma/client/runtime/client';
 import bcrypt from 'bcryptjs';
 
@@ -160,7 +161,8 @@ async function main() {
         email: 'superadmin@prisma.edu',
         password: passwordSuperAdmin,
         rol: Rol.SUPERADMIN,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
       {
         nombres: 'Ana',
@@ -168,7 +170,8 @@ async function main() {
         email: 'admin@prisma.edu',
         password: passwordAdministrador,
         rol: Rol.ADMINISTRADOR,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: false,
       },
       {
         nombres: 'Laura',
@@ -176,7 +179,8 @@ async function main() {
         email: 'recepcion@prisma.edu',
         password: passwordRecepcionista,
         rol: Rol.RECEPCIONISTA,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: false,
       },
     ],
   });
@@ -193,7 +197,8 @@ async function main() {
         email: 'roberto.silva@prisma.edu',
         password: passwordProfesor,
         rol: Rol.PROFESOR,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
       {
         nombres: 'Elena',
@@ -201,7 +206,8 @@ async function main() {
         email: 'elena.rios@prisma.edu',
         password: passwordProfesor,
         rol: Rol.PROFESOR,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: false,
       },
       {
         nombres: 'Marcos',
@@ -209,7 +215,8 @@ async function main() {
         email: 'marcos.pena@prisma.edu',
         password: passwordProfesor,
         rol: Rol.PROFESOR,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
     ],
   });
@@ -247,7 +254,8 @@ async function main() {
         email: 'alumno.juan@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
       {
         nombres: 'Diego',
@@ -255,7 +263,8 @@ async function main() {
         email: 'alumno.diego@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
       {
         nombres: 'Sofia',
@@ -263,7 +272,8 @@ async function main() {
         email: 'alumno.sofia@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: false,
       },
       {
         nombres: 'Valentina',
@@ -271,7 +281,8 @@ async function main() {
         email: 'alumno.valentina@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: false,
       },
       {
         nombres: 'Mateo',
@@ -279,7 +290,8 @@ async function main() {
         email: 'alumno.mateo@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.ACTIVO,
+        estado: Estado.ACTIVO,
+        masculino: true,
       },
       {
         nombres: 'Lucas',
@@ -287,7 +299,8 @@ async function main() {
         email: 'alumno.lucas@prisma.edu',
         password: passwordEstudiante,
         rol: Rol.ESTUDIANTE,
-        estado: EstadoUsuario.PENDIENTE,
+        estado: Estado.PENDIENTE,
+        masculino: true,
       },
     ],
   });
@@ -454,7 +467,7 @@ async function main() {
   // A. Generación de Deudas Consolidadas del Periodo (Para los 5 alumnos ACTIVOS)
   // Ejemplo real: Total 450, Cuota 150, Pendiente inicia en 450 pero baja a 300 tras el primer pago.
   const estudiantesActivos = estudiantesUsuarios.filter(
-    (e) => e.estado === EstadoUsuario.ACTIVO,
+    (e) => e.estado === Estado.ACTIVO,
   );
   const deudasData = estudiantesActivos.map((est) => ({
     total_deuda: new Decimal(1740.0),

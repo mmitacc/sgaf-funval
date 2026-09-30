@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEspecialidadDto } from './dto/create-especialidad.dto.js';
 import { UpdateEspecialidadDto } from './dto/update-especialidad.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class EspecialidadService {
-  create(createEspecialidadDto: CreateEspecialidadDto) {
-    return 'This action adds a new especialidad';
+  constructor(private readonly prisma: PrismaService) {}
+  async create(createEspecialidadDto: CreateEspecialidadDto) {
+    return this.prisma.especialidad.create({ data: createEspecialidadDto });
   }
 
-  findAll() {
-    return `This action returns all especialidad`;
+  async findAll() {
+    return this.prisma.especialidad.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} especialidad`;
+  async findOne(id: number) {
+    return this.prisma.especialidad.findFirst({
+      where: { id, deleted: false },
+    });
   }
 
-  update(id: number, updateEspecialidadDto: UpdateEspecialidadDto) {
-    return `This action updates a #${id} especialidad`;
+  async update(id: number, updateEspecialidadDto: UpdateEspecialidadDto) {
+    return this.prisma.especialidad.update({
+      where: { id, deleted: false },
+      data: updateEspecialidadDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} especialidad`;
+  async remove(id: number) {
+    return this.prisma.especialidad.update({
+      where: { id, deleted: false },
+      data: { deleted: true },
+    });
   }
 }
