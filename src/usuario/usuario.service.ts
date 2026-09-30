@@ -84,4 +84,8 @@ export class UsuarioService {
       omit: { password: true },
     });
   }
+
+  async findEmail(email: string) {
+    return await this.prisma.usuario.findUnique({ where: { email } });
+  }
 }

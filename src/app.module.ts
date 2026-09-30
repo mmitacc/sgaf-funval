@@ -17,6 +17,7 @@ import { TareaModule } from './tarea/tarea.module.js';
 import { EntregaModule } from './entrega/entrega.module.js';
 import { DeudaModule } from './deuda/deuda.module.js';
 import { PagoModule } from './pago/pago.module.js';
+import { AuthModule } from './auth/auth.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -30,6 +31,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     //   serviceId: 'sgaf-funval',
     // }),
     PrismaModule,
+    AuthModule,
     UsuarioModule,
     ProfesorModule,
     EstudianteModule,
