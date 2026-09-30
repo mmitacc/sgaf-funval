@@ -8,10 +8,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { StringValue } from 'ms';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
+import { EstudianteModule } from '../estudiante/estudiante.module.js';
 
 @Module({
   imports: [
     ConfigModule,
+    EstudianteModule,
     UsuarioModule,
     PassportModule.register({ defaultStrategy: 'local' }),
     JwtModule.registerAsync({

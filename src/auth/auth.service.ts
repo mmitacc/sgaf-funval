@@ -3,12 +3,15 @@ import { UsuarioService } from '../usuario/usuario.service.js';
 import { LoginAuthDto } from './dto/login-auth.dto.js';
 import bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { EstudianteService } from '../estudiante/estudiante.service.js';
+import { CreateEstudianteDto } from '../estudiante/dto/create-estudiante.dto.js';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usuarioService: UsuarioService,
     private readonly jwtService: JwtService,
+    private readonly estudianteService: EstudianteService,
   ) {}
   async validateUsuario(loginAuthDto: LoginAuthDto) {
     const user = await this.usuarioService.findEmail(loginAuthDto.email);
@@ -27,4 +30,9 @@ export class AuthService {
     };
     return { access_token: this.jwtService.sign(payload) };
   }
+
+  async register(createEstudianteDto: CreateEstudianteDto) {
+    return await this.estudianteService.create(createEstudianteDto);
+  }
+
 }

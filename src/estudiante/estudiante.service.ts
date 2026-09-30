@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto.js';
 import { UpdateEstudianteDto } from './dto/update-estudiante.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { identity } from 'rxjs';
+import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class EstudianteService {
@@ -14,13 +14,14 @@ export class EstudianteService {
     const ultimoCodig = ultimoEstudiante
       ? Number(ultimoEstudiante.codigo.slice(9))
       : 0;
-    const { apoderado, ...otroUsuario } = createEstudianteDto;
+    const { apoderado, password, ...otroUsuario } = createEstudianteDto;
+    const hashedPassword = await bcrypt.hash(password, 10);
     return await this.prisma.estudiante.create({
       data: {
         codigo: 'MAT-2026-' + (ultimoCodig + 1),
         apoderado,
         usuario: {
-          create: otroUsuario,
+          create: { password: hashedPassword, ...otroUsuario },
         },
       },
       include: { usuario: { omit: { password: true } } },

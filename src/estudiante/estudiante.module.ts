@@ -5,5 +5,6 @@ import { EstudianteController } from './estudiante.controller.js';
 @Module({
   controllers: [EstudianteController],
   providers: [EstudianteService],
+  exports: [EstudianteService],
 })
 export class EstudianteModule {}
