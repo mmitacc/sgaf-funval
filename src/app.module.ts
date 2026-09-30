@@ -18,8 +18,16 @@ import { EntregaModule } from './entrega/entrega.module.js';
 import { DeudaModule } from './deuda/deuda.module.js';
 import { PagoModule } from './pago/pago.module.js';
 import { AuthModule } from './auth/auth.module.js';
+import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
+
+// Para que los datos de .env sean leidos globalmente
+ConfigModule.forRoot({
+  isGlobal: true,
+});
 
 @Module({
   imports: [
@@ -48,6 +56,13 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     PagoModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    // Esto asegura que cada endpoint de la app requiera token automáticamente
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    AppService,
+  ],
 })
 export class AppModule {}

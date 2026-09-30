@@ -35,6 +35,7 @@ async function bootstrap() {
       },
       'JWT-auth',
     )
+    .addSecurityRequirements('JWT-auth') // Para configurar el token globalmente
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, documentFactory);
