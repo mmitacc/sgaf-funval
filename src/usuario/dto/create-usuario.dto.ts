@@ -69,7 +69,7 @@ export class CreateUsuarioDto {
   readonly telefono?: string;
 
   @ApiProperty({
-    example: 'josep@mail.com',
+    example: 'manu@prisma.edu',
     description: 'Detalla el email del Usuario con el formato correcto',
   })
   @Transform(({ value }) =>
@@ -87,7 +87,7 @@ export class CreateUsuarioDto {
   readonly email: string;
 
   @ApiProperty({
-    example: 'mi_password',
+    example: '123456',
     description: 'Detalla la contraseña secreta del Usuario',
   })
   @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
