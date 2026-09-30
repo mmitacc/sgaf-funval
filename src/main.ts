@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 import { SanitizeInterceptor } from './common/interceptors/sanitize.interceptor.js';
+import { ConfigService } from '@nestjs/config';
 import 'dotenv/config';
 
 async function bootstrap() {
@@ -44,6 +45,7 @@ async function bootstrap() {
   // Interceptor para limpiar campos sensibles en la data
   app.useGlobalInterceptors(new SanitizeInterceptor());
 
-  await app.listen(process.env.PORT ?? 3000);
+  const configService = app.get(ConfigService);
+  await app.listen(configService.getOrThrow<number>('PORT') ?? 3000);
 }
 await bootstrap();

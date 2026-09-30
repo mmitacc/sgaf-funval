@@ -1,15 +1,17 @@
-import { PrismaService } from '../src/prisma/prisma.service.js';
+import { PrismaClient } from '../src/prisma/generated/prisma/client.js';
+import { PrismaPg } from '@prisma/adapter-pg';
 import {
   Rol,
   Estado,
   EstadoPago,
   TipoPago,
 } from '../src/prisma/generated/prisma/enums.js';
-
 import { Decimal } from '@prisma/client/runtime/client';
 import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaService();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
 
 async function main() {
   console.log('Iniciando limpieza completa de la base de datos...');

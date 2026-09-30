@@ -6,11 +6,15 @@ import {
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { ConfigService } from '@nestjs/config';
 import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsuarioService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly configService: ConfigService,
+  ) {}
   async create(createUsuarioDto: CreateUsuarioDto) {
     if (createUsuarioDto.rol === 'ESTUDIANTE')
       throw new BadRequestException(
@@ -31,7 +35,10 @@ export class UsuarioService {
           `La especialidad con ID=${datosProfesor?.id_especialidad} no existe.`,
         );
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(
+      password,
+      this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDS'),
+    );
     return await this.prisma.usuario.create({
       data: {
         ...restoUsuario,

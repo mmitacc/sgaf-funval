@@ -20,9 +20,11 @@ import { EstudianteModule } from '../estudiante/estudiante.module.js';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        secret: configService.getOrThrow<string>('JWT_SECRET'),
         signOptions: {
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN') as StringValue,
+          expiresIn: configService.getOrThrow<string>(
+            'JWT_EXPIRES_IN',
+          ) as StringValue,
         },
       }),
     }),

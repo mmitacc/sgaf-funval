@@ -2,11 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto.js';
 import { UpdateEstudianteDto } from './dto/update-estudiante.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { ConfigService } from '@nestjs/config';
 import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class EstudianteService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly configService: ConfigService,
+  ) {}
   async create(createEstudianteDto: CreateEstudianteDto) {
     const ultimoEstudiante = await this.prisma.estudiante.findFirst({
       orderBy: { id_usuario: 'desc' },
@@ -15,7 +19,10 @@ export class EstudianteService {
       ? Number(ultimoEstudiante.codigo.slice(9))
       : 0;
     const { apoderado, password, ...otroUsuario } = createEstudianteDto;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(
+      password,
+      this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDSF'),
+    );
     return await this.prisma.estudiante.create({
       data: {
         codigo: 'MAT-2026-' + (ultimoCodig + 1),

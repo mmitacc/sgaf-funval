@@ -22,6 +22,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from './auth/guards/roles.guard.js';
+import { envValidationSchema } from './common/configs/env.validation.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -32,13 +33,16 @@ ConfigModule.forRoot({
 
 @Module({
   imports: [
-    // Distributed tracing, auto-correlated logs, request/job metrics, error
-    // telemetry, alarms, and more — out of the box. Sign up at https://observe.nestjs.com
-    // ObserveModule.forRoot({
-    //   appKey: 'YOUR_APP_KEY',
-    //   appSecret: 'YOUR_APP_SECRET',
-    //   serviceId: 'sgaf-funval',
-    // }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: envValidationSchema,
+      validationOptions: {
+        libraryOptions: {
+          abortEarly: false,
+          allowUnknown: true,
+        },
+      },
+    }),
     PrismaModule,
     AuthModule,
     UsuarioModule,
