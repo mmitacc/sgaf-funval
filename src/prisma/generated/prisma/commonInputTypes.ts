@@ -236,6 +236,23 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
 }
 
+export type EnumDiaFilter<$PrismaModel = never> = {
+  equals?: $Enums.Dia | Prisma.EnumDiaFieldRefInput<$PrismaModel>
+  in?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDiaFilter<$PrismaModel> | $Enums.Dia
+}
+
+export type EnumDiaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Dia | Prisma.EnumDiaFieldRefInput<$PrismaModel>
+  in?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDiaWithAggregatesFilter<$PrismaModel> | $Enums.Dia
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDiaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDiaFilter<$PrismaModel>
+}
+
 export type IntNullableFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
@@ -530,6 +547,23 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type NestedEnumDiaFilter<$PrismaModel = never> = {
+  equals?: $Enums.Dia | Prisma.EnumDiaFieldRefInput<$PrismaModel>
+  in?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDiaFilter<$PrismaModel> | $Enums.Dia
+}
+
+export type NestedEnumDiaWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Dia | Prisma.EnumDiaFieldRefInput<$PrismaModel>
+  in?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Dia[] | Prisma.ListEnumDiaFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDiaWithAggregatesFilter<$PrismaModel> | $Enums.Dia
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDiaFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDiaFilter<$PrismaModel>
 }
 
 export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {

@@ -1,15 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Request,
+} from '@nestjs/common';
 import { MatriculaService } from './matricula.service.js';
 import { CreateMatriculaDto } from './dto/create-matricula.dto.js';
 import { UpdateMatriculaDto } from './dto/update-matricula.dto.js';
+import type { Request as RequestExpress } from 'express';
 
 @Controller('matricula')
 export class MatriculaController {
   constructor(private readonly matriculaService: MatriculaService) {}
 
   @Post()
-  create(@Body() createMatriculaDto: CreateMatriculaDto) {
-    return this.matriculaService.create(createMatriculaDto);
+  create(
+    @Request() req: RequestExpress,
+    @Body() createMatriculaDto: CreateMatriculaDto,
+  ) {
+    return this.matriculaService.create(req.user, createMatriculaDto.id_grupo);
   }
 
   @Get()
@@ -23,7 +36,10 @@ export class MatriculaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMatriculaDto: UpdateMatriculaDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateMatriculaDto: UpdateMatriculaDto,
+  ) {
     return this.matriculaService.update(+id, updateMatriculaDto);
   }
 

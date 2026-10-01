@@ -46,3 +46,15 @@ export const EstadoPago = {
 } as const
 
 export type EstadoPago = (typeof EstadoPago)[keyof typeof EstadoPago]
+
+
+export const Dia = {
+  LUNES: 'LUNES',
+  MARTES: 'MARTES',
+  MIERCOLES: 'MIERCOLES',
+  JUEVES: 'JUEVES',
+  VIERNES: 'VIERNES',
+  SABADO: 'SABADO'
+} as const
+
+export type Dia = (typeof Dia)[keyof typeof Dia]

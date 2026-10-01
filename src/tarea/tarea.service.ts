@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTareaDto } from './dto/create-tarea.dto.js';
 import { UpdateTareaDto } from './dto/update-tarea.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class TareaService {
-  create(createTareaDto: CreateTareaDto) {
-    return 'This action adds a new tarea';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createTareaDto: CreateTareaDto) {
+    return await this.prisma.tarea.create({ data: createTareaDto });
   }
 
-  findAll() {
-    return `This action returns all tarea`;
+  async findAll() {
+    return await this.prisma.tarea.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tarea`;
+  async findOne(id: number) {
+    return await this.prisma.tarea.findFirst({ where: { id, deleted: false } });
   }
 
-  update(id: number, updateTareaDto: UpdateTareaDto) {
-    return `This action updates a #${id} tarea`;
+  async update(id: number, updateTareaDto: UpdateTareaDto) {
+    return await this.prisma.tarea.update({
+      where: { id, deleted: false },
+      data: updateTareaDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tarea`;
+  async remove(id: number) {
+    return await this.prisma.tarea.update({
+      where: { id, deleted: false },
+      data: { deleted: true, deletedate: new Date() },
+    });
   }
 }

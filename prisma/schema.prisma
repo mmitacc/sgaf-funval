@@ -39,6 +39,15 @@ enum EstadoPago {
   RECHAZADO
 }
 
+enum Dia {
+  LUNES
+  MARTES
+  MIERCOLES
+  JUEVES
+  VIERNES
+  SABADO
+}
+
 // ==========================================
 // MODULO 1: IDENTIDAD Y USUARIOS
 // ==========================================
@@ -160,7 +169,7 @@ model Aula {
 
 model Horario {
   id          Int       @id @default(autoincrement())
-  dia         String    @db.VarChar(50) // Ej: "LUNES", "MARTES"
+  dia         Dia
   hora_inicio DateTime  @db.Time()
   hora_fin    DateTime  @db.Time()
   id_grupo    Int

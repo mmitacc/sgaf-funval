@@ -1830,6 +1830,20 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMo
 
 
 /**
+ * Reference to a field of type 'Dia'
+ */
+export type EnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Dia'>
+    
+
+
+/**
+ * Reference to a field of type 'Dia[]'
+ */
+export type ListEnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Dia[]'>
+    
+
+
+/**
  * Reference to a field of type 'TipoPago'
  */
 export type EnumTipoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoPago'>

@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateHorarioDto } from './dto/create-horario.dto.js';
 import { UpdateHorarioDto } from './dto/update-horario.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class HorarioService {
-  create(createHorarioDto: CreateHorarioDto) {
-    return 'This action adds a new horario';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createHorarioDto: CreateHorarioDto) {
+    return await this.prisma.horario.create({ data: createHorarioDto });
   }
 
-  findAll() {
-    return `This action returns all horario`;
+  async findAll() {
+    return await this.prisma.horario.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} horario`;
+  async findOne(id: number) {
+    return await this.prisma.horario.findFirst({
+      where: { id, deleted: false },
+    });
   }
 
-  update(id: number, updateHorarioDto: UpdateHorarioDto) {
-    return `This action updates a #${id} horario`;
+  async update(id: number, updateHorarioDto: UpdateHorarioDto) {
+    return await this.prisma.horario.update({
+      where: { id, deleted: false },
+      data: updateHorarioDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} horario`;
+  async remove(id: number) {
+    return await this.prisma.horario.update({
+      where: { id, deleted: false },
+      data: { deleted: true, deletedate: new Date() },
+    });
   }
 }

@@ -38,7 +38,7 @@ export type HorarioSumAggregateOutputType = {
 
 export type HorarioMinAggregateOutputType = {
   id: number | null
-  dia: string | null
+  dia: $Enums.Dia | null
   hora_inicio: Date | null
   hora_fin: Date | null
   id_grupo: number | null
@@ -50,7 +50,7 @@ export type HorarioMinAggregateOutputType = {
 
 export type HorarioMaxAggregateOutputType = {
   id: number | null
-  dia: string | null
+  dia: $Enums.Dia | null
   hora_inicio: Date | null
   hora_fin: Date | null
   id_grupo: number | null
@@ -209,7 +209,7 @@ export type HorarioGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type HorarioGroupByOutputType = {
   id: number
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date
   hora_fin: Date
   id_grupo: number
@@ -244,7 +244,7 @@ export type HorarioWhereInput = {
   OR?: Prisma.HorarioWhereInput[]
   NOT?: Prisma.HorarioWhereInput | Prisma.HorarioWhereInput[]
   id?: Prisma.IntFilter<"Horario"> | number
-  dia?: Prisma.StringFilter<"Horario"> | string
+  dia?: Prisma.EnumDiaFilter<"Horario"> | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFilter<"Horario"> | Date | string
   hora_fin?: Prisma.DateTimeFilter<"Horario"> | Date | string
   id_grupo?: Prisma.IntFilter<"Horario"> | number
@@ -273,7 +273,7 @@ export type HorarioWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.HorarioWhereInput | Prisma.HorarioWhereInput[]
   OR?: Prisma.HorarioWhereInput[]
   NOT?: Prisma.HorarioWhereInput | Prisma.HorarioWhereInput[]
-  dia?: Prisma.StringFilter<"Horario"> | string
+  dia?: Prisma.EnumDiaFilter<"Horario"> | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFilter<"Horario"> | Date | string
   hora_fin?: Prisma.DateTimeFilter<"Horario"> | Date | string
   id_grupo?: Prisma.IntFilter<"Horario"> | number
@@ -306,7 +306,7 @@ export type HorarioScalarWhereWithAggregatesInput = {
   OR?: Prisma.HorarioScalarWhereWithAggregatesInput[]
   NOT?: Prisma.HorarioScalarWhereWithAggregatesInput | Prisma.HorarioScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Horario"> | number
-  dia?: Prisma.StringWithAggregatesFilter<"Horario"> | string
+  dia?: Prisma.EnumDiaWithAggregatesFilter<"Horario"> | $Enums.Dia
   hora_inicio?: Prisma.DateTimeWithAggregatesFilter<"Horario"> | Date | string
   hora_fin?: Prisma.DateTimeWithAggregatesFilter<"Horario"> | Date | string
   id_grupo?: Prisma.IntWithAggregatesFilter<"Horario"> | number
@@ -317,7 +317,7 @@ export type HorarioScalarWhereWithAggregatesInput = {
 }
 
 export type HorarioCreateInput = {
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   created?: Date | string
@@ -329,7 +329,7 @@ export type HorarioCreateInput = {
 
 export type HorarioUncheckedCreateInput = {
   id?: number
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   id_grupo: number
@@ -340,7 +340,7 @@ export type HorarioUncheckedCreateInput = {
 }
 
 export type HorarioUpdateInput = {
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -352,7 +352,7 @@ export type HorarioUpdateInput = {
 
 export type HorarioUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_grupo?: Prisma.IntFieldUpdateOperationsInput | number
@@ -364,7 +364,7 @@ export type HorarioUncheckedUpdateInput = {
 
 export type HorarioCreateManyInput = {
   id?: number
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   id_grupo: number
@@ -375,7 +375,7 @@ export type HorarioCreateManyInput = {
 }
 
 export type HorarioUpdateManyMutationInput = {
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -386,7 +386,7 @@ export type HorarioUpdateManyMutationInput = {
 
 export type HorarioUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   id_grupo?: Prisma.IntFieldUpdateOperationsInput | number
@@ -452,6 +452,10 @@ export type HorarioOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EnumDiaFieldUpdateOperationsInput = {
+  set?: $Enums.Dia
+}
+
 export type HorarioCreateNestedManyWithoutGrupoInput = {
   create?: Prisma.XOR<Prisma.HorarioCreateWithoutGrupoInput, Prisma.HorarioUncheckedCreateWithoutGrupoInput> | Prisma.HorarioCreateWithoutGrupoInput[] | Prisma.HorarioUncheckedCreateWithoutGrupoInput[]
   connectOrCreate?: Prisma.HorarioCreateOrConnectWithoutGrupoInput | Prisma.HorarioCreateOrConnectWithoutGrupoInput[]
@@ -495,7 +499,7 @@ export type HorarioUncheckedUpdateManyWithoutGrupoNestedInput = {
 }
 
 export type HorarioCreateWithoutGrupoInput = {
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   created?: Date | string
@@ -506,7 +510,7 @@ export type HorarioCreateWithoutGrupoInput = {
 
 export type HorarioUncheckedCreateWithoutGrupoInput = {
   id?: number
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   created?: Date | string
@@ -546,7 +550,7 @@ export type HorarioScalarWhereInput = {
   OR?: Prisma.HorarioScalarWhereInput[]
   NOT?: Prisma.HorarioScalarWhereInput | Prisma.HorarioScalarWhereInput[]
   id?: Prisma.IntFilter<"Horario"> | number
-  dia?: Prisma.StringFilter<"Horario"> | string
+  dia?: Prisma.EnumDiaFilter<"Horario"> | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFilter<"Horario"> | Date | string
   hora_fin?: Prisma.DateTimeFilter<"Horario"> | Date | string
   id_grupo?: Prisma.IntFilter<"Horario"> | number
@@ -558,7 +562,7 @@ export type HorarioScalarWhereInput = {
 
 export type HorarioCreateManyGrupoInput = {
   id?: number
-  dia: string
+  dia: $Enums.Dia
   hora_inicio: Date | string
   hora_fin: Date | string
   created?: Date | string
@@ -568,7 +572,7 @@ export type HorarioCreateManyGrupoInput = {
 }
 
 export type HorarioUpdateWithoutGrupoInput = {
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -579,7 +583,7 @@ export type HorarioUpdateWithoutGrupoInput = {
 
 export type HorarioUncheckedUpdateWithoutGrupoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -590,7 +594,7 @@ export type HorarioUncheckedUpdateWithoutGrupoInput = {
 
 export type HorarioUncheckedUpdateManyWithoutGrupoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  dia?: Prisma.StringFieldUpdateOperationsInput | string
+  dia?: Prisma.EnumDiaFieldUpdateOperationsInput | $Enums.Dia
   hora_inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hora_fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -670,7 +674,7 @@ export type $HorarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    dia: string
+    dia: $Enums.Dia
     hora_inicio: Date
     hora_fin: Date
     id_grupo: number
@@ -1103,7 +1107,7 @@ export interface Prisma__HorarioClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface HorarioFieldRefs {
   readonly id: Prisma.FieldRef<"Horario", 'Int'>
-  readonly dia: Prisma.FieldRef<"Horario", 'String'>
+  readonly dia: Prisma.FieldRef<"Horario", 'Dia'>
   readonly hora_inicio: Prisma.FieldRef<"Horario", 'DateTime'>
   readonly hora_fin: Prisma.FieldRef<"Horario", 'DateTime'>
   readonly id_grupo: Prisma.FieldRef<"Horario", 'Int'>

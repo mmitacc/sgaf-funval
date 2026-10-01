@@ -1,26 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePeriodoDto } from './dto/create-periodo.dto.js';
 import { UpdatePeriodoDto } from './dto/update-periodo.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class PeriodoService {
-  create(createPeriodoDto: CreatePeriodoDto) {
-    return 'This action adds a new periodo';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createPeriodoDto: CreatePeriodoDto) {
+    if (createPeriodoDto.fin.getTime() <= createPeriodoDto.inicio.getTime()) {
+      throw new BadRequestException(
+        'La fecha de fin debe ser estrictamente posterior a la fecha de inicio.',
+      );
+    }
+    return await this.prisma.periodo.create({ data: createPeriodoDto });
   }
 
-  findAll() {
-    return `This action returns all periodo`;
+  async findAll() {
+    return await this.prisma.periodo.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} periodo`;
+  async findOne(id: number) {
+    return await this.prisma.periodo.findFirst({
+      where: { id, deleted: false },
+    });
   }
 
-  update(id: number, updatePeriodoDto: UpdatePeriodoDto) {
-    return `This action updates a #${id} periodo`;
+  async update(id: number, updatePeriodoDto: UpdatePeriodoDto) {
+    return await this.prisma.periodo.update({
+      where: { id, deleted: false },
+      data: updatePeriodoDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} periodo`;
+  async remove(id: number) {
+    return await this.prisma.periodo.update({
+      where: { id, deleted: false },
+      data: { deleted: true, deletedate: new Date() },
+    });
   }
 }

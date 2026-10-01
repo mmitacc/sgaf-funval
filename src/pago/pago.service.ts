@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePagoDto } from './dto/create-pago.dto.js';
 import { UpdatePagoDto } from './dto/update-pago.dto.js';
+import { PrismaService } from '../prisma/prisma.service.js';
 
 @Injectable()
 export class PagoService {
-  create(createPagoDto: CreatePagoDto) {
-    return 'This action adds a new pago';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(user: any, createPagoDto: CreatePagoDto) {
+    const isEfectivo = createPagoDto.tipo_pago === 'EFECTIVO';
+    return await this.prisma.pago.create({
+      data: { id_operador: isEfectivo ? user.id : null, ...createPagoDto },
+    });
   }
 
-  findAll() {
-    return `This action returns all pago`;
+  async findAll() {
+    return await this.prisma.pago.findMany({ where: { deleted: false } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pago`;
+  async findOne(id: number) {
+    return await this.prisma.pago.findFirst({ where: { id, deleted: false } });
   }
 
-  update(id: number, updatePagoDto: UpdatePagoDto) {
-    return `This action updates a #${id} pago`;
+  async update(id: number, updatePagoDto: UpdatePagoDto) {
+    return await this.prisma.pago.update({
+      where: { id, deleted: false },
+      data: updatePagoDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pago`;
+  async remove(id: number) {
+    return await this.prisma.pago.update({
+      where: { id, deleted: false },
+      data: { deleted: true, deletedate: new Date() },
+    });
   }
 }

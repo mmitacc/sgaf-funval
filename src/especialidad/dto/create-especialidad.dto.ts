@@ -4,7 +4,7 @@ import { IsString, IsNotEmpty, Length } from 'class-validator';
 
 export class CreateEspecialidadDto {
   @ApiProperty({
-    example: 'Fisica Quantica',
+    example: 'Algebra y Trigonometría',
     description: 'Detalla el nombre de la Especialidad del Profesor',
   })
   @IsString({ message: 'El nombre, debe ser un texto.' })
