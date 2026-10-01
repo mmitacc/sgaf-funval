@@ -1,6 +1,6 @@
 generator client {
   provider     = "prisma-client"
-  output       = "./generated/prisma"
+  output       = "../src/prisma/generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -20,7 +20,7 @@ enum Rol {
   SUPERADMIN
 }
 
-enum EstadoUsuario {
+enum Estado {
   PENDIENTE
   ACTIVO
   SUSPENDIDO
@@ -39,24 +39,33 @@ enum EstadoPago {
   RECHAZADO
 }
 
+enum Dia {
+  LUNES
+  MARTES
+  MIERCOLES
+  JUEVES
+  VIERNES
+  SABADO
+}
+
 // ==========================================
 // MODULO 1: IDENTIDAD Y USUARIOS
 // ==========================================
 
 model Usuario {
-  id         Int           @id @default(autoincrement())
-  nombres    String        @db.VarChar(100)
-  apellidos  String        @db.VarChar(100)
-  telefono   String?       @db.VarChar(20)
-  email      String        @unique @db.VarChar(255)
-  password   String        @db.VarChar(255)
-  rol        Rol
-  masculino  Boolean       @default(true)
-  estado     EstadoUsuario @default(PENDIENTE)
-  created    DateTime      @default(now())
-  updated    DateTime      @updatedAt
-  deleted    Boolean       @default(false)
-  daletedate DateTime?
+  id         Int       @id @default(autoincrement())
+  nombres    String    @db.VarChar(100)
+  apellidos  String    @db.VarChar(100)
+  telefono   String?   @db.VarChar(20)
+  email      String    @unique @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  rol        Rol?      @default(ESTUDIANTE)
+  masculino  Boolean
+  estado     Estado?   @default(PENDIENTE)
+  created    DateTime  @default(now())
+  updated    DateTime  @updatedAt
+  deleted    Boolean   @default(false)
+  deletedate DateTime?
 
   // Relaciones 1:1 (Herencia)
   profesor   Profesor?
@@ -75,7 +84,7 @@ model Especialidad {
   created    DateTime   @default(now())
   updated    DateTime   @updatedAt
   deleted    Boolean    @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   @@map("especialidad")
 }
@@ -86,10 +95,6 @@ model Profesor {
   fecha_contrato  DateTime
   id_especialidad Int
   especialidad    Especialidad @relation(fields: [id_especialidad], references: [id])
-  created         DateTime     @default(now())
-  updated         DateTime     @updatedAt
-  deleted         Boolean      @default(false)
-  daletedate      DateTime?
 
   grupos Grupo[]
 
@@ -97,14 +102,10 @@ model Profesor {
 }
 
 model Estudiante {
-  id_usuario Int       @id // Compartirá el mismo ID que Usuario
-  usuario    Usuario   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
-  codigo     String    @unique @db.VarChar(20) // Código de matrícula único
-  apoderado  String?   @db.VarChar(200)
-  created    DateTime  @default(now())
-  updated    DateTime  @updatedAt
-  deleted    Boolean   @default(false)
-  daletedate DateTime?
+  id_usuario Int     @id // Compartirá el mismo ID que Usuario
+  usuario    Usuario @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+  codigo     String  @unique @db.VarChar(20) // Código de matrícula único
+  apoderado  String? @db.VarChar(200)
 
   matriculas Matricula[]
   entregas   Entrega[]
@@ -128,7 +129,7 @@ model Periodo {
   created      DateTime  @default(now())
   updated      DateTime  @updatedAt
   deleted      Boolean   @default(false)
-  daletedate   DateTime?
+  deletedate   DateTime?
 
   grupos Grupo[]
   deudas Deuda[]
@@ -145,7 +146,7 @@ model Materia {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   grupos Grupo[]
 
@@ -159,7 +160,7 @@ model Aula {
   created    DateTime  @default(now())
   updated    DateTime  @updatedAt
   deleted    Boolean   @default(false)
-  daletedate DateTime?
+  deletedate DateTime?
 
   grupos Grupo[]
 
@@ -168,7 +169,7 @@ model Aula {
 
 model Horario {
   id          Int       @id @default(autoincrement())
-  dia         String    @db.VarChar(50) // Ej: "LUNES", "MARTES"
+  dia         Dia
   hora_inicio DateTime  @db.Time()
   hora_fin    DateTime  @db.Time()
   id_grupo    Int
@@ -176,7 +177,7 @@ model Horario {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   @@map("horario")
 }
@@ -195,7 +196,7 @@ model Grupo {
   created     DateTime  @default(now())
   updated     DateTime  @updatedAt
   deleted     Boolean   @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   horarios   Horario[]
   matriculas Matricula[]
@@ -213,7 +214,7 @@ model Matricula {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   @@unique([id_estudiante, id_grupo]) // Evita que se matricule dos veces en el mismo grupo
   @@map("matricula")
@@ -233,7 +234,7 @@ model Tarea {
   created       DateTime  @default(now())
   updated       DateTime  @updatedAt
   deleted       Boolean   @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   entregas Entrega[]
 
@@ -242,7 +243,7 @@ model Tarea {
 
 model Entrega {
   id            Int        @id @default(autoincrement())
-  respuesta     String     @db.Text
+  respuesta     String?    @db.Text
   archivo_url   String?    @db.VarChar()
   calificacion  Int? // Nullable hasta que el profesor califique
   id_estudiante Int
@@ -252,7 +253,7 @@ model Entrega {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   @@map("entrega")
 }
@@ -274,7 +275,7 @@ model Deuda {
   created       DateTime   @default(now())
   updated       DateTime   @updatedAt
   deleted       Boolean    @default(false)
-  daletedate    DateTime?
+  deletedate    DateTime?
 
   pagos Pago[]
 
@@ -291,7 +292,7 @@ model Pago {
   created     DateTime   @default(now())
   updated     DateTime   @updatedAt
   deleted     Boolean    @default(false)
-  daletedate  DateTime?
+  deletedate  DateTime?
 
   // Si paga en línea, id_operador es null. Si paga en caja, guarda el ID del Recepcionista/Admin
   id_operador Int?
