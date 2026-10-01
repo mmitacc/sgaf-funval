@@ -103,6 +103,7 @@ async function main() {
       inicio: new Date('2026-09-15'),
       fin: new Date('2026-12-15'),
       max_creditos: 25,
+      matricula: new Decimal(100),
     },
   });
 

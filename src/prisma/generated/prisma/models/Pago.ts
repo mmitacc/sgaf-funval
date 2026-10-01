@@ -48,6 +48,7 @@ export type PagoMinAggregateOutputType = {
   monto: runtime.Decimal | null
   tipo_pago: $Enums.TipoPago | null
   estado_pago: $Enums.EstadoPago | null
+  referencia_externa: string | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -63,6 +64,7 @@ export type PagoMaxAggregateOutputType = {
   monto: runtime.Decimal | null
   tipo_pago: $Enums.TipoPago | null
   estado_pago: $Enums.EstadoPago | null
+  referencia_externa: string | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -78,6 +80,7 @@ export type PagoCountAggregateOutputType = {
   monto: number
   tipo_pago: number
   estado_pago: number
+  referencia_externa: number
   created: number
   updated: number
   deleted: number
@@ -111,6 +114,7 @@ export type PagoMinAggregateInputType = {
   monto?: true
   tipo_pago?: true
   estado_pago?: true
+  referencia_externa?: true
   created?: true
   updated?: true
   deleted?: true
@@ -126,6 +130,7 @@ export type PagoMaxAggregateInputType = {
   monto?: true
   tipo_pago?: true
   estado_pago?: true
+  referencia_externa?: true
   created?: true
   updated?: true
   deleted?: true
@@ -141,6 +146,7 @@ export type PagoCountAggregateInputType = {
   monto?: true
   tipo_pago?: true
   estado_pago?: true
+  referencia_externa?: true
   created?: true
   updated?: true
   deleted?: true
@@ -243,6 +249,7 @@ export type PagoGroupByOutputType = {
   monto: runtime.Decimal
   tipo_pago: $Enums.TipoPago
   estado_pago: $Enums.EstadoPago
+  referencia_externa: string | null
   created: Date
   updated: Date
   deleted: boolean
@@ -281,6 +288,7 @@ export type PagoWhereInput = {
   monto?: Prisma.DecimalFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFilter<"Pago"> | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFilter<"Pago"> | $Enums.EstadoPago
+  referencia_externa?: Prisma.StringNullableFilter<"Pago"> | string | null
   created?: Prisma.DateTimeFilter<"Pago"> | Date | string
   updated?: Prisma.DateTimeFilter<"Pago"> | Date | string
   deleted?: Prisma.BoolFilter<"Pago"> | boolean
@@ -299,6 +307,7 @@ export type PagoOrderByWithRelationInput = {
   monto?: Prisma.SortOrder
   tipo_pago?: Prisma.SortOrder
   estado_pago?: Prisma.SortOrder
+  referencia_externa?: Prisma.SortOrderInput | Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -313,6 +322,7 @@ export type PagoOrderByWithRelationInput = {
 
 export type PagoWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  referencia_externa?: string
   AND?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[]
   OR?: Prisma.PagoWhereInput[]
   NOT?: Prisma.PagoWhereInput | Prisma.PagoWhereInput[]
@@ -330,7 +340,7 @@ export type PagoWhereUniqueInput = Prisma.AtLeast<{
   operador?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   deuda?: Prisma.XOR<Prisma.DeudaNullableScalarRelationFilter, Prisma.DeudaWhereInput> | null
-}, "id">
+}, "id" | "referencia_externa">
 
 export type PagoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -338,6 +348,7 @@ export type PagoOrderByWithAggregationInput = {
   monto?: Prisma.SortOrder
   tipo_pago?: Prisma.SortOrder
   estado_pago?: Prisma.SortOrder
+  referencia_externa?: Prisma.SortOrderInput | Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -361,6 +372,7 @@ export type PagoScalarWhereWithAggregatesInput = {
   monto?: Prisma.DecimalWithAggregatesFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoWithAggregatesFilter<"Pago"> | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoWithAggregatesFilter<"Pago"> | $Enums.EstadoPago
+  referencia_externa?: Prisma.StringNullableWithAggregatesFilter<"Pago"> | string | null
   created?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Pago"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Pago"> | boolean
@@ -375,6 +387,7 @@ export type PagoCreateInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -390,6 +403,7 @@ export type PagoUncheckedCreateInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -404,6 +418,7 @@ export type PagoUpdateInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -419,6 +434,7 @@ export type PagoUncheckedUpdateInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -434,6 +450,7 @@ export type PagoCreateManyInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -448,6 +465,7 @@ export type PagoUpdateManyMutationInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -460,6 +478,7 @@ export type PagoUncheckedUpdateManyInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -485,6 +504,7 @@ export type PagoCountOrderByAggregateInput = {
   monto?: Prisma.SortOrder
   tipo_pago?: Prisma.SortOrder
   estado_pago?: Prisma.SortOrder
+  referencia_externa?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -508,6 +528,7 @@ export type PagoMaxOrderByAggregateInput = {
   monto?: Prisma.SortOrder
   tipo_pago?: Prisma.SortOrder
   estado_pago?: Prisma.SortOrder
+  referencia_externa?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -523,6 +544,7 @@ export type PagoMinOrderByAggregateInput = {
   monto?: Prisma.SortOrder
   tipo_pago?: Prisma.SortOrder
   estado_pago?: Prisma.SortOrder
+  referencia_externa?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -679,6 +701,7 @@ export type PagoCreateWithoutOperadorInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -693,6 +716,7 @@ export type PagoUncheckedCreateWithoutOperadorInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -736,6 +760,7 @@ export type PagoScalarWhereInput = {
   monto?: Prisma.DecimalFilter<"Pago"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFilter<"Pago"> | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFilter<"Pago"> | $Enums.EstadoPago
+  referencia_externa?: Prisma.StringNullableFilter<"Pago"> | string | null
   created?: Prisma.DateTimeFilter<"Pago"> | Date | string
   updated?: Prisma.DateTimeFilter<"Pago"> | Date | string
   deleted?: Prisma.BoolFilter<"Pago"> | boolean
@@ -750,6 +775,7 @@ export type PagoCreateWithoutEstudianteInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -764,6 +790,7 @@ export type PagoUncheckedCreateWithoutEstudianteInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -803,6 +830,7 @@ export type PagoCreateWithoutDeudaInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -817,6 +845,7 @@ export type PagoUncheckedCreateWithoutDeudaInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -857,6 +886,7 @@ export type PagoCreateManyOperadorInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -870,6 +900,7 @@ export type PagoUpdateWithoutOperadorInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -884,6 +915,7 @@ export type PagoUncheckedUpdateWithoutOperadorInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -898,6 +930,7 @@ export type PagoUncheckedUpdateManyWithoutOperadorInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -912,6 +945,7 @@ export type PagoCreateManyEstudianteInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -925,6 +959,7 @@ export type PagoUpdateWithoutEstudianteInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -939,6 +974,7 @@ export type PagoUncheckedUpdateWithoutEstudianteInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -953,6 +989,7 @@ export type PagoUncheckedUpdateManyWithoutEstudianteInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -967,6 +1004,7 @@ export type PagoCreateManyDeudaInput = {
   monto: runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago: $Enums.TipoPago
   estado_pago?: $Enums.EstadoPago
+  referencia_externa?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -980,6 +1018,7 @@ export type PagoUpdateWithoutDeudaInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -994,6 +1033,7 @@ export type PagoUncheckedUpdateWithoutDeudaInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1008,6 +1048,7 @@ export type PagoUncheckedUpdateManyWithoutDeudaInput = {
   monto?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   tipo_pago?: Prisma.EnumTipoPagoFieldUpdateOperationsInput | $Enums.TipoPago
   estado_pago?: Prisma.EnumEstadoPagoFieldUpdateOperationsInput | $Enums.EstadoPago
+  referencia_externa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1024,6 +1065,7 @@ export type PagoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   monto?: boolean
   tipo_pago?: boolean
   estado_pago?: boolean
+  referencia_externa?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -1042,6 +1084,7 @@ export type PagoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   monto?: boolean
   tipo_pago?: boolean
   estado_pago?: boolean
+  referencia_externa?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -1060,6 +1103,7 @@ export type PagoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   monto?: boolean
   tipo_pago?: boolean
   estado_pago?: boolean
+  referencia_externa?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -1078,6 +1122,7 @@ export type PagoSelectScalar = {
   monto?: boolean
   tipo_pago?: boolean
   estado_pago?: boolean
+  referencia_externa?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -1087,7 +1132,7 @@ export type PagoSelectScalar = {
   id_deuda?: boolean
 }
 
-export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "concepto" | "monto" | "tipo_pago" | "estado_pago" | "created" | "updated" | "deleted" | "deletedate" | "id_operador" | "id_estudiante" | "id_deuda", ExtArgs["result"]["pago"]>
+export type PagoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "concepto" | "monto" | "tipo_pago" | "estado_pago" | "referencia_externa" | "created" | "updated" | "deleted" | "deletedate" | "id_operador" | "id_estudiante" | "id_deuda", ExtArgs["result"]["pago"]>
 export type PagoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   operador?: boolean | Prisma.Pago$operadorArgs<ExtArgs>
   estudiante?: boolean | Prisma.EstudianteDefaultArgs<ExtArgs>
@@ -1117,6 +1162,7 @@ export type $PagoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     monto: runtime.Decimal
     tipo_pago: $Enums.TipoPago
     estado_pago: $Enums.EstadoPago
+    referencia_externa: string | null
     created: Date
     updated: Date
     deleted: boolean
@@ -1555,6 +1601,7 @@ export interface PagoFieldRefs {
   readonly monto: Prisma.FieldRef<"Pago", 'Decimal'>
   readonly tipo_pago: Prisma.FieldRef<"Pago", 'TipoPago'>
   readonly estado_pago: Prisma.FieldRef<"Pago", 'EstadoPago'>
+  readonly referencia_externa: Prisma.FieldRef<"Pago", 'String'>
   readonly created: Prisma.FieldRef<"Pago", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Pago", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Pago", 'Boolean'>

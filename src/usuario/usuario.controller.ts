@@ -12,7 +12,7 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 
-@Roles('SUPERADMIN')
+@Roles('ADMINISTRADOR')
 @Controller('usuario')
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}

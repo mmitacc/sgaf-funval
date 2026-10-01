@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { UpdateMatriculaDto } from './dto/update-matricula.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { VALIDATE_MATRICULA_ESTUDIANTE } from './queries/validar-matricula.query.js';
+import { REGISTRAR_DEUDA_ESTUDIANTE } from './queries/registrar-deuda.query.js';
 
 @Injectable()
 export class MatriculaService {
@@ -18,6 +19,10 @@ export class MatriculaService {
     );
     const status = result[0];
     if (status.id_matricula_creada) {
+      // Se genera un registro en deuda acumulativa con la materia registrada
+      await this.prisma.$queryRaw<any[]>(
+        REGISTRAR_DEUDA_ESTUDIANTE(user.id, id_grupo),
+      );
       return {
         success: true,
         message: 'Inscripción realizada con éxito.',

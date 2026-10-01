@@ -8,6 +8,7 @@ import {
   IsInt,
   IsDate,
   MinDate,
+  IsNumber,
 } from 'class-validator';
 
 export class CreatePeriodoDto {
@@ -73,4 +74,21 @@ export class CreatePeriodoDto {
   })
   @Min(0, { message: 'El número máximo de creditos, no debe ser negativo.' })
   readonly max_creditos: number;
+
+  @ApiProperty({
+    example: 100,
+    description:
+      'El monto de la matricula, es la cantidad de pago para estudiar en el Período Académico.',
+  })
+  @Type(() => Number)
+  @IsNotEmpty({ message: 'El monto de la matricula, es obligatoria.' })
+  @IsNumber(
+    { maxDecimalPlaces: 2 },
+    {
+      message:
+        'El monto de la matricula, debe ser un numero con hasta 2 decimales.',
+    },
+  )
+  @Min(0, { message: 'El monto de la matricula, no puede ser negativo.' })
+  readonly matricula: number;
 }

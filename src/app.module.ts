@@ -23,6 +23,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from './auth/guards/roles.guard.js';
 import { envValidationSchema } from './common/configs/env.validation.js';
+import { ScheduleModule } from '@nestjs/schedule';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -33,6 +34,7 @@ ConfigModule.forRoot({
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(), // Activa el soporte de @Cron en toda la app
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: envValidationSchema,

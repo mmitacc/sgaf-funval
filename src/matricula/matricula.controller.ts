@@ -12,11 +12,13 @@ import { MatriculaService } from './matricula.service.js';
 import { CreateMatriculaDto } from './dto/create-matricula.dto.js';
 import { UpdateMatriculaDto } from './dto/update-matricula.dto.js';
 import type { Request as RequestExpress } from 'express';
+import { Roles } from '../common/decorators/roles.decorator.js';
 
 @Controller('matricula')
 export class MatriculaController {
   constructor(private readonly matriculaService: MatriculaService) {}
 
+  @Roles('ESTUDIANTE')
   @Post()
   create(
     @Request() req: RequestExpress,
@@ -35,6 +37,7 @@ export class MatriculaController {
     return this.matriculaService.findOne(+id);
   }
 
+  @Roles('ADMINISTRADOR', 'ESTUDIANTE')
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -43,6 +46,7 @@ export class MatriculaController {
     return this.matriculaService.update(+id, updateMatriculaDto);
   }
 
+  @Roles('ADMINISTRADOR')
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.matriculaService.remove(+id);
