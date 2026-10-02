@@ -5,5 +5,6 @@ import { DeudaController } from './deuda.controller.js';
 @Module({
   controllers: [DeudaController],
   providers: [DeudaService],
+  exports: [DeudaService],
 })
 export class DeudaModule {}

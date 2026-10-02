@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsuarioService } from '../usuario/usuario.service.js';
 import { LoginAuthDto } from './dto/login-auth.dto.js';
 import bcrypt from 'bcryptjs';
@@ -15,6 +15,10 @@ export class AuthService {
   ) {}
   async validateUsuario(loginAuthDto: LoginAuthDto) {
     const user = await this.usuarioService.findEmail(loginAuthDto.email);
+    if (user?.estado !== 'ACTIVO')
+      throw new UnauthorizedException(
+        `Actualmente tiene el estado de ${user?.estado}, por lo que no tiene autorización para ingresar al sistema.`,
+      );
     if (user && (await bcrypt.compare(loginAuthDto.password, user.password))) {
       const { password, ...restoUser } = user;
       return restoUser;
@@ -34,5 +38,4 @@ export class AuthService {
   async register(createEstudianteDto: CreateEstudianteDto) {
     return await this.estudianteService.create(createEstudianteDto);
   }
-
 }

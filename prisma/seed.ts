@@ -5,6 +5,7 @@ import {
   Estado,
   EstadoPago,
   TipoPago,
+  ConceptoPago,
 } from '../src/prisma/generated/prisma/enums.js';
 import { Decimal } from '@prisma/client/runtime/client';
 import bcrypt from 'bcryptjs';
@@ -103,6 +104,7 @@ async function main() {
       inicio: new Date('2026-09-15'),
       fin: new Date('2026-12-15'),
       max_creditos: 25,
+      matricula: new Decimal(100),
     },
   });
 
@@ -111,25 +113,21 @@ async function main() {
       {
         nombre: 'Cálculo Diferencial',
         creditos: 5,
-        inscripcion: new Decimal(50),
         mensualidad: new Decimal(150),
       },
       {
         nombre: 'Física Mecánica',
         creditos: 5,
-        inscripcion: new Decimal(50),
         mensualidad: new Decimal(160),
       },
       {
         nombre: 'Comprensión Lectora',
         creditos: 4,
-        inscripcion: new Decimal(40),
         mensualidad: new Decimal(120),
       },
       {
         nombre: 'Química Orgánica',
         creditos: 5,
-        inscripcion: new Decimal(50),
         mensualidad: new Decimal(150),
       },
     ],
@@ -485,11 +483,12 @@ async function main() {
 
   const todosLosPagos: any[] = [];
 
-  // B.1. Agregar el Pago de la Primera Cuota Mensual (150.00) para los 5 alumnos activos
+  // B.1. Agregar el Pago de la Matricula (100) para los 5 alumnos activos
   deudas.forEach((deuda) => {
     todosLosPagos.push({
-      concepto: 'Mensualidad - Cuota 1',
-      monto: new Decimal(580.0),
+      concepto: ConceptoPago.MATRICULA,
+      descripcion: 'Periodo III',
+      monto: new Decimal(100.0),
       tipo_pago: TipoPago.TRANSFERENCIA,
       estado_pago: EstadoPago.APROBADO,
       id_operador: recepcionista.id,
@@ -499,28 +498,20 @@ async function main() {
     });
   });
 
-  // B.2. Agregar los 20 Pagos de Inscripción legítimos (Costo único inicial por materia)
-  const matriculasRealizadas = await prisma.matricula.findMany({
-    include: { grupo: true },
-  });
-
-  for (const mat of matriculasRealizadas) {
-    const materiaAsociada = materias.find((m) => m.id === mat.grupo.id_materia);
-    const costoInscripcion = materiaAsociada
-      ? materiaAsociada.inscripcion
-      : new Decimal(50);
-
+  // B.2. Agregar el Pago de Mensualidad Octubre (580) para los 5 alumnos activos
+  deudas.forEach((deuda) => {
     todosLosPagos.push({
-      concepto: `Inscripción - Materia: ${materiaAsociada?.nombre || 'General'}`,
-      monto: costoInscripcion,
-      tipo_pago: TipoPago.EFECTIVO,
+      concepto: ConceptoPago.MENSUALIDAD,
+      descripcion: 'Octubre 2026',
+      monto: new Decimal(580.0),
+      tipo_pago: TipoPago.TRANSFERENCIA,
       estado_pago: EstadoPago.APROBADO,
       id_operador: recepcionista.id,
-      id_estudiante: mat.id_estudiante,
-      id_deuda: null, // Las inscripciones no descuentan de la deuda mensual consolidada
-      created: new Date('2026-09-20'),
+      id_estudiante: deuda.id_estudiante,
+      id_deuda: deuda.id,
+      created: new Date('2026-09-29'),
     });
-  }
+  });
 
   // C. Inserción masiva final en PostgreSQL
   await prisma.pago.createMany({ data: todosLosPagos });

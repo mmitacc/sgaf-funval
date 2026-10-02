@@ -30,12 +30,14 @@ export type PeriodoAvgAggregateOutputType = {
   id: number | null
   meses: number | null
   max_creditos: number | null
+  matricula: runtime.Decimal | null
 }
 
 export type PeriodoSumAggregateOutputType = {
   id: number | null
   meses: number | null
   max_creditos: number | null
+  matricula: runtime.Decimal | null
 }
 
 export type PeriodoMinAggregateOutputType = {
@@ -45,6 +47,7 @@ export type PeriodoMinAggregateOutputType = {
   inicio: Date | null
   fin: Date | null
   max_creditos: number | null
+  matricula: runtime.Decimal | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -58,6 +61,7 @@ export type PeriodoMaxAggregateOutputType = {
   inicio: Date | null
   fin: Date | null
   max_creditos: number | null
+  matricula: runtime.Decimal | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -71,6 +75,7 @@ export type PeriodoCountAggregateOutputType = {
   inicio: number
   fin: number
   max_creditos: number
+  matricula: number
   created: number
   updated: number
   deleted: number
@@ -83,12 +88,14 @@ export type PeriodoAvgAggregateInputType = {
   id?: true
   meses?: true
   max_creditos?: true
+  matricula?: true
 }
 
 export type PeriodoSumAggregateInputType = {
   id?: true
   meses?: true
   max_creditos?: true
+  matricula?: true
 }
 
 export type PeriodoMinAggregateInputType = {
@@ -98,6 +105,7 @@ export type PeriodoMinAggregateInputType = {
   inicio?: true
   fin?: true
   max_creditos?: true
+  matricula?: true
   created?: true
   updated?: true
   deleted?: true
@@ -111,6 +119,7 @@ export type PeriodoMaxAggregateInputType = {
   inicio?: true
   fin?: true
   max_creditos?: true
+  matricula?: true
   created?: true
   updated?: true
   deleted?: true
@@ -124,6 +133,7 @@ export type PeriodoCountAggregateInputType = {
   inicio?: true
   fin?: true
   max_creditos?: true
+  matricula?: true
   created?: true
   updated?: true
   deleted?: true
@@ -224,6 +234,7 @@ export type PeriodoGroupByOutputType = {
   inicio: Date
   fin: Date
   max_creditos: number
+  matricula: runtime.Decimal
   created: Date
   updated: Date
   deleted: boolean
@@ -260,6 +271,7 @@ export type PeriodoWhereInput = {
   inicio?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   fin?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   max_creditos?: Prisma.IntFilter<"Periodo"> | number
+  matricula?: Prisma.DecimalFilter<"Periodo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolFilter<"Periodo"> | boolean
@@ -275,6 +287,7 @@ export type PeriodoOrderByWithRelationInput = {
   inicio?: Prisma.SortOrder
   fin?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -293,6 +306,7 @@ export type PeriodoWhereUniqueInput = Prisma.AtLeast<{
   inicio?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   fin?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   max_creditos?: Prisma.IntFilter<"Periodo"> | number
+  matricula?: Prisma.DecimalFilter<"Periodo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolFilter<"Periodo"> | boolean
@@ -308,6 +322,7 @@ export type PeriodoOrderByWithAggregationInput = {
   inicio?: Prisma.SortOrder
   fin?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -329,6 +344,7 @@ export type PeriodoScalarWhereWithAggregatesInput = {
   inicio?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   fin?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   max_creditos?: Prisma.IntWithAggregatesFilter<"Periodo"> | number
+  matricula?: Prisma.DecimalWithAggregatesFilter<"Periodo"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Periodo"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Periodo"> | boolean
@@ -341,6 +357,7 @@ export type PeriodoCreateInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -356,6 +373,7 @@ export type PeriodoUncheckedCreateInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -370,6 +388,7 @@ export type PeriodoUpdateInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -385,6 +404,7 @@ export type PeriodoUncheckedUpdateInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -400,6 +420,7 @@ export type PeriodoCreateManyInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -412,6 +433,7 @@ export type PeriodoUpdateManyMutationInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -425,6 +447,7 @@ export type PeriodoUncheckedUpdateManyInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -438,6 +461,7 @@ export type PeriodoCountOrderByAggregateInput = {
   inicio?: Prisma.SortOrder
   fin?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -448,6 +472,7 @@ export type PeriodoAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   meses?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
 }
 
 export type PeriodoMaxOrderByAggregateInput = {
@@ -457,6 +482,7 @@ export type PeriodoMaxOrderByAggregateInput = {
   inicio?: Prisma.SortOrder
   fin?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -470,6 +496,7 @@ export type PeriodoMinOrderByAggregateInput = {
   inicio?: Prisma.SortOrder
   fin?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -480,11 +507,20 @@ export type PeriodoSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   meses?: Prisma.SortOrder
   max_creditos?: Prisma.SortOrder
+  matricula?: Prisma.SortOrder
 }
 
 export type PeriodoScalarRelationFilter = {
   is?: Prisma.PeriodoWhereInput
   isNot?: Prisma.PeriodoWhereInput
+}
+
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type PeriodoCreateNestedOneWithoutGruposInput = {
@@ -521,6 +557,7 @@ export type PeriodoCreateWithoutGruposInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -535,6 +572,7 @@ export type PeriodoUncheckedCreateWithoutGruposInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -564,6 +602,7 @@ export type PeriodoUpdateWithoutGruposInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -578,6 +617,7 @@ export type PeriodoUncheckedUpdateWithoutGruposInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -591,6 +631,7 @@ export type PeriodoCreateWithoutDeudasInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -605,6 +646,7 @@ export type PeriodoUncheckedCreateWithoutDeudasInput = {
   inicio: Date | string
   fin: Date | string
   max_creditos: number
+  matricula: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -634,6 +676,7 @@ export type PeriodoUpdateWithoutDeudasInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -648,6 +691,7 @@ export type PeriodoUncheckedUpdateWithoutDeudasInput = {
   inicio?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   fin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   max_creditos?: Prisma.IntFieldUpdateOperationsInput | number
+  matricula?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -702,6 +746,7 @@ export type PeriodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   inicio?: boolean
   fin?: boolean
   max_creditos?: boolean
+  matricula?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -718,6 +763,7 @@ export type PeriodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   inicio?: boolean
   fin?: boolean
   max_creditos?: boolean
+  matricula?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -731,6 +777,7 @@ export type PeriodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   inicio?: boolean
   fin?: boolean
   max_creditos?: boolean
+  matricula?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -744,13 +791,14 @@ export type PeriodoSelectScalar = {
   inicio?: boolean
   fin?: boolean
   max_creditos?: boolean
+  matricula?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
   deletedate?: boolean
 }
 
-export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "meses" | "inicio" | "fin" | "max_creditos" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["periodo"]>
+export type PeriodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "meses" | "inicio" | "fin" | "max_creditos" | "matricula" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["periodo"]>
 export type PeriodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupos?: boolean | Prisma.Periodo$gruposArgs<ExtArgs>
   deudas?: boolean | Prisma.Periodo$deudasArgs<ExtArgs>
@@ -772,6 +820,7 @@ export type $PeriodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     inicio: Date
     fin: Date
     max_creditos: number
+    matricula: runtime.Decimal
     created: Date
     updated: Date
     deleted: boolean
@@ -1207,6 +1256,7 @@ export interface PeriodoFieldRefs {
   readonly inicio: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly fin: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly max_creditos: Prisma.FieldRef<"Periodo", 'Int'>
+  readonly matricula: Prisma.FieldRef<"Periodo", 'Decimal'>
   readonly created: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Periodo", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Periodo", 'Boolean'>

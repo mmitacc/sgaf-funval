@@ -5,5 +5,6 @@ import { MateriaController } from './materia.controller.js';
 @Module({
   controllers: [MateriaController],
   providers: [MateriaService],
+  exports: [MateriaService],
 })
 export class MateriaModule {}

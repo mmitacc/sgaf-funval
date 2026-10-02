@@ -20,6 +20,8 @@ export class RolesGuard implements CanActivate {
       return true;
     }
     const { user } = context.switchToHttp().getRequest();
+    // Gobernabilidad total para el usuario SUPERADMIN
+    if (user.rol === 'SUPERADMIN') return true;
     if (!user || !user.rol) {
       throw new ForbiddenException(
         'No tienes permisos para acceder a este recurso.',

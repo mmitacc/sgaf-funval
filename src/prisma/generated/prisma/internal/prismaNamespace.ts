@@ -1561,6 +1561,7 @@ export const PeriodoScalarFieldEnum = {
   inicio: 'inicio',
   fin: 'fin',
   max_creditos: 'max_creditos',
+  matricula: 'matricula',
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
@@ -1574,7 +1575,6 @@ export const MateriaScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   creditos: 'creditos',
-  inscripcion: 'inscripcion',
   mensualidad: 'mensualidad',
   created: 'created',
   updated: 'updated',
@@ -1693,9 +1693,11 @@ export type DeudaScalarFieldEnum = (typeof DeudaScalarFieldEnum)[keyof typeof De
 export const PagoScalarFieldEnum = {
   id: 'id',
   concepto: 'concepto',
+  descripcion: 'descripcion',
   monto: 'monto',
   tipo_pago: 'tipo_pago',
   estado_pago: 'estado_pago',
+  referencia_externa: 'referencia_externa',
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
@@ -1840,6 +1842,20 @@ export type EnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Dia[]'
  */
 export type ListEnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Dia[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ConceptoPago'
+ */
+export type EnumConceptoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConceptoPago'>
+    
+
+
+/**
+ * Reference to a field of type 'ConceptoPago[]'
+ */
+export type ListEnumConceptoPagoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConceptoPago[]'>
     
 
 

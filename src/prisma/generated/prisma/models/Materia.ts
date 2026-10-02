@@ -29,14 +29,12 @@ export type AggregateMateria = {
 export type MateriaAvgAggregateOutputType = {
   id: number | null
   creditos: number | null
-  inscripcion: runtime.Decimal | null
   mensualidad: runtime.Decimal | null
 }
 
 export type MateriaSumAggregateOutputType = {
   id: number | null
   creditos: number | null
-  inscripcion: runtime.Decimal | null
   mensualidad: runtime.Decimal | null
 }
 
@@ -44,7 +42,6 @@ export type MateriaMinAggregateOutputType = {
   id: number | null
   nombre: string | null
   creditos: number | null
-  inscripcion: runtime.Decimal | null
   mensualidad: runtime.Decimal | null
   created: Date | null
   updated: Date | null
@@ -56,7 +53,6 @@ export type MateriaMaxAggregateOutputType = {
   id: number | null
   nombre: string | null
   creditos: number | null
-  inscripcion: runtime.Decimal | null
   mensualidad: runtime.Decimal | null
   created: Date | null
   updated: Date | null
@@ -68,7 +64,6 @@ export type MateriaCountAggregateOutputType = {
   id: number
   nombre: number
   creditos: number
-  inscripcion: number
   mensualidad: number
   created: number
   updated: number
@@ -81,14 +76,12 @@ export type MateriaCountAggregateOutputType = {
 export type MateriaAvgAggregateInputType = {
   id?: true
   creditos?: true
-  inscripcion?: true
   mensualidad?: true
 }
 
 export type MateriaSumAggregateInputType = {
   id?: true
   creditos?: true
-  inscripcion?: true
   mensualidad?: true
 }
 
@@ -96,7 +89,6 @@ export type MateriaMinAggregateInputType = {
   id?: true
   nombre?: true
   creditos?: true
-  inscripcion?: true
   mensualidad?: true
   created?: true
   updated?: true
@@ -108,7 +100,6 @@ export type MateriaMaxAggregateInputType = {
   id?: true
   nombre?: true
   creditos?: true
-  inscripcion?: true
   mensualidad?: true
   created?: true
   updated?: true
@@ -120,7 +111,6 @@ export type MateriaCountAggregateInputType = {
   id?: true
   nombre?: true
   creditos?: true
-  inscripcion?: true
   mensualidad?: true
   created?: true
   updated?: true
@@ -219,7 +209,6 @@ export type MateriaGroupByOutputType = {
   id: number
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal
   mensualidad: runtime.Decimal
   created: Date
   updated: Date
@@ -254,7 +243,6 @@ export type MateriaWhereInput = {
   id?: Prisma.IntFilter<"Materia"> | number
   nombre?: Prisma.StringFilter<"Materia"> | string
   creditos?: Prisma.IntFilter<"Materia"> | number
-  inscripcion?: Prisma.DecimalFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeFilter<"Materia"> | Date | string
@@ -267,7 +255,6 @@ export type MateriaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
@@ -283,7 +270,6 @@ export type MateriaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MateriaWhereInput | Prisma.MateriaWhereInput[]
   nombre?: Prisma.StringFilter<"Materia"> | string
   creditos?: Prisma.IntFilter<"Materia"> | number
-  inscripcion?: Prisma.DecimalFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeFilter<"Materia"> | Date | string
@@ -296,7 +282,6 @@ export type MateriaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
@@ -316,7 +301,6 @@ export type MateriaScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Materia"> | number
   nombre?: Prisma.StringWithAggregatesFilter<"Materia"> | string
   creditos?: Prisma.IntWithAggregatesFilter<"Materia"> | number
-  inscripcion?: Prisma.DecimalWithAggregatesFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalWithAggregatesFilter<"Materia"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeWithAggregatesFilter<"Materia"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Materia"> | Date | string
@@ -327,7 +311,6 @@ export type MateriaScalarWhereWithAggregatesInput = {
 export type MateriaCreateInput = {
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
@@ -340,7 +323,6 @@ export type MateriaUncheckedCreateInput = {
   id?: number
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
@@ -352,7 +334,6 @@ export type MateriaUncheckedCreateInput = {
 export type MateriaUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,7 +346,6 @@ export type MateriaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -378,7 +358,6 @@ export type MateriaCreateManyInput = {
   id?: number
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
@@ -389,7 +368,6 @@ export type MateriaCreateManyInput = {
 export type MateriaUpdateManyMutationInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -401,7 +379,6 @@ export type MateriaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -413,7 +390,6 @@ export type MateriaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
@@ -424,7 +400,6 @@ export type MateriaCountOrderByAggregateInput = {
 export type MateriaAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
 }
 
@@ -432,7 +407,6 @@ export type MateriaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
@@ -444,7 +418,6 @@ export type MateriaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
@@ -455,21 +428,12 @@ export type MateriaMinOrderByAggregateInput = {
 export type MateriaSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   creditos?: Prisma.SortOrder
-  inscripcion?: Prisma.SortOrder
   mensualidad?: Prisma.SortOrder
 }
 
 export type MateriaScalarRelationFilter = {
   is?: Prisma.MateriaWhereInput
   isNot?: Prisma.MateriaWhereInput
-}
-
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type MateriaCreateNestedOneWithoutGruposInput = {
@@ -489,7 +453,6 @@ export type MateriaUpdateOneRequiredWithoutGruposNestedInput = {
 export type MateriaCreateWithoutGruposInput = {
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
@@ -501,7 +464,6 @@ export type MateriaUncheckedCreateWithoutGruposInput = {
   id?: number
   nombre: string
   creditos: number
-  inscripcion: runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad: runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Date | string
   updated?: Date | string
@@ -528,7 +490,6 @@ export type MateriaUpdateToOneWithWhereWithoutGruposInput = {
 export type MateriaUpdateWithoutGruposInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -540,7 +501,6 @@ export type MateriaUncheckedUpdateWithoutGruposInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   creditos?: Prisma.IntFieldUpdateOperationsInput | number
-  inscripcion?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   mensualidad?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -583,7 +543,6 @@ export type MateriaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   nombre?: boolean
   creditos?: boolean
-  inscripcion?: boolean
   mensualidad?: boolean
   created?: boolean
   updated?: boolean
@@ -597,7 +556,6 @@ export type MateriaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   nombre?: boolean
   creditos?: boolean
-  inscripcion?: boolean
   mensualidad?: boolean
   created?: boolean
   updated?: boolean
@@ -609,7 +567,6 @@ export type MateriaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   nombre?: boolean
   creditos?: boolean
-  inscripcion?: boolean
   mensualidad?: boolean
   created?: boolean
   updated?: boolean
@@ -621,7 +578,6 @@ export type MateriaSelectScalar = {
   id?: boolean
   nombre?: boolean
   creditos?: boolean
-  inscripcion?: boolean
   mensualidad?: boolean
   created?: boolean
   updated?: boolean
@@ -629,7 +585,7 @@ export type MateriaSelectScalar = {
   deletedate?: boolean
 }
 
-export type MateriaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "creditos" | "inscripcion" | "mensualidad" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["materia"]>
+export type MateriaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "creditos" | "mensualidad" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["materia"]>
 export type MateriaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grupos?: boolean | Prisma.Materia$gruposArgs<ExtArgs>
   _count?: boolean | Prisma.MateriaCountOutputTypeDefaultArgs<ExtArgs>
@@ -646,7 +602,6 @@ export type $MateriaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: number
     nombre: string
     creditos: number
-    inscripcion: runtime.Decimal
     mensualidad: runtime.Decimal
     created: Date
     updated: Date
@@ -1079,7 +1034,6 @@ export interface MateriaFieldRefs {
   readonly id: Prisma.FieldRef<"Materia", 'Int'>
   readonly nombre: Prisma.FieldRef<"Materia", 'String'>
   readonly creditos: Prisma.FieldRef<"Materia", 'Int'>
-  readonly inscripcion: Prisma.FieldRef<"Materia", 'Decimal'>
   readonly mensualidad: Prisma.FieldRef<"Materia", 'Decimal'>
   readonly created: Prisma.FieldRef<"Materia", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Materia", 'DateTime'>

@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, OmitType } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsNotEmpty,
@@ -86,3 +86,7 @@ export class CreateEntregaDto {
   @Min(0, { message: 'El id_tarea, no puede ser negativo.' })
   readonly id_tarea: number;
 }
+
+export class CreateEntregaEstudianteDto extends OmitType(CreateEntregaDto, [
+  'calificacion',
+]) {}
