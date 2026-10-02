@@ -25,7 +25,7 @@ Se adjunta un archivo panoramico del proyecto: `SGAF-DER.png` (con el esquema gr
 8.- Existe una ruta para la documentación completa de la API en el puerto
     `http://localhost:3000/api/docs`
     Pero también puedes probarlo en la web, en dirección:
-    `http://www.sgaf-funval.com`
+    `https://sgaf-funval.onrender.com/api/docs`
 
 
 ## Autor

@@ -24,7 +24,7 @@ async function bootstrap() {
   // Configuración para documentaciones con Swagger
   const config = new DocumentBuilder()
     .setTitle('"Sistema de Gestión Académica y Financiera - FUNVAL"')
-    .setDescription('API RESTful que permite la gestión para sistemas SGAF')
+    .setDescription('API RESTful que permite la gestión para sistemas SGAF. Por @mmitacc.')
     .setVersion('1.0.0')
     .addBearerAuth(
       {
