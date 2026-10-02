@@ -7,9 +7,11 @@ import {
   Param,
   Delete,
   Req,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { PagoService } from './pago.service.js';
-import { CreatePagoDto } from './dto/create-pago.dto.js';
+import { CreatePagoDto, PagoMatriculaDto } from './dto/create-pago.dto.js';
 import { UpdatePagoDto } from './dto/update-pago.dto.js';
 import type { Request as RequestExpress } from 'express';
 import { Roles } from '../common/decorators/roles.decorator.js';
@@ -34,6 +36,13 @@ export class PagoController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.pagoService.findOne(+id);
+  }
+
+  @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
+  @Post('matricula')
+  @HttpCode(HttpStatus.OK)
+  findPagoMatricula(@Body() pagoMatriculaDto: PagoMatriculaDto) {
+    return this.pagoService.findPagoMatricula(pagoMatriculaDto);
   }
 
   @Roles('ADMINISTRADOR')

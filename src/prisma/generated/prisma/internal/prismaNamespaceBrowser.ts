@@ -153,7 +153,6 @@ export const MateriaScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   creditos: 'creditos',
-  inscripcion: 'inscripcion',
   mensualidad: 'mensualidad',
   created: 'created',
   updated: 'updated',
@@ -272,6 +271,7 @@ export type DeudaScalarFieldEnum = (typeof DeudaScalarFieldEnum)[keyof typeof De
 export const PagoScalarFieldEnum = {
   id: 'id',
   concepto: 'concepto',
+  descripcion: 'descripcion',
   monto: 'monto',
   tipo_pago: 'tipo_pago',
   estado_pago: 'estado_pago',

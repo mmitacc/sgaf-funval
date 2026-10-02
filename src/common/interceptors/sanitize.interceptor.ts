@@ -7,6 +7,7 @@ import {
 import { Observable, map } from 'rxjs';
 
 export const REMOVED_FIELDS = [
+  'password',
   'updated',
   'deleted',
   'deletedate',
@@ -20,8 +21,10 @@ export function maskCreditCard(value: string): string {
 }
 
 export function sanitize(value: unknown): unknown {
+  if (!value) return value;
   if (Array.isArray(value)) return value.map(sanitize);
   if (value instanceof Date) return value;
+  if ((value as any).d) return (value = Number(value));
   if (
     typeof value === 'object' &&
     value !== null &&

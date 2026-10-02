@@ -48,6 +48,15 @@ export const EstadoPago = {
 export type EstadoPago = (typeof EstadoPago)[keyof typeof EstadoPago]
 
 
+export const ConceptoPago = {
+  MATRICULA: 'MATRICULA',
+  MENSUALIDAD: 'MENSUALIDAD',
+  OTROS: 'OTROS'
+} as const
+
+export type ConceptoPago = (typeof ConceptoPago)[keyof typeof ConceptoPago]
+
+
 export const Dia = {
   LUNES: 'LUNES',
   MARTES: 'MARTES',

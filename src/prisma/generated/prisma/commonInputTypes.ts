@@ -280,6 +280,13 @@ export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
+export type EnumConceptoPagoFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConceptoPago | Prisma.EnumConceptoPagoFieldRefInput<$PrismaModel>
+  in?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel> | $Enums.ConceptoPago
+}
+
 export type EnumTipoPagoFilter<$PrismaModel = never> = {
   equals?: $Enums.TipoPago | Prisma.EnumTipoPagoFieldRefInput<$PrismaModel>
   in?: $Enums.TipoPago[] | Prisma.ListEnumTipoPagoFieldRefInput<$PrismaModel>
@@ -292,6 +299,16 @@ export type EnumEstadoPagoFilter<$PrismaModel = never> = {
   in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel> | $Enums.EstadoPago
+}
+
+export type EnumConceptoPagoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConceptoPago | Prisma.EnumConceptoPagoFieldRefInput<$PrismaModel>
+  in?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConceptoPagoWithAggregatesFilter<$PrismaModel> | $Enums.ConceptoPago
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel>
 }
 
 export type EnumTipoPagoWithAggregatesFilter<$PrismaModel = never> = {
@@ -593,6 +610,13 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
 }
 
+export type NestedEnumConceptoPagoFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConceptoPago | Prisma.EnumConceptoPagoFieldRefInput<$PrismaModel>
+  in?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel> | $Enums.ConceptoPago
+}
+
 export type NestedEnumTipoPagoFilter<$PrismaModel = never> = {
   equals?: $Enums.TipoPago | Prisma.EnumTipoPagoFieldRefInput<$PrismaModel>
   in?: $Enums.TipoPago[] | Prisma.ListEnumTipoPagoFieldRefInput<$PrismaModel>
@@ -605,6 +629,16 @@ export type NestedEnumEstadoPagoFilter<$PrismaModel = never> = {
   in?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>
   notIn?: $Enums.EstadoPago[] | Prisma.ListEnumEstadoPagoFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumEstadoPagoFilter<$PrismaModel> | $Enums.EstadoPago
+}
+
+export type NestedEnumConceptoPagoWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ConceptoPago | Prisma.EnumConceptoPagoFieldRefInput<$PrismaModel>
+  in?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ConceptoPago[] | Prisma.ListEnumConceptoPagoFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumConceptoPagoWithAggregatesFilter<$PrismaModel> | $Enums.ConceptoPago
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumConceptoPagoFilter<$PrismaModel>
 }
 
 export type NestedEnumTipoPagoWithAggregatesFilter<$PrismaModel = never> = {

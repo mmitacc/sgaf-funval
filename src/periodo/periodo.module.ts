@@ -5,5 +5,6 @@ import { PeriodoController } from './periodo.controller.js';
 @Module({
   controllers: [PeriodoController],
   providers: [PeriodoService],
+  exports: [PeriodoService],
 })
 export class PeriodoModule {}

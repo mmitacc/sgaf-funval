@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsEnum,
@@ -10,23 +10,38 @@ import {
   IsInt,
   IsOptional,
 } from 'class-validator';
-import { TipoPago, EstadoPago } from '../../prisma/generated/prisma/enums.js';
+import {
+  TipoPago,
+  EstadoPago,
+  ConceptoPago,
+} from '../../prisma/generated/prisma/enums.js';
+import { CreateDeudaDto } from '../../deuda/dto/create-deuda.dto.js';
 
 export class CreatePagoDto {
   @ApiProperty({
-    example: 'Mensualidad Setiembre-2026',
-    description:
-      'Detalla el concepto de un pago de matricula, inscripción, mesualidad, etc.',
+    example: 'MATRICULA',
+    description: 'El concepto de pago, que se pretende realizar.',
+    enum: ConceptoPago,
   })
-  @IsString({ message: 'El concepto, debe ser un texto.' })
+  @IsEnum(ConceptoPago, {
+    message: `El concepto, debe ser uno de los siguientes valores: ${Object.values(ConceptoPago).join(', ')}.`,
+  })
+  readonly concepto: ConceptoPago;
+
+  @ApiProperty({
+    example: 'Mensualidad Setiembre-2026',
+    description: 'Detalla el descripción del pago en curso.',
+  })
+  @IsString({ message: 'La descripcion del pago, debe ser un texto.' })
   @Transform(({ value }) => (typeof value === 'string' ? value.trim() : value))
   @IsNotEmpty({
-    message: 'El concepto, es obligatorio y no debe contener solo espacios.',
+    message:
+      'La descripcion del pago, es obligatorio y no debe contener solo espacios.',
   })
   @Length(4, 100, {
-    message: 'El concepto, debe tener entre 4 y 100 caracteres.',
+    message: 'La descripcion del pago, debe tener entre 4 y 100 caracteres.',
   })
-  readonly concepto: string;
+  readonly descripcion: string;
 
   @ApiProperty({
     example: 520,
@@ -73,15 +88,15 @@ export class CreatePagoDto {
   @Min(0, { message: 'El id_estudiante, no puede ser negativo.' })
   readonly id_estudiante: number;
 
-//   @ApiProperty({
-//     example: 3,
-//     description: 'El ID del Operador, que recepciona/procesa el pago.',
-//   })
-//   @IsOptional()
-//   @Type(() => Number)
-//   @IsInt({ message: 'El id_operador, debe ser un numero entero.' })
-//   @Min(0, { message: 'El id_operador, no puede ser negativo.' })
-//   readonly id_operador?: number;
+  //   @ApiProperty({
+  //     example: 3,
+  //     description: 'El ID del Operador, que recepciona/procesa el pago.',
+  //   })
+  //   @IsOptional()
+  //   @Type(() => Number)
+  //   @IsInt({ message: 'El id_operador, debe ser un numero entero.' })
+  //   @Min(0, { message: 'El id_operador, no puede ser negativo.' })
+  //   readonly id_operador?: number;
 
   @ApiProperty({
     example: 3,
@@ -94,3 +109,8 @@ export class CreatePagoDto {
   @Min(0, { message: 'El id_deuda, no puede ser negativo.' })
   readonly id_deuda?: number;
 }
+
+export class PagoMatriculaDto extends PickType(CreateDeudaDto, [
+  'id_periodo',
+  'id_estudiante',
+]) {}
