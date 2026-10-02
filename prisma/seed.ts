@@ -532,7 +532,7 @@ async function main() {
   console.log('- 6 Tareas creadas');
   console.log('- 20 Entregas creadas');
   console.log('- 5 Deudas creadas');
-  console.log('- 5 Pagos insertados');
+  console.log('- 10 Pagos insertados');
 }
 
 main()

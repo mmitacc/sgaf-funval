@@ -35,7 +35,8 @@ export class EntregaService {
     });
   }
 
-  async update(id: number, updateEntregaDto: UpdateEntregaDto) {
+  async update(user: any, updateEntregaDto: UpdateEntregaDto) {
+    const id = Number(user.id);
     return await this.prisma.entrega.update({
       where: { id, deleted: false },
       data: updateEntregaDto,

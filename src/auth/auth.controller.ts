@@ -15,6 +15,7 @@ import { LoginAuthDto } from './dto/login-auth.dto.js';
 import { AuthService } from './auth.service.js';
 import { Public } from '../common/decorators/public.decorator.js';
 import { CreateEstudianteDto } from '../estudiante/dto/create-estudiante.dto.js';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -23,6 +24,9 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
+  @ApiOperation({
+    summary: 'Autentica a un usuario registrado y genera un token de acceso.',
+  })
   @Post('login')
   async login(
     @Body() loginAuthDto: LoginAuthDto,
@@ -32,11 +36,15 @@ export class AuthController {
   }
 
   @Public()
+  @ApiOperation({ summary: 'Registra a un nuevo Estudiante.' })
   @Post('register')
   async register(@Body() createEstudianteDto: CreateEstudianteDto) {
     return await this.authService.register(createEstudianteDto);
   }
 
+  @ApiOperation({
+    summary: 'Muestra los datos del perfil del usuario autenticado.',
+  })
   @Get('profile')
   async profile(@Req() req: RequestExpress) {
     return req.user;
