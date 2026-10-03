@@ -2,13 +2,19 @@
 CREATE TYPE "Rol" AS ENUM ('ESTUDIANTE', 'PROFESOR', 'RECEPCIONISTA', 'ADMINISTRADOR', 'SUPERADMIN');
 
 -- CreateEnum
-CREATE TYPE "EstadoUsuario" AS ENUM ('PENDIENTE', 'ACTIVO', 'SUSPENDIDO', 'INACTIVO');
+CREATE TYPE "Estado" AS ENUM ('PENDIENTE', 'ACTIVO', 'SUSPENDIDO', 'INACTIVO');
 
 -- CreateEnum
 CREATE TYPE "TipoPago" AS ENUM ('EFECTIVO', 'TRANSFERENCIA', 'ONLINE');
 
 -- CreateEnum
 CREATE TYPE "EstadoPago" AS ENUM ('PENDIENTE', 'APROBADO', 'RECHAZADO');
+
+-- CreateEnum
+CREATE TYPE "ConceptoPago" AS ENUM ('MATRICULA', 'MENSUALIDAD', 'OTROS');
+
+-- CreateEnum
+CREATE TYPE "Dia" AS ENUM ('LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO');
 
 -- CreateTable
 CREATE TABLE "usuario" (
@@ -18,11 +24,13 @@ CREATE TABLE "usuario" (
     "telefono" VARCHAR(20),
     "email" VARCHAR(255) NOT NULL,
     "password" VARCHAR(255) NOT NULL,
-    "rol" "Rol" NOT NULL,
-    "masculino" BOOLEAN NOT NULL DEFAULT true,
-    "estado" "EstadoUsuario" NOT NULL DEFAULT 'PENDIENTE',
+    "rol" "Rol" DEFAULT 'ESTUDIANTE',
+    "masculino" BOOLEAN NOT NULL,
+    "estado" "Estado" DEFAULT 'PENDIENTE',
     "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "usuario_pkey" PRIMARY KEY ("id")
 );
@@ -31,6 +39,10 @@ CREATE TABLE "usuario" (
 CREATE TABLE "especialidad" (
     "id" SERIAL NOT NULL,
     "nombre" VARCHAR(100) NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "especialidad_pkey" PRIMARY KEY ("id")
 );
@@ -61,6 +73,11 @@ CREATE TABLE "periodo" (
     "inicio" TIMESTAMP(3) NOT NULL,
     "fin" TIMESTAMP(3) NOT NULL,
     "max_creditos" INTEGER NOT NULL,
+    "matricula" DECIMAL(10,2) NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "periodo_pkey" PRIMARY KEY ("id")
 );
@@ -70,8 +87,11 @@ CREATE TABLE "materia" (
     "id" SERIAL NOT NULL,
     "nombre" VARCHAR(200) NOT NULL,
     "creditos" INTEGER NOT NULL,
-    "inscripcion" DECIMAL(10,2) NOT NULL,
     "mensualidad" DECIMAL(10,2) NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "materia_pkey" PRIMARY KEY ("id")
 );
@@ -81,6 +101,10 @@ CREATE TABLE "aula" (
     "id" SERIAL NOT NULL,
     "nombre" VARCHAR(100) NOT NULL,
     "capacidad" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "aula_pkey" PRIMARY KEY ("id")
 );
@@ -88,10 +112,14 @@ CREATE TABLE "aula" (
 -- CreateTable
 CREATE TABLE "horario" (
     "id" SERIAL NOT NULL,
-    "dia" VARCHAR(50) NOT NULL,
+    "dia" "Dia" NOT NULL,
     "hora_inicio" TIME NOT NULL,
     "hora_fin" TIME NOT NULL,
     "id_grupo" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "horario_pkey" PRIMARY KEY ("id")
 );
@@ -104,6 +132,10 @@ CREATE TABLE "grupo" (
     "id_aula" INTEGER NOT NULL,
     "id_materia" INTEGER NOT NULL,
     "id_periodo" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "grupo_pkey" PRIMARY KEY ("id")
 );
@@ -111,9 +143,12 @@ CREATE TABLE "grupo" (
 -- CreateTable
 CREATE TABLE "matricula" (
     "id" SERIAL NOT NULL,
-    "fecha" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "id_estudiante" INTEGER NOT NULL,
     "id_grupo" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "matricula_pkey" PRIMARY KEY ("id")
 );
@@ -125,6 +160,10 @@ CREATE TABLE "tarea" (
     "instrucciones" TEXT NOT NULL,
     "fecha_entrega" TIMESTAMP(3) NOT NULL,
     "id_grupo" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "tarea_pkey" PRIMARY KEY ("id")
 );
@@ -132,11 +171,15 @@ CREATE TABLE "tarea" (
 -- CreateTable
 CREATE TABLE "entrega" (
     "id" SERIAL NOT NULL,
-    "respuesta" TEXT NOT NULL,
+    "respuesta" TEXT,
     "archivo_url" VARCHAR,
     "calificacion" INTEGER,
     "id_estudiante" INTEGER NOT NULL,
     "id_tarea" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "entrega_pkey" PRIMARY KEY ("id")
 );
@@ -145,10 +188,15 @@ CREATE TABLE "entrega" (
 CREATE TABLE "deuda" (
     "id" SERIAL NOT NULL,
     "total_deuda" DECIMAL(10,2) NOT NULL,
+    "pendiente" DECIMAL(10,2) NOT NULL,
     "deuda_mes" DECIMAL(10,2) NOT NULL,
-    "cancelado" BOOLEAN NOT NULL DEFAULT false,
+    "moroso" BOOLEAN NOT NULL DEFAULT false,
     "id_periodo" INTEGER NOT NULL,
     "id_estudiante" INTEGER NOT NULL,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
 
     CONSTRAINT "deuda_pkey" PRIMARY KEY ("id")
 );
@@ -156,11 +204,16 @@ CREATE TABLE "deuda" (
 -- CreateTable
 CREATE TABLE "pago" (
     "id" SERIAL NOT NULL,
-    "concepto" VARCHAR(100) NOT NULL,
+    "concepto" "ConceptoPago" NOT NULL,
+    "descripcion" VARCHAR(100) NOT NULL,
     "monto" DECIMAL(10,2) NOT NULL,
     "tipo_pago" "TipoPago" NOT NULL,
     "estado_pago" "EstadoPago" NOT NULL DEFAULT 'PENDIENTE',
-    "fecha_pago" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "referencia_externa" TEXT,
+    "created" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated" TIMESTAMP(3) NOT NULL,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
+    "deletedate" TIMESTAMP(3),
     "id_operador" INTEGER,
     "id_estudiante" INTEGER NOT NULL,
     "id_deuda" INTEGER,
@@ -184,7 +237,10 @@ CREATE UNIQUE INDEX "aula_nombre_key" ON "aula"("nombre");
 CREATE UNIQUE INDEX "matricula_id_estudiante_id_grupo_key" ON "matricula"("id_estudiante", "id_grupo");
 
 -- CreateIndex
-CREATE INDEX "deuda_id_estudiante_cancelado_idx" ON "deuda"("id_estudiante", "cancelado");
+CREATE INDEX "deuda_id_estudiante_moroso_idx" ON "deuda"("id_estudiante", "moroso");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "pago_referencia_externa_key" ON "pago"("referencia_externa");
 
 -- AddForeignKey
 ALTER TABLE "profesor" ADD CONSTRAINT "profesor_id_usuario_fkey" FOREIGN KEY ("id_usuario") REFERENCES "usuario"("id") ON DELETE CASCADE ON UPDATE CASCADE;
