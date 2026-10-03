@@ -3,13 +3,17 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreatePagoDto, PagoMatriculaDto } from './dto/create-pago.dto.js';
+import {
+  CreatePagoDto,
+  PagoMatriculaDto,
+  PasarelaPagoDto,
+} from './dto/create-pago.dto.js';
 import { UpdatePagoDto } from './dto/update-pago.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { PeriodoService } from '../periodo/periodo.service.js';
 import { DeudaService } from '../deuda/deuda.service.js';
-import { Estudiante } from '../prisma/generated/prisma/client.js';
 import { EstudianteService } from '../estudiante/estudiante.service.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PagoService {
@@ -18,38 +22,93 @@ export class PagoService {
     private readonly periodoService: PeriodoService,
     private readonly deudaService: DeudaService,
     private readonly estudianteService: EstudianteService,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(user: any, createPagoDto: CreatePagoDto) {
-    const isEfectivo = createPagoDto.tipo_pago === 'EFECTIVO';
-    const deuda = await this.deudaService.findOne(createPagoDto.id_deuda!);
-    if (deuda?.id_estudiante !== createPagoDto.id_estudiante)
-      throw new BadRequestException(
-        `El Estudiante con ID=${createPagoDto.id_estudiante}, NO corresponde a la deuda ID=${deuda?.id}`,
-      );
-    const periodo = await this.periodoService.findOne(deuda?.id_periodo!);
-    const costoMatricula = periodo?.matricula;
-    const costoMensualidad = Number(deuda?.deuda_mes);
-    const matriculaActual = await this.findPagoMatricula({
-      id_periodo: deuda?.id_periodo!,
-      id_estudiante: createPagoDto.id_estudiante,
+    const { tipo_pago, id_deuda, id_estudiante, concepto, monto, descripcion } =
+      createPagoDto;
+    const isPagoMatricula = concepto == 'MATRICULA';
+    if (!isPagoMatricula) {
+      const deuda = await this.deudaService.findOne(id_deuda!);
+      if (deuda?.id_estudiante !== id_estudiante)
+        throw new BadRequestException(
+          `El Estudiante con ID=${id_estudiante}, NO corresponde a la deuda ID=${deuda?.id}`,
+        );
+      const periodo = await this.periodoService.findOne(deuda?.id_periodo!);
+      const costoMatricula = periodo?.matricula;
+      const costoMensualidad = Number(deuda?.deuda_mes);
+      const matriculaActual = await this.findPagoMatricula({
+        id_periodo: deuda?.id_periodo!,
+        id_estudiante: id_estudiante,
+      });
+      if (matriculaActual.estado_pago !== 'APROBADO')
+        throw new BadRequestException(
+          `El Estudiante con ID=${id_estudiante}, debe primero pagar su MATRICULA de: ${costoMatricula}`,
+        );
+      if (monto < costoMensualidad && concepto === 'MENSUALIDAD')
+        throw new BadRequestException(
+          `El Estudiante con ID=${id_estudiante}, debe pagar la mensualidad completa de ${costoMensualidad}`,
+        );
+    }
+    // Se registra el nuevo pago
+    const newPago = await this.prisma.pago.create({
+      data: {
+        id_operador: tipo_pago === 'EFECTIVO' ? user.id : null,
+        id_deuda: isPagoMatricula ? null : id_deuda,
+        estado_pago: tipo_pago === 'EFECTIVO' ? 'APROBADO' : 'PENDIENTE',
+        tipo_pago,
+        id_estudiante,
+        concepto,
+        monto,
+        descripcion,
+      },
     });
-    if (
-      matriculaActual.estado_pago !== 'APROBADO' &&
-      createPagoDto.concepto !== 'MATRICULA'
-    )
+    // Se agrega el link de referencia externa, si el pago es con pasarela
+    let referencia_externa = null;
+    if (tipo_pago === 'ONLINE') {
+      try {
+        const response = await fetch(
+          'https://api-mock-payment.funvaltech.cloud/api/v1/payments',
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${this.configService.getOrThrow<string>('WEBHOOK_SECRET')}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              amount: monto,
+              currency: 'USD',
+              metadata: {
+                order_id: newPago.id,
+              },
+            }),
+          },
+        );
+
+        const { checkout_url } = await response.json();
+        referencia_externa = checkout_url;
+      } catch (error) {}
+    }
+    // Se actualiza el pago si fue con pasarela
+    return this.prisma.pago.update({
+      where: { id: newPago.id, deleted: false },
+      data: { referencia_externa },
+    });
+  }
+
+  async respuestaPasarela(pasarelaPagoDto: PasarelaPagoDto) {
+    const { amount, status, metadata, failure_reason } = pasarelaPagoDto;
+    if (status !== 'SUCCEEDED')
       throw new BadRequestException(
-        `El Estudiante con ID=${createPagoDto.id_estudiante}, debe primero pagar su MATRICULA de: ${costoMatricula}`,
+        `Pago con ID=${metadata.order_id}, fue rechazado por: ${failure_reason}`,
       );
-    if (
-      createPagoDto.monto < costoMensualidad &&
-      createPagoDto.concepto === 'MENSUALIDAD'
-    )
-      throw new BadRequestException(
-        `El Estudiante con ID=${createPagoDto.id_estudiante}, debe pagar la mensualidad completa de ${costoMensualidad}`,
-      );
-    return await this.prisma.pago.create({
-      data: { id_operador: isEfectivo ? user.id : null, ...createPagoDto },
+    return await this.prisma.pago.update({
+      where: { id: Number(metadata.order_id), deleted: false },
+      data: {
+        estado_pago: status === 'SUCCEEDED' ? 'APROBADO' : 'RECHAZADO',
+        monto: amount,
+      },
     });
   }
 
