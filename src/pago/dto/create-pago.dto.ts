@@ -9,6 +9,8 @@ import {
   Length,
   IsInt,
   IsOptional,
+  IsObject,
+  ValidateNested,
 } from 'class-validator';
 import {
   TipoPago,
@@ -67,16 +69,16 @@ export class CreatePagoDto {
   })
   readonly tipo_pago: TipoPago;
 
-  @ApiProperty({
-    example: 'RECHAZADO',
-    description:
-      'El estado de pago, en el que actualmente se encuentra el proceso.',
-    enum: EstadoPago,
-  })
-  @IsEnum(EstadoPago, {
-    message: `El estado_pago, debe ser uno de los siguientes valores: ${Object.values(EstadoPago).join(', ')}.`,
-  })
-  readonly estado_pago: EstadoPago;
+  // @ApiProperty({
+  //   example: 'RECHAZADO',
+  //   description:
+  //     'El estado de pago, en el que actualmente se encuentra el proceso.',
+  //   enum: EstadoPago,
+  // })
+  // @IsEnum(EstadoPago, {
+  //   message: `El estado_pago, debe ser uno de los siguientes valores: ${Object.values(EstadoPago).join(', ')}.`,
+  // })
+  // readonly estado_pago: EstadoPago;
 
   @ApiProperty({
     example: 9,
@@ -114,3 +116,56 @@ export class PagoMatriculaDto extends PickType(CreateDeudaDto, [
   'id_periodo',
   'id_estudiante',
 ]) {}
+
+// Para recibir la respuesta de la pasarela de pagos
+
+class MetaDataDto {
+  @IsString()
+  readonly order_id: string;
+}
+
+export class PasarelaPagoDto {
+  @ApiProperty({
+    example: '"uuid-de-la-transaccion',
+    description: 'ID de la trasaccion, en la pasarela de pagos',
+  })
+  @IsString()
+  readonly id: string;
+
+  @ApiProperty({
+    example: 520,
+    description:
+      'El amount, es la cantidad de pago a procesar, en la pasarela de pagos.',
+  })
+  @Type(() => Number)
+  @IsNumber({ maxDecimalPlaces: 2 })
+  readonly amount: number;
+
+  @ApiProperty({
+    example: 'USD',
+    description: 'Es el tipo de moneda del monto, en la pasarela de pago',
+  })
+  @IsString()
+  readonly currency: string;
+
+  @ApiProperty({
+    example: 'SUCCEEDED',
+    description:
+      'Es el status resultante del proceso de pago, validado por la pasarela de pago',
+  })
+  @IsString()
+  readonly status: string;
+
+  @ApiProperty({
+    example: 'insufficient_funds',
+    description:
+      'Es la razon del fallo del proceso de pago, validado por la pasarela de pago',
+  })
+  @IsString()
+  readonly failure_reason: string;
+
+  @IsObject()
+  @ValidateNested()
+  @Type(() => MetaDataDto)
+  readonly metadata: MetaDataDto;
+}

@@ -11,11 +11,16 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { PagoService } from './pago.service.js';
-import { CreatePagoDto, PagoMatriculaDto } from './dto/create-pago.dto.js';
+import {
+  CreatePagoDto,
+  PagoMatriculaDto,
+  PasarelaPagoDto,
+} from './dto/create-pago.dto.js';
 import { UpdatePagoDto } from './dto/update-pago.dto.js';
 import type { Request as RequestExpress } from 'express';
 import { Roles } from '../common/decorators/roles.decorator.js';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiOperation } from '@nestjs/swagger';
+import { Public } from '../common/decorators/public.decorator.js';
 
 @Controller('pago')
 export class PagoController {
@@ -26,6 +31,14 @@ export class PagoController {
   @Post()
   create(@Req() req: RequestExpress, @Body() createPagoDto: CreatePagoDto) {
     return this.pagoService.create(req.user, createPagoDto);
+  }
+
+  @Public()
+  @ApiExcludeEndpoint()
+  @ApiOperation({ summary: 'Respuesta de Pasarela de Pagos MockPay' })
+  @Post('/webhook')
+  createPasarela(@Body() pasarelaPagoDto: PasarelaPagoDto) {
+    return this.pagoService.respuestaPasarela(pasarelaPagoDto);
   }
 
   @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
