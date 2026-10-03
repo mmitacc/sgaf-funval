@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 import { SanitizeInterceptor } from './common/interceptors/sanitize.interceptor.js';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor.js';
 import { ConfigService } from '@nestjs/config';
 import 'dotenv/config';
 
@@ -16,7 +17,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted: true,
+      forbidNonWhitelisted: false,
       transform: true,
     }),
   );
@@ -24,7 +25,9 @@ async function bootstrap() {
   // Configuración para documentaciones con Swagger
   const config = new DocumentBuilder()
     .setTitle('"Sistema de Gestión Académica y Financiera - FUNVAL"')
-    .setDescription('API RESTful que permite la gestión para sistemas SGAF. Por Manuel Mitacc (mmitacc) 🇵🇪.')
+    .setDescription(
+      'API RESTful que permite la gestión para sistemas SGAF. Por Manuel Mitacc (mmitacc) 🇵🇪.',
+    )
     .setVersion('1.0.0')
     .addBearerAuth(
       {
@@ -44,6 +47,8 @@ async function bootstrap() {
 
   // Interceptor para limpiar campos sensibles en la data
   app.useGlobalInterceptors(new SanitizeInterceptor());
+  // Interceptor para mostra los log y error con nuestra api
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   const configService = app.get(ConfigService);
   await app.listen(configService.getOrThrow<number>('PORT') ?? 3000);

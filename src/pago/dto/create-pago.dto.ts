@@ -120,8 +120,8 @@ export class PagoMatriculaDto extends PickType(CreateDeudaDto, [
 // Para recibir la respuesta de la pasarela de pagos
 
 class MetaDataDto {
-  @IsString()
-  readonly order_id: string;
+  @IsNumber()
+  readonly order_id: number;
 }
 
 export class PasarelaPagoDto {
@@ -162,7 +162,8 @@ export class PasarelaPagoDto {
       'Es la razon del fallo del proceso de pago, validado por la pasarela de pago',
   })
   @IsString()
-  readonly failure_reason: string;
+  @IsOptional()
+  readonly failure_reason: string | null;
 
   @IsObject()
   @ValidateNested()
