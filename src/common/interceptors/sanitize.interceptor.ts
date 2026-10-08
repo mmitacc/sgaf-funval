@@ -4,7 +4,9 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 import { Observable, map } from 'rxjs';
+import { SKIP_SANITIZE_KEY } from '../decorators/skip-sanitize.decorator.js';
 
 export const REMOVED_FIELDS = [
   'password',
@@ -48,7 +50,17 @@ export function sanitize(value: unknown): unknown {
 
 @Injectable()
 export class SanitizeInterceptor implements NestInterceptor {
+  constructor(private readonly reflector: Reflector) {}
+
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
+    const skipSanitize = this.reflector.getAllAndOverride<boolean>(
+      SKIP_SANITIZE_KEY,
+      [context.getHandler(), context.getClass()],
+    );
+
+    // Flag para saltar este interceptor con nuestro decorador @SkipSanitize()
+    if (skipSanitize) return next.handle();
+
     return next.handle().pipe(map((data) => sanitize(data)));
   }
 }

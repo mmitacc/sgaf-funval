@@ -45,8 +45,6 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, documentFactory);
 
-  // Interceptor para limpiar campos sensibles en la data
-  app.useGlobalInterceptors(new SanitizeInterceptor());
   // Interceptor para mostra los log y error con nuestra api
   app.useGlobalInterceptors(new LoggingInterceptor());
 

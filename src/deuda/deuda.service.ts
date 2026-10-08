@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { CreateDeudaDto } from './dto/create-deuda.dto.js';
 import { UpdateDeudaDto } from './dto/update-deuda.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { UpdatePagoDto } from '../pago/dto/update-pago.dto.js';
 import { Cron } from '@nestjs/schedule';
 
 @Injectable()
@@ -31,6 +32,14 @@ export class DeudaService {
     return await this.prisma.deuda.update({
       where: { id, deleted: false },
       data: updateDeudaDto,
+    });
+  }
+
+  async updateDeudaPendiente(id: number, data: UpdatePagoDto) {
+    const { monto } = data;
+    return await this.prisma.deuda.update({
+      where: { id, deleted: false },
+      data: { pendiente: { decrement: monto } },
     });
   }
 

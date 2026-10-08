@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  GatewayTimeoutException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -88,10 +89,20 @@ export class PagoService {
 
         const { checkout_url } = await response.json();
         referencia_externa = checkout_url;
-      } catch (error) {}
+      } catch (error) {
+        await this.prisma.pago.delete({ where: { id: newPago.id } });
+        throw new GatewayTimeoutException(
+          'El Servidor externo de Pasarela de Pago, no responde.',
+        );
+      }
     }
-    // Se actualiza el pago si fue con pasarela
-    return this.prisma.pago.update({
+    // Se actualiza el deuda
+    await this.deudaService.updateDeudaPendiente(Number(newPago.id_deuda), {
+      monto,
+    });
+
+    // Se actualiza el pago
+    return await this.prisma.pago.update({
       where: { id: newPago.id, deleted: false },
       data: { referencia_externa },
     });
