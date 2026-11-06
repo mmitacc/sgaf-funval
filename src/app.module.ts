@@ -26,6 +26,7 @@ import { envValidationSchema } from './common/configs/env.validation.js';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AdminModule } from './admin/admin.module.js';
 import { SanitizeInterceptor } from './common/interceptors/sanitize.interceptor.js';
+import { CloudinaryModule } from './cloudinary/cloudinary.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -64,6 +65,7 @@ ConfigModule.forRoot({
     DeudaModule,
     PagoModule,
     AdminModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [

@@ -44,6 +44,7 @@ export type UsuarioMinAggregateOutputType = {
   rol: $Enums.Rol | null
   masculino: boolean | null
   estado: $Enums.Estado | null
+  foto_url: string | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -60,6 +61,7 @@ export type UsuarioMaxAggregateOutputType = {
   rol: $Enums.Rol | null
   masculino: boolean | null
   estado: $Enums.Estado | null
+  foto_url: string | null
   created: Date | null
   updated: Date | null
   deleted: boolean | null
@@ -76,6 +78,7 @@ export type UsuarioCountAggregateOutputType = {
   rol: number
   masculino: number
   estado: number
+  foto_url: number
   created: number
   updated: number
   deleted: number
@@ -102,6 +105,7 @@ export type UsuarioMinAggregateInputType = {
   rol?: true
   masculino?: true
   estado?: true
+  foto_url?: true
   created?: true
   updated?: true
   deleted?: true
@@ -118,6 +122,7 @@ export type UsuarioMaxAggregateInputType = {
   rol?: true
   masculino?: true
   estado?: true
+  foto_url?: true
   created?: true
   updated?: true
   deleted?: true
@@ -134,6 +139,7 @@ export type UsuarioCountAggregateInputType = {
   rol?: true
   masculino?: true
   estado?: true
+  foto_url?: true
   created?: true
   updated?: true
   deleted?: true
@@ -237,6 +243,7 @@ export type UsuarioGroupByOutputType = {
   rol: $Enums.Rol | null
   masculino: boolean
   estado: $Enums.Estado | null
+  foto_url: string | null
   created: Date
   updated: Date
   deleted: boolean
@@ -276,6 +283,7 @@ export type UsuarioWhereInput = {
   rol?: Prisma.EnumRolNullableFilter<"Usuario"> | $Enums.Rol | null
   masculino?: Prisma.BoolFilter<"Usuario"> | boolean
   estado?: Prisma.EnumEstadoNullableFilter<"Usuario"> | $Enums.Estado | null
+  foto_url?: Prisma.StringNullableFilter<"Usuario"> | string | null
   created?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolFilter<"Usuario"> | boolean
@@ -295,6 +303,7 @@ export type UsuarioOrderByWithRelationInput = {
   rol?: Prisma.SortOrderInput | Prisma.SortOrder
   masculino?: Prisma.SortOrder
   estado?: Prisma.SortOrderInput | Prisma.SortOrder
+  foto_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -317,6 +326,7 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
   rol?: Prisma.EnumRolNullableFilter<"Usuario"> | $Enums.Rol | null
   masculino?: Prisma.BoolFilter<"Usuario"> | boolean
   estado?: Prisma.EnumEstadoNullableFilter<"Usuario"> | $Enums.Estado | null
+  foto_url?: Prisma.StringNullableFilter<"Usuario"> | string | null
   created?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   updated?: Prisma.DateTimeFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolFilter<"Usuario"> | boolean
@@ -336,6 +346,7 @@ export type UsuarioOrderByWithAggregationInput = {
   rol?: Prisma.SortOrderInput | Prisma.SortOrder
   masculino?: Prisma.SortOrder
   estado?: Prisma.SortOrderInput | Prisma.SortOrder
+  foto_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -360,6 +371,7 @@ export type UsuarioScalarWhereWithAggregatesInput = {
   rol?: Prisma.EnumRolNullableWithAggregatesFilter<"Usuario"> | $Enums.Rol | null
   masculino?: Prisma.BoolWithAggregatesFilter<"Usuario"> | boolean
   estado?: Prisma.EnumEstadoNullableWithAggregatesFilter<"Usuario"> | $Enums.Estado | null
+  foto_url?: Prisma.StringNullableWithAggregatesFilter<"Usuario"> | string | null
   created?: Prisma.DateTimeWithAggregatesFilter<"Usuario"> | Date | string
   updated?: Prisma.DateTimeWithAggregatesFilter<"Usuario"> | Date | string
   deleted?: Prisma.BoolWithAggregatesFilter<"Usuario"> | boolean
@@ -375,6 +387,7 @@ export type UsuarioCreateInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -394,6 +407,7 @@ export type UsuarioUncheckedCreateInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -412,6 +426,7 @@ export type UsuarioUpdateInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -431,6 +446,7 @@ export type UsuarioUncheckedUpdateInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -450,6 +466,7 @@ export type UsuarioCreateManyInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -465,6 +482,7 @@ export type UsuarioUpdateManyMutationInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -481,6 +499,7 @@ export type UsuarioUncheckedUpdateManyInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -497,6 +516,7 @@ export type UsuarioCountOrderByAggregateInput = {
   rol?: Prisma.SortOrder
   masculino?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  foto_url?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -517,6 +537,7 @@ export type UsuarioMaxOrderByAggregateInput = {
   rol?: Prisma.SortOrder
   masculino?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  foto_url?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -533,6 +554,7 @@ export type UsuarioMinOrderByAggregateInput = {
   rol?: Prisma.SortOrder
   masculino?: Prisma.SortOrder
   estado?: Prisma.SortOrder
+  foto_url?: Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
   deleted?: Prisma.SortOrder
@@ -642,6 +664,7 @@ export type UsuarioCreateWithoutProfesorInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -660,6 +683,7 @@ export type UsuarioUncheckedCreateWithoutProfesorInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -693,6 +717,7 @@ export type UsuarioUpdateWithoutProfesorInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -711,6 +736,7 @@ export type UsuarioUncheckedUpdateWithoutProfesorInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -728,6 +754,7 @@ export type UsuarioCreateWithoutEstudianteInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -746,6 +773,7 @@ export type UsuarioUncheckedCreateWithoutEstudianteInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -779,6 +807,7 @@ export type UsuarioUpdateWithoutEstudianteInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -797,6 +826,7 @@ export type UsuarioUncheckedUpdateWithoutEstudianteInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -814,6 +844,7 @@ export type UsuarioCreateWithoutPagosOperadosInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -832,6 +863,7 @@ export type UsuarioUncheckedCreateWithoutPagosOperadosInput = {
   rol?: $Enums.Rol | null
   masculino: boolean
   estado?: $Enums.Estado | null
+  foto_url?: string | null
   created?: Date | string
   updated?: Date | string
   deleted?: boolean
@@ -865,6 +897,7 @@ export type UsuarioUpdateWithoutPagosOperadosInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -883,6 +916,7 @@ export type UsuarioUncheckedUpdateWithoutPagosOperadosInput = {
   rol?: Prisma.NullableEnumRolFieldUpdateOperationsInput | $Enums.Rol | null
   masculino?: Prisma.BoolFieldUpdateOperationsInput | boolean
   estado?: Prisma.NullableEnumEstadoFieldUpdateOperationsInput | $Enums.Estado | null
+  foto_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -932,6 +966,7 @@ export type UsuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   rol?: boolean
   masculino?: boolean
   estado?: boolean
+  foto_url?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -952,6 +987,7 @@ export type UsuarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   rol?: boolean
   masculino?: boolean
   estado?: boolean
+  foto_url?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -968,6 +1004,7 @@ export type UsuarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   rol?: boolean
   masculino?: boolean
   estado?: boolean
+  foto_url?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
@@ -984,13 +1021,14 @@ export type UsuarioSelectScalar = {
   rol?: boolean
   masculino?: boolean
   estado?: boolean
+  foto_url?: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean
   deletedate?: boolean
 }
 
-export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "password" | "rol" | "masculino" | "estado" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["usuario"]>
+export type UsuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombres" | "apellidos" | "telefono" | "email" | "password" | "rol" | "masculino" | "estado" | "foto_url" | "created" | "updated" | "deleted" | "deletedate", ExtArgs["result"]["usuario"]>
 export type UsuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profesor?: boolean | Prisma.Usuario$profesorArgs<ExtArgs>
   estudiante?: boolean | Prisma.Usuario$estudianteArgs<ExtArgs>
@@ -1017,6 +1055,7 @@ export type $UsuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     rol: $Enums.Rol | null
     masculino: boolean
     estado: $Enums.Estado | null
+    foto_url: string | null
     created: Date
     updated: Date
     deleted: boolean
@@ -1456,6 +1495,7 @@ export interface UsuarioFieldRefs {
   readonly rol: Prisma.FieldRef<"Usuario", 'Rol'>
   readonly masculino: Prisma.FieldRef<"Usuario", 'Boolean'>
   readonly estado: Prisma.FieldRef<"Usuario", 'Estado'>
+  readonly foto_url: Prisma.FieldRef<"Usuario", 'String'>
   readonly created: Prisma.FieldRef<"Usuario", 'DateTime'>
   readonly updated: Prisma.FieldRef<"Usuario", 'DateTime'>
   readonly deleted: Prisma.FieldRef<"Usuario", 'Boolean'>

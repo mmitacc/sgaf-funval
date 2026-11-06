@@ -68,6 +68,7 @@ model Usuario {
   rol        Rol?      @default(ESTUDIANTE)
   masculino  Boolean
   estado     Estado?   @default(PENDIENTE)
+  foto_url   String?   @db.VarChar()
   created    DateTime  @default(now())
   updated    DateTime  @updatedAt
   deleted    Boolean   @default(false)

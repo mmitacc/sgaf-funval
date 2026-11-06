@@ -140,6 +140,14 @@ export class CreateUsuarioDto {
   readonly masculino: boolean;
 
   @ApiProperty({
+    example:
+      'https://res.cloudinary.com/xbemwdg4/image/jkzmijmxahnjbxv0owp0.jpg',
+    description: 'URL de la foto del usuario.',
+  })
+  @IsOptional()
+  readonly foto_url?: string;
+
+  @ApiProperty({
     example: 'PENDIENTE',
     description:
       'Detalla el estado de un Usuario, sobre la gobernabilidad del sistema.',

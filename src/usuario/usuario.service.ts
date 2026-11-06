@@ -84,6 +84,25 @@ export class UsuarioService {
     });
   }
 
+  async actualizarPerfil(
+    usuarioId: number,
+    datos: { nombre: string; telefono?: string; foto?: string },
+  ) {
+    const usuarioExistente = await this.prisma.usuario.findUnique({
+      where: { id: usuarioId },
+    });
+    if (!usuarioExistente) throw new NotFoundException('Usuario no encontrado');
+
+    return this.prisma.usuario.update({
+      where: { id: usuarioId },
+      data: {
+        nombre: datos.nombre,
+        telefono: datos.telefono,
+        ...(datos.foto && { foto: datos.foto }),
+      },
+    });
+  }
+
   async remove(id: number) {
     return await this.prisma.usuario.update({
       where: { id, deleted: false },

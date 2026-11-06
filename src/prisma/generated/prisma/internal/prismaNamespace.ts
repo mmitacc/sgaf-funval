@@ -1515,6 +1515,7 @@ export const UsuarioScalarFieldEnum = {
   rol: 'rol',
   masculino: 'masculino',
   estado: 'estado',
+  foto_url: 'foto_url',
   created: 'created',
   updated: 'updated',
   deleted: 'deleted',
