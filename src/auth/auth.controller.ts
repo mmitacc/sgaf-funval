@@ -25,6 +25,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import CloudinaryService from '../cloudinary/cloudinary.service.js';
 import { UsuarioService } from '../usuario/usuario.service.js';
 import { ApiOperation } from '@nestjs/swagger';
+import { UpdatePerfilDto } from '../usuario/dto/update-usuario.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -59,7 +60,7 @@ export class AuthController {
   @UseInterceptors(FileInterceptor('foto')) // Captura el archivo en memoria RAM
   async actualizarPerfil(
     @Req() req: any,
-    @Body() datosDto: { nombres: string; apellidos: string; telefono?: string },
+    @Body() datosDto: UpdatePerfilDto,
     @UploadedFile(
       new ParseFilePipe({
         validators: [
