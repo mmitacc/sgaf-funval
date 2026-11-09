@@ -9,9 +9,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { StringValue } from 'ms';
 import { JwtStrategy } from './strategies/jwt.strategy.js';
 import { EstudianteModule } from '../estudiante/estudiante.module.js';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module.js';
 
 @Module({
   imports: [
+    CloudinaryModule,
     ConfigModule,
     EstudianteModule,
     UsuarioModule,

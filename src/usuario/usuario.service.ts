@@ -86,7 +86,12 @@ export class UsuarioService {
 
   async actualizarPerfil(
     usuarioId: number,
-    datos: { nombre: string; telefono?: string; foto?: string },
+    datos: {
+      nombres: string;
+      apellidos: string;
+      telefono?: string;
+      foto?: string;
+    },
   ) {
     const usuarioExistente = await this.prisma.usuario.findUnique({
       where: { id: usuarioId },
@@ -96,7 +101,8 @@ export class UsuarioService {
     return this.prisma.usuario.update({
       where: { id: usuarioId },
       data: {
-        nombre: datos.nombre,
+        nombres: datos.nombres,
+        apellidos: datos.apellidos,
         telefono: datos.telefono,
         ...(datos.foto && { foto: datos.foto }),
       },

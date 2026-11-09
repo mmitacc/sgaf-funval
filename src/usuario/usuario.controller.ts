@@ -6,64 +6,17 @@ import {
   Patch,
   Param,
   Delete,
-  Put,
-  Req,
-  UseInterceptors,
-  UploadedFile,
-  UseGuards,
-  ParseFilePipe,
-  MaxFileSizeValidator,
-  FileTypeValidator,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service.js';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import { ApiOperation } from '@nestjs/swagger';
-import { FileInterceptor } from '@nestjs/platform-express';
-import CloudinaryService from '../cloudinary/cloudinary.service.js';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 
 @Roles('ADMINISTRADOR')
 @Controller('usuario')
 export class UsuarioController {
-  constructor(
-    private readonly usuarioService: UsuarioService,
-    private readonly cloudinaryService: CloudinaryService,
-  ) {}
-
-  @Put('perfil')
-  @UseGuards(JwtAuthGuard)
-  @UseInterceptors(FileInterceptor('foto')) // Captura el archivo en memoria RAM
-  async actualizarPerfil(
-    @Req() req: any,
-    @Body() datosDto: { nombre: string; telefono?: string },
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [
-          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
-          new FileTypeValidator({ fileType: '.(png|jpeg|jpg|webp)' }),
-        ],
-        fileIsRequired: false,
-      }),
-    )
-    file?: Express.Multer.File,
-  ) {
-    const usuarioId = req.user.id;
-    let urlFoto: string | undefined = undefined;
-
-    if (file) {
-      const resultadoCloudinary =
-        await this.cloudinaryService.subirImagen(file);
-      urlFoto = resultadoCloudinary.secure_url; // URL segura HTTPS
-    }
-
-    return this.usuarioService.actualizarPerfil(usuarioId, {
-      nombre: datosDto.nombre,
-      telefono: datosDto.telefono,
-      foto: urlFoto,
-    });
-  }
+  constructor(private readonly usuarioService: UsuarioService) {}
 
   @ApiOperation({ summary: 'Registra un nuevo Usuario' })
   @Post()
