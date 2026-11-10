@@ -104,7 +104,7 @@ export class UsuarioService {
         nombres: datos.nombres,
         apellidos: datos.apellidos,
         telefono: datos.telefono,
-        ...(datos.foto_url && { foto: datos.foto_url }),
+        ...(datos.foto_url && { foto_url: datos.foto_url }),
       },
     });
   }
