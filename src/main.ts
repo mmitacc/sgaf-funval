@@ -11,6 +11,9 @@ import 'dotenv/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Prefijo global para todas las rutas: '/api'
+  app.setGlobalPrefix('api');
+
   // Filtros para orm prisma
   app.useGlobalFilters(new PrismaExceptionFilter());
 
