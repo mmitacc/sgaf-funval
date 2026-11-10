@@ -90,7 +90,7 @@ export class UsuarioService {
       nombres: string;
       apellidos: string;
       telefono?: string;
-      foto?: string;
+      foto_url?: string;
     },
   ) {
     const usuarioExistente = await this.prisma.usuario.findUnique({
@@ -104,7 +104,7 @@ export class UsuarioService {
         nombres: datos.nombres,
         apellidos: datos.apellidos,
         telefono: datos.telefono,
-        ...(datos.foto && { foto: datos.foto }),
+        ...(datos.foto_url && { foto: datos.foto_url }),
       },
     });
   }

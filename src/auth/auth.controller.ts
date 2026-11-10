@@ -85,7 +85,7 @@ export class AuthController {
       nombres: datosDto.nombres,
       apellidos: datosDto.apellidos,
       telefono: datosDto.telefono,
-      foto: urlFoto,
+      foto_url: urlFoto,
     });
   }
 

@@ -26,8 +26,8 @@ export class CreateUsuarioDto {
   @IsNotEmpty({
     message: 'Los nombres, es obligatorio y no deben contener solo espacios.',
   })
-  @Length(4, 100, {
-    message: 'Los nombres, deben tener entre 4 y 100 caracteres.',
+  @Length(2, 100, {
+    message: 'Los nombres, deben tener entre 2 y 100 caracteres.',
   })
   readonly nombres: string;
 
@@ -40,8 +40,8 @@ export class CreateUsuarioDto {
   @IsNotEmpty({
     message: 'Los apellidos, es obligatorio y no deben contener solo espacios.',
   })
-  @Length(4, 100, {
-    message: 'Los apellidos, deben tener entre 4 y 100 caracteres.',
+  @Length(2, 100, {
+    message: 'Los apellidos, deben tener entre 2 y 100 caracteres.',
   })
   readonly apellidos: string;
 
