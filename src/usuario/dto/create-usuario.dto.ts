@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsString,
@@ -10,11 +10,12 @@ import {
   IsEnum,
   IsBoolean,
   ValidateIf,
-  ValidateNested,
+  IsDate,
+  MinDate,
+  IsInt,
+  Min,
 } from 'class-validator';
-import { Rol } from '../../prisma/generated/prisma/enums.js';
-import { Estado } from '../../prisma/generated/prisma/enums.js';
-import { CreateProfesorDto } from '../../profesor/dto/create-profesor.dto.js';
+import { Rol, Estado } from '../../prisma/generated/prisma/enums.js';
 
 export class CreateUsuarioDto {
   @ApiProperty({
@@ -45,10 +46,9 @@ export class CreateUsuarioDto {
   })
   readonly apellidos: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '+51945789151',
     description: 'Detalla el telefono del Usuario',
-    required: false,
   })
   @IsOptional()
   @Transform(({ value }) => {
@@ -60,7 +60,7 @@ export class CreateUsuarioDto {
   })
   @IsString({ message: 'El teléfono debe ser un texto.' })
   @Length(8, 20, {
-    message: 'El teléfono debe tener entre 8 y 20 caracteres.', // <- Corregido el número 8
+    message: 'El teléfono debe tener entre 8 y 20 caracteres.',
   })
   @Matches(/^\+?[0-9]+$/, {
     message:
@@ -98,23 +98,10 @@ export class CreateUsuarioDto {
   @Length(6, 255, {
     message: "El 'password' debe tener entre 6 y 255 caracteres.",
   })
-  // @Matches(/[a-z]/, {
-  //   message: "El 'password' debe contener al menos una letra minúscula.",
-  // })
-  // @Matches(/[A-Z]/, {
-  //   message: "El 'password' debe contener al menos una letra mayúscula.",
-  // })
-  // @Matches(/[0-9]/, {
-  //   message: "El 'password' debe contener al menos un número.",
-  // })
-  // @Matches(/[!@#$%^&*(),.?":{}|<>_+\-=\[\]\\\/]/, {
-  //   message:
-  //     "El 'password' debe contener al menos un carácter especial (ejemplo: !@#$%^&*(),.?:{}|<>_+-=[]/).",
-  // })
   readonly password: string;
 
   @ApiProperty({
-    example: 'ESTUDIANTE',
+    example: 'PROFESOR',
     description: 'Detalla el rol de un Usuario',
     enum: Rol,
   })
@@ -139,7 +126,7 @@ export class CreateUsuarioDto {
   })
   readonly masculino: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example:
       'https://res.cloudinary.com/xbemwdg4/image/jkzmijmxahnjbxv0owp0.jpg',
     description: 'URL de la foto del usuario.',
@@ -147,30 +134,60 @@ export class CreateUsuarioDto {
   @IsOptional()
   readonly foto_url?: string;
 
-  @ApiProperty({
-    example: 'PENDIENTE',
+  @ApiPropertyOptional({
+    example: 'ACTIVO',
     description:
       'Detalla el estado de un Usuario, sobre la gobernabilidad del sistema.',
     enum: Estado,
   })
   @IsOptional()
   @IsEnum(Estado, {
-    message: `El estado, debe ser uno de los siguientes valores: ${Object.values(Rol).join(', ')}.`,
+    message: `El estado, debe ser uno de los siguientes valores: ${Object.values(Estado).join(', ')}.`,
   })
   readonly estado?: Estado;
 
-  // Solo cuando el nuevo Usuario tenga el Rol:'PROFESOR'
-  @ApiProperty({ type: CreateProfesorDto, required: false })
-  @ValidateIf((dto: CreateUsuarioDto) => dto.rol === 'PROFESOR')
-  @IsNotEmpty({
-    message: 'Los datos del Profesor son obligatorios cuando el rol=PROFESOR',
+  // --- Campos condicionales solo cuando rol === 'PROFESOR' ---
+  @ApiPropertyOptional({
+    example: '2026-09-29',
+    description:
+      'Fecha en la que se firma o inicia el contrato (Formato YYYY-MM-DD)',
   })
-  @ValidateNested()
-  @Type(() => CreateProfesorDto)
-  readonly datosProfesor?: CreateProfesorDto;
-}
+  @ValidateIf((dto: CreateUsuarioDto) => dto.rol === 'PROFESOR')
+  @IsNotEmpty({ message: 'La fecha del contrato, es obligatoria.' })
+  @Type(() => Date)
+  @IsDate({ message: 'La fecha del contrato, debe ser una fecha válida.' })
+  @MinDate(new Date(Date.UTC(2020, 0, 1)), {
+    message: 'La fecha del contrato, no puede ser anterior al año 2020.',
+  })
+  readonly fecha_contrato?: Date;
 
-export interface CreateUsuarioConProfesor extends CreateUsuarioDto {
-  fecha_contrato?: Date;
-  id_especialidad?: number;
+  @ApiPropertyOptional({
+    example: 2,
+    description: 'El ID de la Especialidad del Profesor.',
+  })
+  @ValidateIf((dto: CreateUsuarioDto) => dto.rol === 'PROFESOR')
+  @Type(() => Number)
+  @IsNotEmpty({ message: 'El id_especialidad, es obligatorio.' })
+  @IsInt({ message: 'El id_especialidad, debe ser un numero entero.' })
+  @Min(1, { message: 'El id_especialidad, debe ser mayor a 0.' })
+  readonly id_especialidad?: number;
+
+  // --- Campo opcional (usado al editar un Estudiante) ---
+  @ApiPropertyOptional({
+    example: 'Juan Jose Perez Quispe',
+    description: 'Detalla el apoderado/tutor del Estudiante',
+  })
+  @IsOptional()
+  @Transform(({ value }) => {
+    if (typeof value === 'string') {
+      const cleaned = value.trim();
+      return cleaned === '' ? undefined : cleaned;
+    }
+    return value;
+  })
+  @IsString({ message: 'El apoderado, debe ser un texto.' })
+  @Length(6, 200, {
+    message: 'El apoderado, debe tener entre 6 y 200 caracteres.',
+  })
+  readonly apoderado?: string;
 }

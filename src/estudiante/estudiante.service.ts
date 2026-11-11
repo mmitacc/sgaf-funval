@@ -23,7 +23,7 @@ export class EstudianteService {
     const { apoderado, password, ...otroUsuario } = createEstudianteDto;
     const hashedPassword = await bcrypt.hash(
       password,
-      this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDSF'),
+      this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDS'),
     );
     return await this.prisma.estudiante.create({
       data: {

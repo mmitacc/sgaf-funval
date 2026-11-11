@@ -14,6 +14,7 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator,
   FileTypeValidator,
+  Patch,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard.js';
 import type { Request as RequestExpress } from 'express';
@@ -26,6 +27,7 @@ import CloudinaryService from '../cloudinary/cloudinary.service.js';
 import { UsuarioService } from '../usuario/usuario.service.js';
 import { ApiOperation } from '@nestjs/swagger';
 import { UpdatePerfilDto } from '../usuario/dto/update-usuario.dto.js';
+import { CambiarPasswordDto } from './dto/cambiar-password.dto.js';
 
 @Controller('auth')
 export class AuthController {
@@ -51,11 +53,38 @@ export class AuthController {
 
   @Public()
   @ApiOperation({ summary: 'Registra a un nuevo Estudiante.' })
+  @UseInterceptors(FileInterceptor('foto')) // Captura el archivo en memoria RAM
   @Post('register')
-  async register(@Body() createEstudianteDto: CreateEstudianteDto) {
-    return await this.authService.register(createEstudianteDto);
+  async register(
+    @Body() createEstudianteDto: CreateEstudianteDto,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new FileTypeValidator({ fileType: '.(png|jpeg|jpg|webp)' }),
+        ],
+        fileIsRequired: false,
+      }),
+    )
+    file?: Express.Multer.File,
+  ) {
+    let urlFoto = createEstudianteDto.foto_url;
+
+    if (file) {
+      const resultadoCloudinary =
+        await this.cloudinaryService.subirImagen(file);
+      urlFoto = resultadoCloudinary.secure_url;
+    }
+
+    return await this.authService.register({
+      ...createEstudianteDto,
+      foto_url: urlFoto,
+    });
   }
 
+  @ApiOperation({
+    summary: 'Actualizado datos generales de un usuario logeado.',
+  })
   @Put('perfil')
   @UseInterceptors(FileInterceptor('foto')) // Captura el archivo en memoria RAM
   async actualizarPerfil(
@@ -87,6 +116,16 @@ export class AuthController {
       telefono: datosDto.telefono,
       foto_url: urlFoto,
     });
+  }
+
+  @ApiOperation({ summary: 'Cambia la contraseña del usuario autenticado' })
+  @Patch('cambiar-password')
+  async cambiarPassword(@Req() req: any, @Body() dto: CambiarPasswordDto) {
+    return await this.usuarioService.cambiarPassword(
+      req.user.id,
+      dto.passwordActual,
+      dto.passwordNueva,
+    );
   }
 
   @ApiOperation({

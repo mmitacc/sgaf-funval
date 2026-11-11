@@ -15,75 +15,237 @@ export class UsuarioService {
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
   ) {}
+
+  /**
+   * Helper interno: Aplana las relaciones profesor y estudiante
+   * para devolver un objeto idéntico a UsuarioGenerico en el frontend.
+   */
+  private aplanarUsuario(usuario: any) {
+    if (!usuario) return null;
+    const { profesor, estudiante, ...resto } = usuario;
+
+    return {
+      ...resto,
+      ...(profesor && {
+        fecha_contrato: profesor.fecha_contrato,
+        id_especialidad: profesor.id_especialidad,
+      }),
+      ...(estudiante && {
+        apoderado: estudiante.apoderado,
+      }),
+    };
+  }
+
+  // ============================================================================
+  // 1. CREAR USUARIO (Solo roles administrativos/docentes - Aplanado)
+  // ============================================================================
   async create(createUsuarioDto: CreateUsuarioDto) {
-    if (createUsuarioDto.rol === 'ESTUDIANTE')
+    if (createUsuarioDto.rol === 'ESTUDIANTE') {
       throw new BadRequestException(
-        'No se puede registrar a un ESTUDIANTE, por este medio.',
+        'No se puede registrar a un ESTUDIANTE por este medio.',
       );
-    const { password, datosProfesor, ...restoUsuario } = createUsuarioDto;
-    const existeProfesor: boolean = !!(
-      createUsuarioDto.rol === 'PROFESOR' &&
-      datosProfesor?.id_especialidad &&
-      datosProfesor?.fecha_contrato
-    );
-    if (existeProfesor) {
-      const especialildad = this.prisma.especialidad.findFirst({
-        where: { id: datosProfesor?.id_especialidad },
-      });
-      if (!especialildad)
-        throw new NotFoundException(
-          `La especialidad con ID=${datosProfesor?.id_especialidad} no existe.`,
-        );
     }
-    const hashedPassword = await bcrypt.hash(
-      password,
-      this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDS'),
+
+    const { password, fecha_contrato, id_especialidad, ...restoUsuario } =
+      createUsuarioDto;
+
+    const esProfesor = createUsuarioDto.rol === 'PROFESOR';
+
+    if (esProfesor) {
+      if (!id_especialidad || !fecha_contrato) {
+        throw new BadRequestException(
+          'Para el rol PROFESOR, fecha_contrato e id_especialidad son obligatorios.',
+        );
+      }
+
+      const especialidad = await this.prisma.especialidad.findFirst({
+        where: { id: Number(id_especialidad) },
+      });
+
+      if (!especialidad) {
+        throw new NotFoundException(
+          `La especialidad con ID=${id_especialidad} no existe.`,
+        );
+      }
+    }
+
+    const saltRounds = Number(
+      this.configService.getOrThrow('BCRYPT_SALT_ROUNDS'),
     );
-    return await this.prisma.usuario.create({
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const usuarioCreado = await this.prisma.usuario.create({
       data: {
         ...restoUsuario,
         password: hashedPassword,
-        ...(existeProfesor
-          ? {
-              profesor: {
-                create: datosProfesor,
-              },
-            }
-          : {}),
+        ...(esProfesor && {
+          profesor: {
+            create: {
+              fecha_contrato: new Date(fecha_contrato!),
+              id_especialidad: Number(id_especialidad),
+            },
+          },
+        }),
       },
       omit: { password: true },
       include: {
-        ...(existeProfesor
-          ? {
-              profesor: { omit: { id_usuario: true } },
-            }
-          : {}),
+        profesor: { omit: { id_usuario: true } },
       },
     });
+
+    return this.aplanarUsuario(usuarioCreado);
   }
 
+  // ============================================================================
+  // 2. LISTAR TODOS LOS USUARIOS (Aplanados)
+  // ============================================================================
   async findAll() {
-    return await this.prisma.usuario.findMany({
+    const usuarios = await this.prisma.usuario.findMany({
       where: { deleted: false },
+      orderBy: { id: 'desc' },
       omit: { password: true },
+      include: {
+        profesor: { omit: { id_usuario: true } },
+        estudiante: { omit: { id_usuario: true } },
+      },
     });
+
+    return usuarios.map((u) => this.aplanarUsuario(u));
   }
 
+  // ============================================================================
+  // 3. OBTENER UN USUARIO POR ID (Aplanado)
+  // ============================================================================
   async findOne(id: number) {
-    return await this.prisma.usuario.findFirst({
+    const usuario = await this.prisma.usuario.findFirst({
       where: { id, deleted: false },
       omit: { password: true },
+      include: {
+        profesor: { omit: { id_usuario: true } },
+        estudiante: { omit: { id_usuario: true } },
+      },
     });
+
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con ID=${id} no encontrado.`);
+    }
+
+    return this.aplanarUsuario(usuario);
   }
 
+  // ============================================================================
+  // 4. ACTUALIZAR USUARIO POR ID (Soporta Profesor, Estudiante y Admin)
+  // ============================================================================
   async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return await this.prisma.usuario.update({
+    const usuarioActual = await this.prisma.usuario.findFirst({
       where: { id, deleted: false },
-      data: updateUsuarioDto,
-      omit: { password: true },
     });
+
+    if (!usuarioActual) {
+      throw new NotFoundException(`Usuario con ID=${id} no encontrado.`);
+    }
+
+    const {
+      password,
+      fecha_contrato,
+      id_especialidad,
+      apoderado,
+      ...restoUsuario
+    } = updateUsuarioDto;
+
+    // Si enviaron una nueva contraseña, la encriptamos; si no, no la tocamos
+    let hashedPassword: string | undefined = undefined;
+    if (password && password.trim() !== '') {
+      const saltRounds = Number(
+        this.configService.getOrThrow('BCRYPT_SALT_ROUNDS'),
+      );
+      hashedPassword = await bcrypt.hash(password, saltRounds);
+    }
+
+    const rolFinal = updateUsuarioDto.rol ?? usuarioActual.rol;
+
+    // Validar especialidad si es PROFESOR y se envía id_especialidad
+    if (rolFinal === 'PROFESOR' && id_especialidad) {
+      const especialidad = await this.prisma.especialidad.findFirst({
+        where: { id: Number(id_especialidad) },
+      });
+      if (!especialidad) {
+        throw new NotFoundException(
+          `La especialidad con ID=${id_especialidad} no existe.`,
+        );
+      }
+    }
+
+    const usuarioActualizado = await this.prisma.usuario.update({
+      where: { id },
+      data: {
+        ...restoUsuario,
+        ...(hashedPassword && { password: hashedPassword }),
+        // Actualización de relación Profesor si corresponde
+        ...(rolFinal === 'PROFESOR' &&
+          (fecha_contrato || id_especialidad) && {
+            profesor: {
+              upsert: {
+                create: {
+                  fecha_contrato: fecha_contrato
+                    ? new Date(fecha_contrato)
+                    : new Date(),
+                  id_especialidad: Number(id_especialidad),
+                },
+                update: {
+                  ...(fecha_contrato && {
+                    fecha_contrato: new Date(fecha_contrato),
+                  }),
+                  ...(id_especialidad && {
+                    id_especialidad: Number(id_especialidad),
+                  }),
+                },
+              },
+            },
+          }),
+        // Actualización de relación Estudiante si corresponde
+        ...(rolFinal === 'ESTUDIANTE' &&
+          apoderado && {
+            estudiante: {
+              update: {
+                apoderado,
+              },
+            },
+          }),
+      },
+      omit: { password: true },
+      include: {
+        profesor: { omit: { id_usuario: true } },
+        estudiante: { omit: { id_usuario: true } },
+      },
+    });
+
+    return this.aplanarUsuario(usuarioActualizado);
   }
 
+  // ============================================================================
+  // 5. ELIMINAR USUARIO (Borrado Lógico)
+  // ============================================================================
+  async remove(id: number) {
+    const usuario = await this.prisma.usuario.findFirst({
+      where: { id, deleted: false },
+    });
+
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con ID=${id} no encontrado.`);
+    }
+
+    await this.prisma.usuario.update({
+      where: { id },
+      data: { deleted: true, estado: 'INACTIVO' },
+    });
+
+    return { message: 'Usuario eliminado correctamente.' };
+  }
+
+  // ============================================================================
+  // 6. ACTUALIZAR PERFIL PROPIO
+  // ============================================================================
   async actualizarPerfil(
     usuarioId: number,
     datos: {
@@ -98,7 +260,7 @@ export class UsuarioService {
     });
     if (!usuarioExistente) throw new NotFoundException('Usuario no encontrado');
 
-    return this.prisma.usuario.update({
+    const actualizado = await this.prisma.usuario.update({
       where: { id: usuarioId },
       data: {
         nombres: datos.nombres,
@@ -106,18 +268,55 @@ export class UsuarioService {
         telefono: datos.telefono,
         ...(datos.foto_url && { foto_url: datos.foto_url }),
       },
-    });
-  }
-
-  async remove(id: number) {
-    return await this.prisma.usuario.update({
-      where: { id, deleted: false },
-      data: { deleted: true, deletedate: new Date() },
       omit: { password: true },
     });
+
+    return this.aplanarUsuario(actualizado);
   }
 
+  // ============================================================================
+  // 7. IDENTIFICAR USUARIO POR EMAIL
+  // ============================================================================
   async findEmail(email: string) {
     return await this.prisma.usuario.findUnique({ where: { email } });
+  }
+
+  // ============================================================================
+  // 8. SOLO CAMBIAR PASSWORD
+  // ============================================================================
+
+  async cambiarPassword(
+    usuarioId: number,
+    passwordActual: string,
+    passwordNueva: string,
+  ) {
+    const usuario = await this.prisma.usuario.findUnique({
+      where: { id: usuarioId },
+    });
+
+    if (!usuario) {
+      throw new NotFoundException('Usuario no encontrado.');
+    }
+
+    const passwordValida = await bcrypt.compare(
+      passwordActual,
+      usuario.password,
+    );
+
+    if (!passwordValida) {
+      throw new BadRequestException('La contraseña actual es incorrecta.');
+    }
+
+    const saltRounds = Number(
+      this.configService.getOrThrow('BCRYPT_SALT_ROUNDS'),
+    );
+    const hashedPassword = await bcrypt.hash(passwordNueva, saltRounds);
+
+    await this.prisma.usuario.update({
+      where: { id: usuarioId },
+      data: { password: hashedPassword },
+    });
+
+    return { message: 'Contraseña actualizada correctamente.' };
   }
 }

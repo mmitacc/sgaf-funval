@@ -6,22 +6,57 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFile,
+  ParseFilePipe,
+  MaxFileSizeValidator,
+  FileTypeValidator,
+  ParseIntPipe,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { UsuarioService } from './usuario.service.js';
 import { CreateUsuarioDto } from './dto/create-usuario.dto.js';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import { ApiOperation } from '@nestjs/swagger';
+import CloudinaryService from '../cloudinary/cloudinary.service.js';
 
 @Roles('ADMINISTRADOR')
 @Controller('usuario')
 export class UsuarioController {
-  constructor(private readonly usuarioService: UsuarioService) {}
+  constructor(
+    private readonly usuarioService: UsuarioService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   @ApiOperation({ summary: 'Registra un nuevo Usuario' })
   @Post()
-  create(@Body() createUsuarioDto: CreateUsuarioDto) {
-    return this.usuarioService.create(createUsuarioDto);
+  @UseInterceptors(FileInterceptor('foto'))
+  async create(
+    @Body() createUsuarioDto: CreateUsuarioDto,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new FileTypeValidator({ fileType: '.(png|jpeg|jpg|webp)' }),
+        ],
+        fileIsRequired: false,
+      }),
+    )
+    file?: Express.Multer.File,
+  ) {
+    let urlFoto = createUsuarioDto.foto_url;
+
+    if (file) {
+      const resultadoCloudinary =
+        await this.cloudinaryService.subirImagen(file);
+      urlFoto = resultadoCloudinary.secure_url;
+    }
+
+    return await this.usuarioService.create({
+      ...createUsuarioDto,
+      foto_url: urlFoto,
+    });
   }
 
   @ApiOperation({ summary: 'Lista todos los Usuarios' })
@@ -40,8 +75,33 @@ export class UsuarioController {
     summary: 'Actualiza algun dato de un Usuario identificado por su ID',
   })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsuarioDto: UpdateUsuarioDto) {
-    return this.usuarioService.update(+id, updateUsuarioDto);
+  @UseInterceptors(FileInterceptor('foto'))
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUsuarioDto: UpdateUsuarioDto,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
+          new FileTypeValidator({ fileType: '.(png|jpeg|jpg|webp)' }),
+        ],
+        fileIsRequired: false,
+      }),
+    )
+    file?: Express.Multer.File,
+  ) {
+    let urlFoto = updateUsuarioDto.foto_url;
+
+    if (file) {
+      const resultadoCloudinary =
+        await this.cloudinaryService.subirImagen(file);
+      urlFoto = resultadoCloudinary.secure_url;
+    }
+
+    return await this.usuarioService.update(id, {
+      ...updateUsuarioDto,
+      ...(urlFoto && { foto_url: urlFoto }),
+    });
   }
 
   @ApiOperation({ summary: 'Elimina un Usuario identificado por su ID' })
