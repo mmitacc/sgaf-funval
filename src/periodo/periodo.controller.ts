@@ -24,6 +24,12 @@ export class PeriodoController {
     return this.periodoService.create(createPeriodoDto);
   }
 
+  @ApiOperation({ summary: 'Muestra el Período Académico actual' })
+  @Get('actual')
+  async getPeriodoActual() {
+    return await this.periodoService.findPeriodoActual();
+  }
+
   @ApiOperation({ summary: 'Lista todos los Períodos académicos' })
   @Get()
   findAll() {

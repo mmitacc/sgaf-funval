@@ -31,7 +31,7 @@ export class EstudianteController {
     return this.estudianteService.updateEstado(+id);
   }
 
-  @Roles('ADMINISTRADOR')
+  @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
   @ApiOperation({
     summary: 'Actualiza algun dato de un Estudiante identificado por su ID',
   })

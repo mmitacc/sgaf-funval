@@ -469,6 +469,7 @@ async function main() {
   const estudiantesActivos = estudiantesUsuarios.filter(
     (e) => e.estado === Estado.ACTIVO,
   );
+
   const deudasData = estudiantesActivos.map((est) => ({
     total_deuda: new Decimal(1740.0),
     pendiente: new Decimal(1160.0),
@@ -515,6 +516,21 @@ async function main() {
 
   // C. Inserción masiva final en PostgreSQL
   await prisma.pago.createMany({ data: todosLosPagos });
+
+  // Inserción final de deuda de estudiante recien registrado
+  const estudianteInactivo = await prisma.usuario.findFirst({
+    where: { estado: 'PENDIENTE' },
+  });
+  await prisma.deuda.create({
+    data: {
+      total_deuda: new Decimal(100.0),
+      pendiente: new Decimal(100.0),
+      deuda_mes: new Decimal(100.0),
+      moroso: true,
+      id_periodo: periodoActual!.id,
+      id_estudiante: estudianteInactivo!.id,
+    },
+  });
 
   console.log('Base de datos sembrada con éxito.');
   console.log('- 3 Especialidades creadas');

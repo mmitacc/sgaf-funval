@@ -56,7 +56,7 @@ export class PagoService {
     const newPago = await this.prisma.pago.create({
       data: {
         id_operador: tipo_pago === 'EFECTIVO' ? user.id : null,
-        id_deuda: isPagoMatricula ? null : id_deuda,
+        id_deuda: id_deuda ?? null,
         estado_pago: tipo_pago === 'EFECTIVO' ? 'APROBADO' : 'PENDIENTE',
         tipo_pago,
         id_estudiante,
@@ -96,10 +96,13 @@ export class PagoService {
         );
       }
     }
-    // Se actualiza el deuda
-    await this.deudaService.updateDeudaPendiente(Number(newPago.id_deuda), {
-      monto,
-    });
+
+    // Se actualiza la deuda solo si el pago está asociado a una deuda y fue APROBADO
+    if (newPago.id_deuda && newPago.estado_pago === 'APROBADO') {
+      await this.deudaService.updateDeudaPendiente(newPago.id_deuda, {
+        monto,
+      });
+    }
 
     // Se actualiza el pago
     return await this.prisma.pago.update({
@@ -133,16 +136,24 @@ export class PagoService {
 
   async findPagoMatricula(pagoMatriculaDto: PagoMatriculaDto) {
     const { id_estudiante, id_periodo } = pagoMatriculaDto;
+
+    // 1. Validar estudiante
     const estudiante = await this.estudianteService.findOne(id_estudiante);
-    if (!estudiante)
+    if (!estudiante) {
       throw new BadRequestException(
         `El usuario con ID=${id_estudiante}, no es un Estudiante.`,
       );
+    }
+
+    // 2. Validar periodo
     const periodo = await this.periodoService.findOne(id_periodo);
-    if (!periodo)
+    if (!periodo) {
       throw new BadRequestException(
         `El periodo con ID=${id_periodo}, no existe.`,
       );
+    }
+
+    // 3. Buscar la deuda del estudiante en el periodo
     const deuda = await this.prisma.deuda.findFirst({
       where: {
         id_estudiante,
@@ -155,19 +166,25 @@ export class PagoService {
         `No se encontró un registro de deuda para el estudiante ID ${id_estudiante} en el periodo ${id_periodo}.`,
       );
     }
+
+    // 4. Buscar el pago de matrícula APROBADO asociado a esa deuda
     const pagoMatricula = await this.prisma.pago.findFirst({
       where: {
         id_deuda: deuda.id,
         id_estudiante,
         concepto: 'MATRICULA',
+        estado_pago: 'APROBADO',
         deleted: false,
       },
+      orderBy: { id: 'desc' },
     });
+
     if (!pagoMatricula) {
       throw new NotFoundException(
-        'El estudiante aún no ha registrado el pago de su matrícula para este periodo.',
+        'El estudiante aún no ha registrado el pago aprobado de su matrícula para este periodo.',
       );
     }
+
     const { monto, ...restoPagoMatricula } = pagoMatricula;
     return { monto: Number(monto), ...restoPagoMatricula };
   }

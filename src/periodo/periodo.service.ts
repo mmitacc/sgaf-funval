@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreatePeriodoDto } from './dto/create-periodo.dto.js';
 import { UpdatePeriodoDto } from './dto/update-periodo.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -24,6 +28,32 @@ export class PeriodoService {
     return await this.prisma.periodo.findFirst({
       where: { id, deleted: false },
     });
+  }
+
+  async findPeriodoActual() {
+    const fechaActual = new Date();
+    const periodoActual = await this.prisma.periodo.findFirst({
+      where: {
+        deleted: false,
+        inicio: {
+          lte: fechaActual,
+        },
+        fin: {
+          gte: fechaActual,
+        },
+      },
+      orderBy: {
+        inicio: 'desc',
+      },
+    });
+
+    if (!periodoActual) {
+      throw new NotFoundException(
+        'No se encontró un periodo activo para la fecha actual.',
+      );
+    }
+
+    return periodoActual;
   }
 
   async update(id: number, updatePeriodoDto: UpdatePeriodoDto) {

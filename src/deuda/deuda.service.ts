@@ -25,7 +25,15 @@ export class DeudaService {
 
   async findEstudiante(user: any) {
     const id = Number(user.id);
-    return await this.prisma.deuda.findFirst({ where: { id, deleted: false } });
+    return await this.prisma.deuda.findFirst({
+      where: { id_estudiante: id, deleted: false },
+    });
+  }
+
+  async findIdEstudiante(id: number) {
+    return await this.prisma.deuda.findFirst({
+      where: { id_estudiante: id, deleted: false },
+    });
   }
 
   async update(id: number, updateDeudaDto: UpdateDeudaDto) {

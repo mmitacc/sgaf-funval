@@ -5,6 +5,8 @@ import { PrismaService } from '../prisma/prisma.service.js';
 import { ConfigService } from '@nestjs/config';
 import { UsuarioService } from '../usuario/usuario.service.js';
 import bcrypt from 'bcryptjs';
+import { DeudaService } from '../deuda/deuda.service.js';
+import { PeriodoService } from '../periodo/periodo.service.js';
 
 @Injectable()
 export class EstudianteService {
@@ -12,6 +14,8 @@ export class EstudianteService {
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
     private readonly usuarioService: UsuarioService,
+    private readonly deudaService: DeudaService,
+    private readonly periodoService: PeriodoService,
   ) {}
   async create(createEstudianteDto: CreateEstudianteDto) {
     const ultimoEstudiante = await this.prisma.estudiante.findFirst({
@@ -25,7 +29,7 @@ export class EstudianteService {
       password,
       this.configService.getOrThrow<number>('BCRYPT_SALT_ROUNDS'),
     );
-    return await this.prisma.estudiante.create({
+    const estudiante = await this.prisma.estudiante.create({
       data: {
         codigo: 'MAT-2026-' + (ultimoCodig + 1),
         apoderado,
@@ -35,14 +39,40 @@ export class EstudianteService {
       },
       include: { usuario: { omit: { password: true } } },
     });
+    const periodoActual = await this.periodoService.findPeriodoActual();
+    await this.deudaService.create({
+      total_deuda: Number(periodoActual.matricula),
+      pendiente: Number(periodoActual.matricula),
+      deuda_mes: Number(periodoActual.matricula),
+      moroso: true,
+      id_periodo: periodoActual.id,
+      id_estudiante: estudiante.id_usuario,
+    });
+    return estudiante;
   }
 
   async findAll() {
-    const usuarios = await this.prisma.estudiante.findMany({
-      where: { usuario: { deleted: false } },
-      include: { usuario: { omit: { password: true } } },
+    const estudiantes = await this.prisma.estudiante.findMany({
+      where: {
+        usuario: {
+          deleted: false,
+          rol: 'ESTUDIANTE',
+        },
+      },
+      include: {
+        usuario: {
+          omit: { password: true },
+        },
+      },
     });
-    return usuarios.filter((est) => est.usuario.rol === 'ESTUDIANTE');
+
+    return estudiantes.map(({ usuario, ...datosEstudiante }) => {
+      const { id, ...datosUsuario } = usuario;
+      return {
+        ...datosEstudiante,
+        ...datosUsuario,
+      };
+    });
   }
 
   async findOne(id_usuario: number) {
