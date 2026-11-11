@@ -34,7 +34,7 @@ export class AdminService {
   async remove(tabla: TablasPrisma, id: number) {
     const modelo = this.prisma[tabla] as any;
     return await modelo.delete({
-      where: { id, delete: true },
+      where: { id },
     });
   }
 }

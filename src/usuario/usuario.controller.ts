@@ -72,6 +72,14 @@ export class UsuarioController {
   }
 
   @ApiOperation({
+    summary: 'Resetea la contraseña de un usuario a INICIALES.usuario123',
+  })
+  @Patch('reset-password/:id')
+  async resetearPassword(@Param('id', ParseIntPipe) id: number) {
+    return await this.usuarioService.resetearPassword(id);
+  }
+
+  @ApiOperation({
     summary: 'Actualiza algun dato de un Usuario identificado por su ID',
   })
   @Patch(':id')

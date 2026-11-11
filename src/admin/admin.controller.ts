@@ -3,12 +3,22 @@ import { AdminService } from './admin.service.js';
 import { ValidarTablaDto } from './dto/validar-tablas.dto.js';
 import { SkipSanitize } from '../common/decorators/skip-sanitize.decorator.js';
 import { ValidarTablaIdDto } from './dto/validar-tabla-id.dto.js';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiParam } from '@nestjs/swagger';
 
 @SkipSanitize() // Para saltar el interceptor sanitize
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
+
+  @ApiOperation({
+    summary:
+      'Lista todos los registros eliminados, de cualquier tabla de la BD.',
+  })
+  @Get('deleted/:tabla')
+  findAllDeleted(@Param() params: ValidarTablaDto) {
+    const { tabla } = params;
+    return this.adminService.findAllDeleted(tabla);
+  }
 
   @ApiOperation({
     summary: 'Lista todos los registros, de cualquier tabla de la BD.',
@@ -17,16 +27,6 @@ export class AdminController {
   findAll(@Param() params: ValidarTablaDto) {
     const { tabla } = params;
     return this.adminService.findAll(tabla);
-  }
-
-  @ApiOperation({
-    summary:
-      'Lista todos los registros eliminados, de cualquier tabla de la BD.',
-  })
-  @Get(':tabla')
-  findAllDeleted(@Param() params: ValidarTablaDto) {
-    const { tabla } = params;
-    return this.adminService.findAllDeleted(tabla);
   }
 
   @ApiOperation({
@@ -43,7 +43,7 @@ export class AdminController {
     summary:
       'Recupera/restaura un registro eliminado identificandolo por su ID, de cualquier tabla de la BD.',
   })
-  @Get(':tabla/:id')
+  @Patch(':tabla/:id')
   findOneActiveDelete(@Param() params: ValidarTablaIdDto) {
     const { tabla, id } = params;
     return this.adminService.findOneActiveDelete(tabla, +id);

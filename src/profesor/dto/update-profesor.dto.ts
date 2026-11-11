@@ -4,7 +4,7 @@ import { CreateUsuarioDto } from '../../usuario/dto/create-usuario.dto.js';
 
 export class UpdateProfesorDto extends PartialType(
   IntersectionType(
-    OmitType(CreateUsuarioDto, ['rol', 'estado'] as const),
+    OmitType(CreateUsuarioDto, ['rol', 'estado','password'] as const),
     CreateProfesorDto,
   ),
 ) {}

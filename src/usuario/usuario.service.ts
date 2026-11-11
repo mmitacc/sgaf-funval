@@ -145,22 +145,8 @@ export class UsuarioService {
       throw new NotFoundException(`Usuario con ID=${id} no encontrado.`);
     }
 
-    const {
-      password,
-      fecha_contrato,
-      id_especialidad,
-      apoderado,
-      ...restoUsuario
-    } = updateUsuarioDto;
-
-    // Si enviaron una nueva contraseña, la encriptamos; si no, no la tocamos
-    let hashedPassword: string | undefined = undefined;
-    if (password && password.trim() !== '') {
-      const saltRounds = Number(
-        this.configService.getOrThrow('BCRYPT_SALT_ROUNDS'),
-      );
-      hashedPassword = await bcrypt.hash(password, saltRounds);
-    }
+    const { fecha_contrato, id_especialidad, apoderado, ...restoUsuario } =
+      updateUsuarioDto;
 
     const rolFinal = updateUsuarioDto.rol ?? usuarioActual.rol;
 
@@ -180,7 +166,6 @@ export class UsuarioService {
       where: { id },
       data: {
         ...restoUsuario,
-        ...(hashedPassword && { password: hashedPassword }),
         // Actualización de relación Profesor si corresponde
         ...(rolFinal === 'PROFESOR' &&
           (fecha_contrato || id_especialidad) && {
@@ -318,5 +303,38 @@ export class UsuarioService {
     });
 
     return { message: 'Contraseña actualizada correctamente.' };
+  }
+
+  // ============================================================================
+  // 9. RESETEAR CONTRASEÑA (Solo Administrador: INICIALES.usuario123)
+  // ============================================================================
+  async resetearPassword(id: number) {
+    const usuario = await this.prisma.usuario.findFirst({
+      where: { id, deleted: false },
+    });
+
+    if (!usuario) {
+      throw new NotFoundException(`Usuario con ID=${id} no encontrado.`);
+    }
+
+    // Extraemos la primera letra del primer nombre y la primera letra del primer apellido
+    const inicialNombre = usuario.nombres.trim().charAt(0).toUpperCase();
+    const inicialApellido = usuario.apellidos.trim().charAt(0).toUpperCase();
+    const nuevaPasswordPlana = `${inicialNombre}${inicialApellido}.usuario123`;
+
+    const saltRounds = Number(
+      this.configService.getOrThrow('BCRYPT_SALT_ROUNDS'),
+    );
+    const hashedPassword = await bcrypt.hash(nuevaPasswordPlana, saltRounds);
+
+    await this.prisma.usuario.update({
+      where: { id },
+      data: { password: hashedPassword },
+    });
+
+    return {
+      message: 'Contraseña reseteada correctamente.',
+      passwordTemporal: nuevaPasswordPlana,
+    };
   }
 }
