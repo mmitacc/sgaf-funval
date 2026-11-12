@@ -32,4 +32,78 @@ export class GrupoService {
       data: { deleted: true, deletedate: new Date() },
     });
   }
+
+  async obtenerPorProfesor(usuarioId: number) {
+    return this.prisma.grupo.findMany({
+      where: {
+        id_profesor: usuarioId,
+        deleted: false,
+      },
+      include: {
+        materia: {
+          select: {
+            id: true,
+            nombre: true,
+            creditos: true,
+          },
+        },
+        periodo: {
+          select: {
+            id: true,
+            nombre: true,
+          },
+        },
+        aula: {
+          select: {
+            id: true,
+            nombre: true,
+          },
+        },
+        matriculas: {
+          where: { deleted: false },
+          include: {
+            estudiante: {
+              select: {
+                id_usuario: true,
+                usuario: {
+                  select: {
+                    nombres: true,
+                    apellidos: true,
+                    email: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        tareas: {
+          where: { deleted: false },
+          include: {
+            entregas: {
+              where: { deleted: false },
+              include: {
+                estudiante: {
+                  select: {
+                    id_usuario: true,
+                    usuario: {
+                      select: {
+                        nombres: true,
+                        apellidos: true,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          orderBy: {
+            fecha_entrega: 'asc',
+          },
+        },
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    });
+  }
 }

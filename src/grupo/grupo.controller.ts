@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
 } from '@nestjs/common';
 import { GrupoService } from './grupo.service.js';
 import { CreateGrupoDto } from './dto/create-grupo.dto.js';
 import { UpdateGrupoDto } from './dto/update-grupo.dto.js';
 import { Roles } from '../common/decorators/roles.decorator.js';
 import { ApiOperation } from '@nestjs/swagger';
+import type { Request as RequestExpress } from 'express';
 
 @Controller('grupo')
 export class GrupoController {
@@ -28,6 +30,19 @@ export class GrupoController {
   @Get()
   findAll() {
     return this.grupoService.findAll();
+  }
+
+  @Roles('PROFESOR')
+  @ApiOperation({
+    summary: 'Lista los grupos asignados al Profesor autenticado',
+  })
+  @ApiOperation({
+    summary: 'Lista los grupos asignados al Profesor autenticado',
+  })
+  @Get('profesor')
+  obtenerMisGrupos(@Request() req: RequestExpress) {
+    const usuarioId = Number((req.user as any).id ?? (req.user as any).sub);
+    return this.grupoService.obtenerPorProfesor(usuarioId);
   }
 
   @ApiOperation({

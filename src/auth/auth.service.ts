@@ -15,6 +15,10 @@ export class AuthService {
   ) {}
   async validateUsuario(loginAuthDto: LoginAuthDto) {
     const user = await this.usuarioService.findEmail(loginAuthDto.email);
+    if (!user)
+      throw new UnauthorizedException(
+        'Usuario no registrado, por favor valide sus datos o registrese.',
+      );
     if (user?.estado !== 'ACTIVO')
       throw new UnauthorizedException(
         `Actualmente tiene el estado de ${user?.estado}, por lo que no tiene autorización para ingresar al sistema. Acerquese a Recepción para el pago y activación.`,
