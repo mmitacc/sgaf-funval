@@ -45,10 +45,12 @@ export class DeudaService {
 
   async updateDeudaPendiente(id: number, data: UpdatePagoDto) {
     const { monto } = data;
-    return await this.prisma.deuda.update({
+    const deudaActual = await this.prisma.deuda.update({
       where: { id, deleted: false },
       data: { pendiente: { decrement: monto } },
     });
+    if (Number(deudaActual.pendiente) === 0) this.update(id, { deuda_mes: 0 });
+    return await this.findOne(id);
   }
 
   async remove(id: number) {

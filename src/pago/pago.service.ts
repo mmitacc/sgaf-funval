@@ -130,6 +130,21 @@ export class PagoService {
     return await this.prisma.pago.findMany({ where: { deleted: false } });
   }
 
+  async findByEstudiante(id_estudiante: number) {
+    const pagos = await this.prisma.pago.findMany({
+      where: {
+        id_estudiante,
+        deleted: false,
+      },
+      orderBy: { id: 'desc' },
+    });
+
+    return pagos.map(({ monto, ...resto }) => ({
+      monto: Number(monto),
+      ...resto,
+    }));
+  }
+
   async findOne(id: number) {
     return await this.prisma.pago.findFirst({ where: { id, deleted: false } });
   }

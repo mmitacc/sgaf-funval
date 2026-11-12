@@ -286,6 +286,7 @@ model Deuda {
 
   pagos Pago[]
 
+  @@unique([id_estudiante, id_periodo])
   @@index([id_estudiante, moroso]) // Índice optimizado para buscar deudas activas rápidamente
   @@map("deuda")
 }

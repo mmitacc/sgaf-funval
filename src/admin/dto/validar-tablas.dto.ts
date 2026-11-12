@@ -26,8 +26,6 @@ export const LISTA_TABLAS = Object.keys(Prisma.ModelName).map(
   (model) => model.toLowerCase(), // Convierte a minúsculas ('Usuario' -> 'usuario') para coincidir con tu ruta
 ) as unknown as TablasPrisma[];
 
-console.log('LISTA_TABLAS REALES=> ', LISTA_TABLAS);
-
 // 3. DTO para Swagger y Validación
 export class ValidarTablaDto {
   @ApiProperty({

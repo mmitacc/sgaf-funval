@@ -48,6 +48,15 @@ export class PagoController {
     return this.pagoService.findAll();
   }
 
+  @Roles('ESTUDIANTE')
+  @ApiOperation({
+    summary: 'Obtiene el historial de pagos del estudiante autenticado',
+  })
+  @Get('estudiante')
+  findByEstudiante(@Req() req: any) {
+    return this.pagoService.findByEstudiante(Number(req.user.id));
+  }
+
   @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
   @ApiOperation({ summary: 'Muestra un Pago, identificado por su ID' })
   @Get(':id')

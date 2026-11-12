@@ -8,14 +8,12 @@ import { ApiOperation } from '@nestjs/swagger';
 export class ProfesorController {
   constructor(private readonly profesorService: ProfesorService) {}
 
-  @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
   @ApiOperation({ summary: 'Lista todos los Profesores' })
   @Get()
   findAll() {
     return this.profesorService.findAll();
   }
 
-  @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
   @ApiOperation({ summary: 'Muestra un Profesor identificado por su ID' })
   @Get(':id')
   findOne(@Param('id') id: string) {

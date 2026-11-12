@@ -308,6 +308,7 @@ export type DeudaOrderByWithRelationInput = {
 
 export type DeudaWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  id_estudiante_id_periodo?: Prisma.DeudaId_estudianteId_periodoCompoundUniqueInput
   AND?: Prisma.DeudaWhereInput | Prisma.DeudaWhereInput[]
   OR?: Prisma.DeudaWhereInput[]
   NOT?: Prisma.DeudaWhereInput | Prisma.DeudaWhereInput[]
@@ -324,7 +325,7 @@ export type DeudaWhereUniqueInput = Prisma.AtLeast<{
   periodo?: Prisma.XOR<Prisma.PeriodoScalarRelationFilter, Prisma.PeriodoWhereInput>
   estudiante?: Prisma.XOR<Prisma.EstudianteScalarRelationFilter, Prisma.EstudianteWhereInput>
   pagos?: Prisma.PagoListRelationFilter
-}, "id">
+}, "id" | "id_estudiante_id_periodo">
 
 export type DeudaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -467,6 +468,11 @@ export type DeudaListRelationFilter = {
 
 export type DeudaOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type DeudaId_estudianteId_periodoCompoundUniqueInput = {
+  id_estudiante: number
+  id_periodo: number
 }
 
 export type DeudaCountOrderByAggregateInput = {

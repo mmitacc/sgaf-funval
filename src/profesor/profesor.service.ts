@@ -7,17 +7,44 @@ export class ProfesorService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll() {
-    const usuarios = await this.prisma.profesor.findMany({
-      include: { usuario: { omit: { password: true } } },
+    const profesores = await this.prisma.profesor.findMany({
+      where: {
+        usuario: {
+          rol: 'PROFESOR',
+        },
+      },
+      include: {
+        usuario: {
+          omit: { password: true },
+        },
+      },
     });
-    return usuarios.filter((est) => est.usuario.rol === 'PROFESOR');
+
+    // Aplanamos cada registro de la lista
+    return profesores.map(({ usuario, ...profesorData }) => ({
+      ...profesorData,
+      ...usuario,
+    }));
   }
 
   async findOne(id_usuario: number) {
-    return await this.prisma.profesor.findFirst({
+    const profesor = await this.prisma.profesor.findFirst({
       where: { id_usuario },
-      include: { usuario: { omit: { password: true } } },
+      include: {
+        usuario: {
+          omit: { password: true },
+        },
+      },
     });
+
+    if (!profesor) return null;
+
+    const { usuario, ...profesorData } = profesor;
+
+    return {
+      ...profesorData,
+      ...usuario,
+    };
   }
 
   async update(id_usuario: number, updateProfesorDto: UpdateProfesorDto) {

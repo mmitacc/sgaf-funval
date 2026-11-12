@@ -12,24 +12,34 @@ export class MatriculaService {
     const estudiante = await this.prisma.usuario.findFirst({
       where: { id: user.id },
     });
-    if (estudiante?.rol !== 'ESTUDIANTE')
-      throw new BadRequestException(`El ID=${user.id} no es un ESTUDIANTE.`);
+
+    if (estudiante?.rol !== 'ESTUDIANTE') {
+      throw new BadRequestException({
+        success: false,
+        message: `El ID=${user.id} no es un ESTUDIANTE.`,
+      });
+    }
+
     const result = await this.prisma.$queryRaw<any[]>(
       VALIDATE_MATRICULA_ESTUDIANTE(user.id, id_grupo),
     );
     const status = result[0];
+
     if (status.id_matricula_creada) {
       // Se genera un registro en deuda acumulativa con la materia registrada
       await this.prisma.$queryRaw<any[]>(
         REGISTRAR_DEUDA_ESTUDIANTE(user.id, id_grupo),
       );
+
+      // Al hacer return normal en un endpoint @Post(), NestJS devuelve HTTP 201
       return {
         success: true,
         message: 'Inscripción realizada con éxito.',
         idMatricula: status.id_matricula_creada,
       };
     } else {
-      let motivos: string[] = [];
+      const motivos: string[] = [];
+
       if (status.error_capacidad)
         motivos.push('El grupo alcanzó su capacidad máxima.');
       if (status.error_creditos)
@@ -45,11 +55,12 @@ export class MatriculaService {
           'Existe un traslape de horario con otro grupo ya inscrito.',
         );
 
-      return {
+      // Al lanzar esta excepción, NestJS devuelve HTTP 400 con este objeto exacto
+      throw new BadRequestException({
         success: false,
         message: 'Inscripción rechazada por reglas de negocio.',
         errores: motivos,
-      };
+      });
     }
   }
 
