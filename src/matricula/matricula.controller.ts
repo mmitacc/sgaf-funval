@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Request,
+  Req,
 } from '@nestjs/common';
 import { MatriculaService } from './matricula.service.js';
 import { CreateMatriculaDto } from './dto/create-matricula.dto.js';
@@ -29,6 +30,18 @@ export class MatriculaController {
     @Body() createMatriculaDto: CreateMatriculaDto,
   ) {
     return this.matriculaService.create(req.user, createMatriculaDto.id_grupo);
+  }
+
+  @ApiOperation({
+    summary:
+      'Lista todas las Matriculas de grupos académicos del Estudiante Logeado',
+  })
+  @Roles('ESTUDIANTE')
+  @Get('estudiante')
+  async obtenerMisMatriculas(@Req() req: any) {
+    // Ajusta según cómo guardes el ID en tu JwtStrategy (req.user.id o req.user.sub)
+    const usuarioId = req.user.id;
+    return this.matriculaService.obtenerPorEstudiante(Number(usuarioId));
   }
 
   @ApiOperation({ summary: 'Lista todas las Matriculas de grupos académicos' })

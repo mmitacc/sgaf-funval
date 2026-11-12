@@ -17,7 +17,7 @@ export class AuthService {
     const user = await this.usuarioService.findEmail(loginAuthDto.email);
     if (user?.estado !== 'ACTIVO')
       throw new UnauthorizedException(
-        `Actualmente tiene el estado de ${user?.estado}, por lo que no tiene autorización para ingresar al sistema.`,
+        `Actualmente tiene el estado de ${user?.estado}, por lo que no tiene autorización para ingresar al sistema. Acerquese a Recepción para el pago y activación.`,
       );
     if (user && (await bcrypt.compare(loginAuthDto.password, user.password))) {
       const { password, ...restoUser } = user;

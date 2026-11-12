@@ -66,15 +66,15 @@ export class CreateEntregaDto {
   @Max(20, { message: 'La calificación, máxima debe ser 20.' })
   readonly calificacion?: number;
 
-  @ApiProperty({
-    example: 9,
-    description: 'El ID del Estudiante, activo en el Período Academica.',
-  })
-  @Type(() => Number)
-  @IsNotEmpty({ message: 'El id_estudiante, es obligatorio.' })
-  @IsInt({ message: 'El id_estudiante, debe ser un numero entero.' })
-  @Min(0, { message: 'El id_estudiante, no puede ser negativo.' })
-  readonly id_estudiante: number;
+  // @ApiProperty({
+  //   example: 9,
+  //   description: 'El ID del Estudiante, activo en el Período Academica.',
+  // })
+  // @Type(() => Number)
+  // @IsNotEmpty({ message: 'El id_estudiante, es obligatorio.' })
+  // @IsInt({ message: 'El id_estudiante, debe ser un numero entero.' })
+  // @Min(0, { message: 'El id_estudiante, no puede ser negativo.' })
+  // readonly id_estudiante: number;
 
   @ApiProperty({
     example: 2,
