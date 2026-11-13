@@ -3,6 +3,7 @@ import { CreateDeudaDto } from './dto/create-deuda.dto.js';
 import { UpdateDeudaDto } from './dto/update-deuda.dto.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { UpdatePagoDto } from '../pago/dto/update-pago.dto.js';
+import { Estado, Rol } from '../prisma/generated/prisma/enums.js';
 import { Cron } from '@nestjs/schedule';
 
 @Injectable()
@@ -66,21 +67,29 @@ export class DeudaService {
       'Iniciando proceso automático de suspensión por morosidad...',
     );
     try {
-      const totalAfectados = await this.prisma.$queryRaw<any[]>`
-        UPDATE "USUARIO"
-        SET estado = 'SUSPENDIDO'
-        WHERE id IN (
-          SELECT id_estudiante 
-          FROM "DEUDA" 
-          WHERE moroso = TRUE
-        ) AND estado != 'SUSPENDIDO'
-        RETURNING id, estado;
-        `;
+      const resultado = await this.prisma.usuario.updateMany({
+        where: {
+          deleted: false,
+          rol: Rol.ESTUDIANTE,
+          estado: { not: Estado.SUSPENDIDO },
+          estudiante: {
+            deudas: {
+              some: {
+                deleted: false,
+                moroso: true,
+              },
+            },
+          },
+        },
+        data: {
+          estado: Estado.SUSPENDIDO,
+        },
+      });
 
       this.logger.log(
-        `Corte mensual completado con éxito. Estudiantes suspendidos: ${totalAfectados.length}`,
+        `Corte mensual completado con éxito. Estudiantes suspendidos: ${resultado.count}`,
       );
-      return totalAfectados.length;
+      return resultado.count;
     } catch (error: any) {
       this.logger.error(
         'Error crítico al suspender estudiantes morosos:',

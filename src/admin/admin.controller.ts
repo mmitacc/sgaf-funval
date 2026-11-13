@@ -1,14 +1,52 @@
-import { Controller, Get, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  Query,
+} from '@nestjs/common';
 import { AdminService } from './admin.service.js';
 import { ValidarTablaDto } from './dto/validar-tablas.dto.js';
 import { SkipSanitize } from '../common/decorators/skip-sanitize.decorator.js';
 import { ValidarTablaIdDto } from './dto/validar-tabla-id.dto.js';
-import { ApiOperation, ApiParam } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { Roles } from '../common/decorators/roles.decorator.js';
 
 @SkipSanitize() // Para saltar el interceptor sanitize
+@Roles('ADMINISTRADOR')
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
+
+  @ApiOperation({
+    summary:
+      'Trae el resumen por rol operativo, academico y finanzas del Período Académico actual.',
+  })
+  @Get('dashboard')
+  obtenerDashboardEjecutivo() {
+    return this.adminService.obtenerDashboardEjecutivo();
+  }
+
+  @ApiOperation({
+    summary:
+      'Trae el resumen de todos los reportes detallados en Finanzas del Período Académico por periodoId.',
+  })
+  @ApiQuery({
+    name: 'idPeriodo',
+    required: false,
+    type: Number,
+    description:
+      'ID del periodo académico (opcional; si se omite usa el más reciente)',
+  })
+  @Get('finanzas/resumen')
+  obtenerResumenFinanciero(
+    @Query('idPeriodo', new ParseIntPipe({ optional: true }))
+    idPeriodo?: number,
+  ) {
+    return this.adminService.obtenerResumenFinanciero(idPeriodo);
+  }
 
   @ApiOperation({
     summary:
