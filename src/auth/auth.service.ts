@@ -19,7 +19,7 @@ export class AuthService {
       throw new UnauthorizedException(
         'Usuario no registrado, por favor valide sus datos o registrese.',
       );
-    if (user?.estado !== 'ACTIVO')
+    if (user?.estado === 'INACTIVO' || user.deleted === true)
       throw new UnauthorizedException(
         `Actualmente tiene el estado de ${user?.estado}, por lo que no tiene autorización para ingresar al sistema. Acerquese a Recepción para el pago y activación.`,
       );
@@ -37,6 +37,7 @@ export class AuthService {
       nombres: user.nombres,
       apellidos: user.apellidos,
       telefono: user.telefono,
+      estado: user.estado,
       foto_url: user.foto_url,
       rol: user.rol,
     };

@@ -64,7 +64,7 @@ export class PagoController {
     return this.pagoService.findOne(+id);
   }
 
-  @Roles('ADMINISTRADOR', 'RECEPCIONISTA')
+  @Roles('ADMINISTRADOR', 'RECEPCIONISTA', 'ESTUDIANTE')
   @ApiOperation({
     summary:
       'Muesta el Pago de Matricula de un Estudiante en un Período Académico',

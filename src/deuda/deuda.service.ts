@@ -71,7 +71,7 @@ export class DeudaService {
         where: {
           deleted: false,
           rol: Rol.ESTUDIANTE,
-          estado: { not: Estado.SUSPENDIDO },
+          estado: Estado.ACTIVO,
           estudiante: {
             deudas: {
               some: {

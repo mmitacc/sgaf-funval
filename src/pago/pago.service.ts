@@ -92,7 +92,7 @@ export class PagoService {
       } catch (error) {
         await this.prisma.pago.delete({ where: { id: newPago.id } });
         throw new GatewayTimeoutException(
-          'El Servidor externo de Pasarela de Pago, no responde.',
+          'El Servidor externo de Pasarela de Pago, no responde. Por favor, acerquese a Recepción para hacer el pago correspondiente.',
         );
       }
     }

@@ -59,14 +59,14 @@ export class DeudaController {
     return this.deudaService.findEstudiante(req.user);
   }
 
-  @Roles('RECEPCIONISTA')
+  @Roles('RECEPCIONISTA','ADMINISTRADOR')
   @ApiOperation({ summary: 'Muesta la Deuda del Estudiante por su ID.' })
   @Get('estudiante/:id')
   findIdEstudiante(@Param('id') id: string) {
     return this.deudaService.findIdEstudiante(+id);
   }
 
-  @Roles('RECEPCIONISTA')
+  @Roles('RECEPCIONISTA','ADMINISTRADOR')
   @ApiOperation({ summary: 'Muestra una Deuda, identificada por su ID' })
   @Get(':id')
   findOne(@Param('id') id: string) {

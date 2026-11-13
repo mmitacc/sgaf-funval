@@ -101,7 +101,7 @@ export class UsuarioService {
   // ============================================================================
   async findAll() {
     const usuarios = await this.prisma.usuario.findMany({
-      where: { deleted: false },
+      where: { deleted: false, rol: { not: 'SUPERADMIN' } },
       orderBy: { id: 'desc' },
       omit: { password: true },
       include: {
