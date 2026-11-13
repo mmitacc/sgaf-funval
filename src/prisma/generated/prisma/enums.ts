@@ -67,3 +67,12 @@ export const Dia = {
 } as const
 
 export type Dia = (typeof Dia)[keyof typeof Dia]
+
+
+export const TipoMaterial = {
+  VIDEO: 'VIDEO',
+  ARCHIVO: 'ARCHIVO',
+  ENLACE: 'ENLACE'
+} as const
+
+export type TipoMaterial = (typeof TipoMaterial)[keyof typeof TipoMaterial]

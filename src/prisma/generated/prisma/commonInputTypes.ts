@@ -253,6 +253,23 @@ export type EnumDiaWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumDiaFilter<$PrismaModel>
 }
 
+export type EnumTipoMaterialFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoMaterial | Prisma.EnumTipoMaterialFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel> | $Enums.TipoMaterial
+}
+
+export type EnumTipoMaterialWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoMaterial | Prisma.EnumTipoMaterialFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoMaterialWithAggregatesFilter<$PrismaModel> | $Enums.TipoMaterial
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel>
+}
+
 export type IntNullableFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
@@ -581,6 +598,23 @@ export type NestedEnumDiaWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDiaFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDiaFilter<$PrismaModel>
+}
+
+export type NestedEnumTipoMaterialFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoMaterial | Prisma.EnumTipoMaterialFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel> | $Enums.TipoMaterial
+}
+
+export type NestedEnumTipoMaterialWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TipoMaterial | Prisma.EnumTipoMaterialFieldRefInput<$PrismaModel>
+  in?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  notIn?: $Enums.TipoMaterial[] | Prisma.ListEnumTipoMaterialFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumTipoMaterialWithAggregatesFilter<$PrismaModel> | $Enums.TipoMaterial
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTipoMaterialFilter<$PrismaModel>
 }
 
 export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {

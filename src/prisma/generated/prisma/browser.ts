@@ -63,6 +63,11 @@ export type Horario = Prisma.HorarioModel
  */
 export type Grupo = Prisma.GrupoModel
 /**
+ * Model MaterialGrupo
+ * 
+ */
+export type MaterialGrupo = Prisma.MaterialGrupoModel
+/**
  * Model Matricula
  * 
  */

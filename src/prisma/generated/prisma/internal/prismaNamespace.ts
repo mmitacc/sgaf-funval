@@ -406,6 +406,7 @@ export const ModelName = {
   Aula: 'Aula',
   Horario: 'Horario',
   Grupo: 'Grupo',
+  MaterialGrupo: 'MaterialGrupo',
   Matricula: 'Matricula',
   Tarea: 'Tarea',
   Entrega: 'Entrega',
@@ -426,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuario" | "especialidad" | "profesor" | "estudiante" | "periodo" | "materia" | "aula" | "horario" | "grupo" | "matricula" | "tarea" | "entrega" | "deuda" | "pago"
+    modelProps: "usuario" | "especialidad" | "profesor" | "estudiante" | "periodo" | "materia" | "aula" | "horario" | "grupo" | "materialGrupo" | "matricula" | "tarea" | "entrega" | "deuda" | "pago"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1096,6 +1097,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MaterialGrupo: {
+      payload: Prisma.$MaterialGrupoPayload<ExtArgs>
+      fields: Prisma.MaterialGrupoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MaterialGrupoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MaterialGrupoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        findFirst: {
+          args: Prisma.MaterialGrupoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MaterialGrupoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        findMany: {
+          args: Prisma.MaterialGrupoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>[]
+        }
+        create: {
+          args: Prisma.MaterialGrupoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        createMany: {
+          args: Prisma.MaterialGrupoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MaterialGrupoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>[]
+        }
+        delete: {
+          args: Prisma.MaterialGrupoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        update: {
+          args: Prisma.MaterialGrupoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        deleteMany: {
+          args: Prisma.MaterialGrupoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MaterialGrupoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MaterialGrupoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>[]
+        }
+        upsert: {
+          args: Prisma.MaterialGrupoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MaterialGrupoPayload>
+        }
+        aggregate: {
+          args: Prisma.MaterialGrupoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMaterialGrupo>
+        }
+        groupBy: {
+          args: Prisma.MaterialGrupoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaterialGrupoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MaterialGrupoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MaterialGrupoCountAggregateOutputType> | number
+        }
+      }
+    }
     Matricula: {
       payload: Prisma.$MatriculaPayload<ExtArgs>
       fields: Prisma.MatriculaFieldRefs
@@ -1630,6 +1705,22 @@ export const GrupoScalarFieldEnum = {
 export type GrupoScalarFieldEnum = (typeof GrupoScalarFieldEnum)[keyof typeof GrupoScalarFieldEnum]
 
 
+export const MaterialGrupoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descripcion: 'descripcion',
+  tipo: 'tipo',
+  url: 'url',
+  id_grupo: 'id_grupo',
+  created: 'created',
+  updated: 'updated',
+  deleted: 'deleted',
+  deletedate: 'deletedate'
+} as const
+
+export type MaterialGrupoScalarFieldEnum = (typeof MaterialGrupoScalarFieldEnum)[keyof typeof MaterialGrupoScalarFieldEnum]
+
+
 export const MatriculaScalarFieldEnum = {
   id: 'id',
   id_estudiante: 'id_estudiante',
@@ -1843,6 +1934,20 @@ export type EnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Dia[]'
  */
 export type ListEnumDiaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Dia[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoMaterial'
+ */
+export type EnumTipoMaterialFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoMaterial'>
+    
+
+
+/**
+ * Reference to a field of type 'TipoMaterial[]'
+ */
+export type ListEnumTipoMaterialFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TipoMaterial[]'>
     
 
 
@@ -2061,6 +2166,7 @@ export type GlobalOmitConfig = {
   aula?: Prisma.AulaOmit
   horario?: Prisma.HorarioOmit
   grupo?: Prisma.GrupoOmit
+  materialGrupo?: Prisma.MaterialGrupoOmit
   matricula?: Prisma.MatriculaOmit
   tarea?: Prisma.TareaOmit
   entrega?: Prisma.EntregaOmit

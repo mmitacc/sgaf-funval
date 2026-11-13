@@ -27,6 +27,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AdminModule } from './admin/admin.module.js';
 import { SanitizeInterceptor } from './common/interceptors/sanitize.interceptor.js';
 import { CloudinaryModule } from './cloudinary/cloudinary.module.js';
+import { MaterialGrupoModule } from './material-grupo/material-grupo.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -66,6 +67,7 @@ ConfigModule.forRoot({
     PagoModule,
     AdminModule,
     CloudinaryModule,
+    MaterialGrupoModule,
   ],
   controllers: [AppController],
   providers: [

@@ -283,6 +283,7 @@ export type GrupoWhereInput = {
   horarios?: Prisma.HorarioListRelationFilter
   matriculas?: Prisma.MatriculaListRelationFilter
   tareas?: Prisma.TareaListRelationFilter
+  materiales?: Prisma.MaterialGrupoListRelationFilter
 }
 
 export type GrupoOrderByWithRelationInput = {
@@ -303,6 +304,7 @@ export type GrupoOrderByWithRelationInput = {
   horarios?: Prisma.HorarioOrderByRelationAggregateInput
   matriculas?: Prisma.MatriculaOrderByRelationAggregateInput
   tareas?: Prisma.TareaOrderByRelationAggregateInput
+  materiales?: Prisma.MaterialGrupoOrderByRelationAggregateInput
 }
 
 export type GrupoWhereUniqueInput = Prisma.AtLeast<{
@@ -326,6 +328,7 @@ export type GrupoWhereUniqueInput = Prisma.AtLeast<{
   horarios?: Prisma.HorarioListRelationFilter
   matriculas?: Prisma.MatriculaListRelationFilter
   tareas?: Prisma.TareaListRelationFilter
+  materiales?: Prisma.MaterialGrupoListRelationFilter
 }, "id">
 
 export type GrupoOrderByWithAggregationInput = {
@@ -375,6 +378,7 @@ export type GrupoCreateInput = {
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateInput = {
@@ -391,6 +395,7 @@ export type GrupoUncheckedCreateInput = {
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUpdateInput = {
@@ -406,6 +411,7 @@ export type GrupoUpdateInput = {
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateInput = {
@@ -422,6 +428,7 @@ export type GrupoUncheckedUpdateInput = {
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoCreateManyInput = {
@@ -712,6 +719,20 @@ export type GrupoUpdateOneRequiredWithoutHorariosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.GrupoUpdateToOneWithWhereWithoutHorariosInput, Prisma.GrupoUpdateWithoutHorariosInput>, Prisma.GrupoUncheckedUpdateWithoutHorariosInput>
 }
 
+export type GrupoCreateNestedOneWithoutMaterialesInput = {
+  create?: Prisma.XOR<Prisma.GrupoCreateWithoutMaterialesInput, Prisma.GrupoUncheckedCreateWithoutMaterialesInput>
+  connectOrCreate?: Prisma.GrupoCreateOrConnectWithoutMaterialesInput
+  connect?: Prisma.GrupoWhereUniqueInput
+}
+
+export type GrupoUpdateOneRequiredWithoutMaterialesNestedInput = {
+  create?: Prisma.XOR<Prisma.GrupoCreateWithoutMaterialesInput, Prisma.GrupoUncheckedCreateWithoutMaterialesInput>
+  connectOrCreate?: Prisma.GrupoCreateOrConnectWithoutMaterialesInput
+  upsert?: Prisma.GrupoUpsertWithoutMaterialesInput
+  connect?: Prisma.GrupoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.GrupoUpdateToOneWithWhereWithoutMaterialesInput, Prisma.GrupoUpdateWithoutMaterialesInput>, Prisma.GrupoUncheckedUpdateWithoutMaterialesInput>
+}
+
 export type GrupoCreateNestedOneWithoutMatriculasInput = {
   create?: Prisma.XOR<Prisma.GrupoCreateWithoutMatriculasInput, Prisma.GrupoUncheckedCreateWithoutMatriculasInput>
   connectOrCreate?: Prisma.GrupoCreateOrConnectWithoutMatriculasInput
@@ -752,6 +773,7 @@ export type GrupoCreateWithoutProfesorInput = {
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutProfesorInput = {
@@ -767,6 +789,7 @@ export type GrupoUncheckedCreateWithoutProfesorInput = {
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutProfesorInput = {
@@ -823,6 +846,7 @@ export type GrupoCreateWithoutPeriodoInput = {
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutPeriodoInput = {
@@ -838,6 +862,7 @@ export type GrupoUncheckedCreateWithoutPeriodoInput = {
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutPeriodoInput = {
@@ -878,6 +903,7 @@ export type GrupoCreateWithoutMateriaInput = {
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutMateriaInput = {
@@ -893,6 +919,7 @@ export type GrupoUncheckedCreateWithoutMateriaInput = {
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutMateriaInput = {
@@ -933,6 +960,7 @@ export type GrupoCreateWithoutAulaInput = {
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutAulaInput = {
@@ -948,6 +976,7 @@ export type GrupoUncheckedCreateWithoutAulaInput = {
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutAulaInput = {
@@ -988,6 +1017,7 @@ export type GrupoCreateWithoutHorariosInput = {
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutHorariosInput = {
@@ -1003,6 +1033,7 @@ export type GrupoUncheckedCreateWithoutHorariosInput = {
   deletedate?: Date | string | null
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutHorariosInput = {
@@ -1033,6 +1064,7 @@ export type GrupoUpdateWithoutHorariosInput = {
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutHorariosInput = {
@@ -1046,6 +1078,85 @@ export type GrupoUncheckedUpdateWithoutHorariosInput = {
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
+  tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
+}
+
+export type GrupoCreateWithoutMaterialesInput = {
+  capacidad: number
+  created?: Date | string
+  updated?: Date | string
+  deleted?: boolean
+  deletedate?: Date | string | null
+  profesor: Prisma.ProfesorCreateNestedOneWithoutGruposInput
+  aula: Prisma.AulaCreateNestedOneWithoutGruposInput
+  materia: Prisma.MateriaCreateNestedOneWithoutGruposInput
+  periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
+  horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
+  matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
+  tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+}
+
+export type GrupoUncheckedCreateWithoutMaterialesInput = {
+  id?: number
+  capacidad: number
+  id_profesor: number
+  id_aula: number
+  id_materia: number
+  id_periodo: number
+  created?: Date | string
+  updated?: Date | string
+  deleted?: boolean
+  deletedate?: Date | string | null
+  horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
+  matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
+  tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+}
+
+export type GrupoCreateOrConnectWithoutMaterialesInput = {
+  where: Prisma.GrupoWhereUniqueInput
+  create: Prisma.XOR<Prisma.GrupoCreateWithoutMaterialesInput, Prisma.GrupoUncheckedCreateWithoutMaterialesInput>
+}
+
+export type GrupoUpsertWithoutMaterialesInput = {
+  update: Prisma.XOR<Prisma.GrupoUpdateWithoutMaterialesInput, Prisma.GrupoUncheckedUpdateWithoutMaterialesInput>
+  create: Prisma.XOR<Prisma.GrupoCreateWithoutMaterialesInput, Prisma.GrupoUncheckedCreateWithoutMaterialesInput>
+  where?: Prisma.GrupoWhereInput
+}
+
+export type GrupoUpdateToOneWithWhereWithoutMaterialesInput = {
+  where?: Prisma.GrupoWhereInput
+  data: Prisma.XOR<Prisma.GrupoUpdateWithoutMaterialesInput, Prisma.GrupoUncheckedUpdateWithoutMaterialesInput>
+}
+
+export type GrupoUpdateWithoutMaterialesInput = {
+  capacidad?: Prisma.IntFieldUpdateOperationsInput | number
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  profesor?: Prisma.ProfesorUpdateOneRequiredWithoutGruposNestedInput
+  aula?: Prisma.AulaUpdateOneRequiredWithoutGruposNestedInput
+  materia?: Prisma.MateriaUpdateOneRequiredWithoutGruposNestedInput
+  periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
+  horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
+  matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
+  tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+}
+
+export type GrupoUncheckedUpdateWithoutMaterialesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  capacidad?: Prisma.IntFieldUpdateOperationsInput | number
+  id_profesor?: Prisma.IntFieldUpdateOperationsInput | number
+  id_aula?: Prisma.IntFieldUpdateOperationsInput | number
+  id_materia?: Prisma.IntFieldUpdateOperationsInput | number
+  id_periodo?: Prisma.IntFieldUpdateOperationsInput | number
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
 }
@@ -1062,6 +1173,7 @@ export type GrupoCreateWithoutMatriculasInput = {
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutMatriculasInput = {
@@ -1077,6 +1189,7 @@ export type GrupoUncheckedCreateWithoutMatriculasInput = {
   deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   tareas?: Prisma.TareaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutMatriculasInput = {
@@ -1107,6 +1220,7 @@ export type GrupoUpdateWithoutMatriculasInput = {
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutMatriculasInput = {
@@ -1122,6 +1236,7 @@ export type GrupoUncheckedUpdateWithoutMatriculasInput = {
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoCreateWithoutTareasInput = {
@@ -1136,6 +1251,7 @@ export type GrupoCreateWithoutTareasInput = {
   periodo: Prisma.PeriodoCreateNestedOneWithoutGruposInput
   horarios?: Prisma.HorarioCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoUncheckedCreateWithoutTareasInput = {
@@ -1151,6 +1267,7 @@ export type GrupoUncheckedCreateWithoutTareasInput = {
   deletedate?: Date | string | null
   horarios?: Prisma.HorarioUncheckedCreateNestedManyWithoutGrupoInput
   matriculas?: Prisma.MatriculaUncheckedCreateNestedManyWithoutGrupoInput
+  materiales?: Prisma.MaterialGrupoUncheckedCreateNestedManyWithoutGrupoInput
 }
 
 export type GrupoCreateOrConnectWithoutTareasInput = {
@@ -1181,6 +1298,7 @@ export type GrupoUpdateWithoutTareasInput = {
   periodo?: Prisma.PeriodoUpdateOneRequiredWithoutGruposNestedInput
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutTareasInput = {
@@ -1196,6 +1314,7 @@ export type GrupoUncheckedUpdateWithoutTareasInput = {
   deletedate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoCreateManyProfesorInput = {
@@ -1222,6 +1341,7 @@ export type GrupoUpdateWithoutProfesorInput = {
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutProfesorInput = {
@@ -1237,6 +1357,7 @@ export type GrupoUncheckedUpdateWithoutProfesorInput = {
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateManyWithoutProfesorInput = {
@@ -1275,6 +1396,7 @@ export type GrupoUpdateWithoutPeriodoInput = {
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutPeriodoInput = {
@@ -1290,6 +1412,7 @@ export type GrupoUncheckedUpdateWithoutPeriodoInput = {
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateManyWithoutPeriodoInput = {
@@ -1328,6 +1451,7 @@ export type GrupoUpdateWithoutMateriaInput = {
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutMateriaInput = {
@@ -1343,6 +1467,7 @@ export type GrupoUncheckedUpdateWithoutMateriaInput = {
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateManyWithoutMateriaInput = {
@@ -1381,6 +1506,7 @@ export type GrupoUpdateWithoutAulaInput = {
   horarios?: Prisma.HorarioUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateWithoutAulaInput = {
@@ -1396,6 +1522,7 @@ export type GrupoUncheckedUpdateWithoutAulaInput = {
   horarios?: Prisma.HorarioUncheckedUpdateManyWithoutGrupoNestedInput
   matriculas?: Prisma.MatriculaUncheckedUpdateManyWithoutGrupoNestedInput
   tareas?: Prisma.TareaUncheckedUpdateManyWithoutGrupoNestedInput
+  materiales?: Prisma.MaterialGrupoUncheckedUpdateManyWithoutGrupoNestedInput
 }
 
 export type GrupoUncheckedUpdateManyWithoutAulaInput = {
@@ -1419,12 +1546,14 @@ export type GrupoCountOutputType = {
   horarios: number
   matriculas: number
   tareas: number
+  materiales: number
 }
 
 export type GrupoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   horarios?: boolean | GrupoCountOutputTypeCountHorariosArgs
   matriculas?: boolean | GrupoCountOutputTypeCountMatriculasArgs
   tareas?: boolean | GrupoCountOutputTypeCountTareasArgs
+  materiales?: boolean | GrupoCountOutputTypeCountMaterialesArgs
 }
 
 /**
@@ -1458,6 +1587,13 @@ export type GrupoCountOutputTypeCountTareasArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.TareaWhereInput
 }
 
+/**
+ * GrupoCountOutputType without action
+ */
+export type GrupoCountOutputTypeCountMaterialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MaterialGrupoWhereInput
+}
+
 
 export type GrupoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1477,6 +1613,7 @@ export type GrupoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   horarios?: boolean | Prisma.Grupo$horariosArgs<ExtArgs>
   matriculas?: boolean | Prisma.Grupo$matriculasArgs<ExtArgs>
   tareas?: boolean | Prisma.Grupo$tareasArgs<ExtArgs>
+  materiales?: boolean | Prisma.Grupo$materialesArgs<ExtArgs>
   _count?: boolean | Prisma.GrupoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grupo"]>
 
@@ -1536,6 +1673,7 @@ export type GrupoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   horarios?: boolean | Prisma.Grupo$horariosArgs<ExtArgs>
   matriculas?: boolean | Prisma.Grupo$matriculasArgs<ExtArgs>
   tareas?: boolean | Prisma.Grupo$tareasArgs<ExtArgs>
+  materiales?: boolean | Prisma.Grupo$materialesArgs<ExtArgs>
   _count?: boolean | Prisma.GrupoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type GrupoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1561,6 +1699,7 @@ export type $GrupoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     horarios: Prisma.$HorarioPayload<ExtArgs>[]
     matriculas: Prisma.$MatriculaPayload<ExtArgs>[]
     tareas: Prisma.$TareaPayload<ExtArgs>[]
+    materiales: Prisma.$MaterialGrupoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1974,6 +2113,7 @@ export interface Prisma__GrupoClient<T, Null = never, ExtArgs extends runtime.Ty
   horarios<T extends Prisma.Grupo$horariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grupo$horariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HorarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   matriculas<T extends Prisma.Grupo$matriculasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grupo$matriculasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MatriculaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tareas<T extends Prisma.Grupo$tareasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grupo$tareasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TareaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  materiales<T extends Prisma.Grupo$materialesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Grupo$materialesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaterialGrupoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2483,6 +2623,30 @@ export type Grupo$tareasArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.TareaScalarFieldEnum | Prisma.TareaScalarFieldEnum[]
+}
+
+/**
+ * Grupo.materiales
+ */
+export type Grupo$materialesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MaterialGrupo
+   */
+  select?: Prisma.MaterialGrupoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MaterialGrupo
+   */
+  omit?: Prisma.MaterialGrupoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MaterialGrupoInclude<ExtArgs> | null
+  where?: Prisma.MaterialGrupoWhereInput
+  orderBy?: Prisma.MaterialGrupoOrderByWithRelationInput | Prisma.MaterialGrupoOrderByWithRelationInput[]
+  cursor?: Prisma.MaterialGrupoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MaterialGrupoScalarFieldEnum | Prisma.MaterialGrupoScalarFieldEnum[]
 }
 
 /**

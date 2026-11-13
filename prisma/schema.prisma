@@ -54,6 +54,12 @@ enum Dia {
   SABADO
 }
 
+enum TipoMaterial {
+  VIDEO
+  ARCHIVO
+  ENLACE
+}
+
 // ==========================================
 // MODULO 1: IDENTIDAD Y USUARIOS
 // ==========================================
@@ -208,8 +214,26 @@ model Grupo {
   horarios   Horario[]
   matriculas Matricula[]
   tareas     Tarea[]
+  materiales MaterialGrupo[]
 
   @@map("grupo")
+}
+
+model MaterialGrupo {
+  id          Int          @id @default(autoincrement())
+  titulo      String       @db.VarChar(150)
+  descripcion String?      @db.Text
+  tipo        TipoMaterial @default(ENLACE)
+  url         String       @db.Text
+  id_grupo    Int
+  created     DateTime     @default(now())
+  updated     DateTime     @updatedAt
+  deleted     Boolean      @default(false)
+  deletedate  DateTime?
+
+  grupo Grupo @relation(fields: [id_grupo], references: [id], onDelete: Cascade)
+
+  @@map("materiales_grupo")
 }
 
 model Matricula {

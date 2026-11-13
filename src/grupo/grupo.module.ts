@@ -5,5 +5,6 @@ import { GrupoController } from './grupo.controller.js';
 @Module({
   controllers: [GrupoController],
   providers: [GrupoService],
+  exports: [GrupoService],
 })
 export class GrupoModule {}

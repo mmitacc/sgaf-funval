@@ -41,7 +41,7 @@ export class EntregaController {
     return this.entregaService.create(req.user, createEntregaEstudianteDto);
   }
 
-  @Roles('ESTUDIANTE')
+  @Roles('ESTUDIANTE','PROFESOR')
   @ApiOperation({ summary: 'Sube un archivo como Entrega de tarea' })
   @Post('upload')
   @UseInterceptors(

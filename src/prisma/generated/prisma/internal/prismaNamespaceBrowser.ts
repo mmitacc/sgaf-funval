@@ -60,6 +60,7 @@ export const ModelName = {
   Aula: 'Aula',
   Horario: 'Horario',
   Grupo: 'Grupo',
+  MaterialGrupo: 'MaterialGrupo',
   Matricula: 'Matricula',
   Tarea: 'Tarea',
   Entrega: 'Entrega',
@@ -206,6 +207,22 @@ export const GrupoScalarFieldEnum = {
 } as const
 
 export type GrupoScalarFieldEnum = (typeof GrupoScalarFieldEnum)[keyof typeof GrupoScalarFieldEnum]
+
+
+export const MaterialGrupoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descripcion: 'descripcion',
+  tipo: 'tipo',
+  url: 'url',
+  id_grupo: 'id_grupo',
+  created: 'created',
+  updated: 'updated',
+  deleted: 'deleted',
+  deletedate: 'deletedate'
+} as const
+
+export type MaterialGrupoScalarFieldEnum = (typeof MaterialGrupoScalarFieldEnum)[keyof typeof MaterialGrupoScalarFieldEnum]
 
 
 export const MatriculaScalarFieldEnum = {
