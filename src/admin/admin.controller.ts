@@ -25,8 +25,10 @@ export class AdminController {
       'Trae el resumen por rol operativo, academico y finanzas del Período Académico actual.',
   })
   @Get('dashboard')
-  obtenerDashboardEjecutivo() {
-    return this.adminService.obtenerDashboardEjecutivo();
+  obtenerDashboard(@Query('idPeriodo') idPeriodo?: string) {
+    return this.adminService.obtenerDashboardEjecutivo(
+      idPeriodo ? Number(idPeriodo) : undefined,
+    );
   }
 
   @ApiOperation({

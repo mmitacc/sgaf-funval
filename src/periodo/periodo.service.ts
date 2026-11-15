@@ -31,29 +31,30 @@ export class PeriodoService {
   }
 
   async findPeriodoActual() {
-    const fechaActual = new Date();
-    const periodoActual = await this.prisma.periodo.findFirst({
+    const hoy = new Date();
+    const vigente = await this.prisma.periodo.findFirst({
       where: {
         deleted: false,
-        inicio: {
-          lte: fechaActual,
-        },
-        fin: {
-          gte: fechaActual,
-        },
+        inicio: { lte: hoy },
+        fin: { gte: hoy },
       },
-      orderBy: {
-        inicio: 'desc',
-      },
+      orderBy: { id: 'desc' },
     });
 
-    if (!periodoActual) {
+    const periodo =
+      vigente ??
+      (await this.prisma.periodo.findFirst({
+        where: { deleted: false },
+        orderBy: { id: 'desc' },
+      }));
+
+    if (!periodo) {
       throw new NotFoundException(
-        'No se encontró un periodo activo para la fecha actual.',
+        'No existe ningún período académico registrado.',
       );
     }
 
-    return periodoActual;
+    return periodo;
   }
 
   async update(id: number, updatePeriodoDto: UpdatePeriodoDto) {

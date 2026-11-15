@@ -40,6 +40,28 @@ export class AdminService {
   }
 
   // Metodos para Finanzas y Reportes
+
+  // Helper privado para obtener el periodo vigente (inicio <= hoy <= fin) con fallback al más reciente
+  private async resolverPeriodoVigente() {
+    const hoy = new Date();
+    const vigente = await this.prisma.periodo.findFirst({
+      where: {
+        deleted: false,
+        inicio: { lte: hoy },
+        fin: { gte: hoy },
+      },
+      orderBy: { inicio: 'desc' },
+    });
+
+    return (
+      vigente ??
+      this.prisma.periodo.findFirst({
+        where: { deleted: false },
+        orderBy: { inicio: 'desc' },
+      })
+    );
+  }
+
   // 1. ENDPOINT: GET /api/admin/finanzas/resumen
   async obtenerResumenFinanciero(idPeriodo?: number) {
     const periodos = await this.prisma.periodo.findMany({
@@ -48,9 +70,15 @@ export class AdminService {
       select: { id: true, nombre: true, inicio: true, fin: true },
     });
 
+    // Si llega idPeriodo lo usa; si no, usa el periodo vigente (inicio <= hoy <= fin)
+    const periodoVigente = idPeriodo
+      ? undefined
+      : await this.resolverPeriodoVigente();
+
     // Toma el periodo enviado por query param, o por defecto el más reciente (índice 0)
     const periodoSeleccionado =
-      periodos.find((p) => p.id === idPeriodo) ?? periodos[0];
+      periodos.find((p) => p.id === (idPeriodo ?? periodoVigente?.id)) ??
+      periodos[0];
 
     // Si aún no hay ningún periodo creado en la BD, devolvemos estructura vacía segura
     if (!periodoSeleccionado) {
@@ -168,11 +196,20 @@ export class AdminService {
   }
 
   // 2. ENDPOINT: GET /api/admin/dashboard
-  async obtenerDashboardEjecutivo() {
-    const periodoActual = await this.prisma.periodo.findFirst({
+  async obtenerDashboardEjecutivo(idPeriodo?: number) {
+    const periodos = await this.prisma.periodo.findMany({
       where: { deleted: false },
       orderBy: { inicio: 'desc' },
+      select: { id: true, nombre: true },
     });
+
+    const periodoVigente = idPeriodo
+      ? undefined
+      : await this.resolverPeriodoVigente();
+
+    const periodoActual =
+      periodos.find((p) => p.id === (idPeriodo ?? periodoVigente?.id)) ??
+      periodos[0];
 
     const [usuariosPorRol, gruposActivos, matriculasPeriodo, deudasAgg] =
       await Promise.all([
@@ -225,6 +262,8 @@ export class AdminService {
 
     return {
       periodo: periodoActual?.nombre ?? 'Sin periodo activo',
+      periodoSeleccionado: periodoActual?.id ?? null,
+      periodos,
       comunidad: {
         estudiantes: contarRol(Rol.ESTUDIANTE),
         profesores: contarRol(Rol.PROFESOR),

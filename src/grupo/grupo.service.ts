@@ -12,11 +12,70 @@ export class GrupoService {
   }
 
   async findAll() {
-    return this.prisma.grupo.findMany({ where: { deleted: false } });
+    return this.prisma.grupo.findMany({
+      where: { deleted: false },
+      include: {
+        materia: true,
+        periodo: true,
+        aula: true,
+        profesor: {
+          include: {
+            usuario: {
+              select: {
+                id: true,
+                nombres: true,
+                apellidos: true,
+                email: true,
+              },
+            },
+          },
+        },
+        horarios: {
+          where: { deleted: false },
+        },
+        _count: {
+          select: {
+            matriculas: {
+              where: { deleted: false },
+            },
+          },
+        },
+      },
+      orderBy: { id: 'desc' },
+    });
   }
 
   async findOne(id: number) {
-    return this.prisma.grupo.findFirst({ where: { id, deleted: false } });
+    return this.prisma.grupo.findFirst({
+      where: { id, deleted: false },
+      include: {
+        materia: true,
+        periodo: true,
+        aula: true,
+        profesor: {
+          include: {
+            usuario: {
+              select: {
+                id: true,
+                nombres: true,
+                apellidos: true,
+                email: true,
+              },
+            },
+          },
+        },
+        horarios: {
+          where: { deleted: false },
+        },
+        _count: {
+          select: {
+            matriculas: {
+              where: { deleted: false },
+            },
+          },
+        },
+      },
+    });
   }
 
   async update(id: number, updateGrupoDto: UpdateGrupoDto) {

@@ -1,42 +1,95 @@
-# API de Backend: "Sistema de Gestión Académica y Financiera" (Versión NestJS 1.0.0)
+# 🎓 API de Backend: TechUniversity — Sistema de Gestión Académica y Financiera (NestJS)
 
 ## Descripción
 
-Este API es una API RESTful que permite la gestión para sistemas SGAF, cuanta con 14 tablas normalizadas y correctamente estructuradas :'pago', 'deuda', 'entrega', 'tarea', 'matricula', 'horario', 'grupo', 'estudiante', 'profesor', 'usuario', 'aula', 'materia', 'periodo', 'especialidad'.
-Se adjunta un archivo panoramico del proyecto: `SGAF-DER.png` (con el esquema gráfico de la base de datos y detalles de campos Enum). También se agrega sobre la Arquitectura de clases NestJS otro nivel de patrón conocido como Soft Delete.
+API RESTful desarrollada con **NestJS**, **Prisma ORM**, **PostgreSQL** y **Cloudinary** para la administración integral de instituciones educativas (SGAF). Cuenta con **15 tablas normalizadas** y estructuradas (`pago`, `deuda`, `entrega`, `tarea`, `matricula`, `horario`, `grupo`, `materiales_grupo`, `estudiante`, `profesor`, `usuario`, `aula`, `materia`, `periodo`, `especialidad`).
 
+Se adjunta el diagrama panorámico del proyecto en `SGAF-DER.png` (con el esquema entidad-relación de la base de datos y detalle de tipos `Enum`). Toda la arquitectura implementa el patrón **Soft-Delete** (`created`, `updated`, `deleted`, `deletedate`) y control de acceso basado en roles (**JWT + Guards RBAC**).
 
-## Instalación
-1.- Clonar el repositorio de la url
-    `https://github.com/mmitacc/sgaf-funval`
-2.- Instalar las dependencias
-    `pnpm install`
-3.- Actualizar/crear el archivo .env con tu nombre de base de datos, numero puerto local host (3000)
-    y password de Postgresql (se tiene un ejemplo en el archivo .env.ejemplo)
-4.- Para migrar/crear los schemas/tablas y base de datos postgresql con prisma: 
-    `pnpm prisma migrate dev --name init`
-5.- Para crear/actualizar el cliente prisma que se comunica con tu base de datos: 
-    `pnpm prisma generate`
-6.- Para cargar data de test en base de datos (elimina toda la data y siembra nueva data para pruebas): 
-    (Usuario SuperAdmin: {email: 'superadmin@prisma.edu', password: 'Man.123'})
-    `pnpm run start:seed`
-7.- Finalmente, para levantar el servidor backend 
-    `pnpm run start:dev`
-8.- Existe una ruta para la documentación completa de la API en el puerto
-    `http://localhost:3000/api/docs`
-    Pero también puedes probarlo en la web, en dirección:
-    `https://sgaf-funval.onrender.com/api/docs`
+---
 
+## ✨ Novedades y Mejoras Recientes
 
-## Autor
+* **Gestión de Materiales de Clase (`materiales_grupo`):** Endpoints dedicados para que los docentes publiquen enlaces, videos y recursos académicos por sección.
+* **Flujo Financiero y Control de Acceso por Estado:**
+  * Inicio de sesión habilitado para estudiantes en estado `PENDIENTE` (matrícula inicial sin abonar) y `SUSPENDIDO` (mora mensual) con acceso restringido a regularización de pagos y reactivación automática a `ACTIVO`.
+  * **Corte Mensual Selectivo (`POST /api/deuda/corte-mensual`):** Procesa y suspende únicamente a estudiantes `ACTIVO` con cuotas vencidas, evitando afectar cuentas `PENDIENTE` o `INACTIVO`.
+  * **Validación de Matrícula por Periodo (`POST /api/pago/matricula`):** Verificación directa de matrícula aprobada antes de habilitar cobros de mensualidad.
+* **Reportes Ejecutivos y Finanzas (`/api/admin`):**
+  * Resumen financiero consolidado por periodo (`GET /api/admin/finanzas/resumen`) con métricas de recaudación, proyección, morosidad y canales de pago.
+  * Panel ejecutivo (`GET /api/admin/dashboard`) con soporte de filtro histórico por periodo (`?idPeriodo=`) y detección automática del ciclo académico vigente (`inicio <= hoy <= fin`).
+* **Consultas Enriquecidas y Seguridad:**
+  * `GET /api/grupo` incluye relaciones completas (`materia`, `periodo`, `aula`, `profesor`, `horarios` activos y conteo `_count.matriculas`).
+  * Exclusión automática de cuentas `SUPERADMIN` en los listados administrativos de usuarios y reseteo seguro de contraseñas temporales.
 
-Para mayores detalles sobre el proyecto, puedes visitar el repositorio de mi proyecto o contactarme en:
-[Manuel Mitacc](https://github.com/mmitacc)
-Telefono: +051 996 080 313  (Tacna-Perú)
-Email: manuelmitacc@hotmail.com
+---
 
+## 🛠️ Stack Tecnológico
 
-## Licencia
+* **Framework:** NestJS + TypeScript
+* **ORM & Base de Datos:** Prisma ORM + PostgreSQL
+* **Autenticación y Seguridad:** JWT (`@nestjs/jwt`), Passport, Bcrypt y Guards por Roles
+* **Almacenamiento Multimedia:** Cloudinary (avatares y entregas de tareas)
+* **Documentación:** Swagger / OpenAPI
+
+---
+
+## ⚙️ Instalación y Ejecución Local
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com
+   cd sgaf-funval
+   ```
+
+2. **Instalar las dependencias:**
+   ```bash
+   pnpm install
+   ```
+
+3. **Configurar variables de entorno:**
+   Crea o actualiza el archivo `.env` en la raíz del proyecto tomando como base `.env.ejemplo` (puerto `3000`, credenciales de PostgreSQL, secreto JWT, credenciales de Cloudinary y `FRONTEND_URL`).
+
+4. **Ejecutar migraciones de Prisma en PostgreSQL:**
+   ```bash
+   pnpm prisma migrate dev --name init
+   ```
+
+5. **Generar el cliente de Prisma:**
+   ```bash
+   pnpm prisma generate
+   ```
+
+6. **Sembrar datos iniciales de prueba (Seed):**
+   *(Reinicia la base de datos y carga registros de prueba en todos los módulos. Incluye SuperAdmin: `superadmin@prisma.edu` / `Man.123`)*
+   ```bash
+   pnpm run start:seed
+   ```
+
+7. **Levantar el servidor en modo desarrollo:**
+   ```bash
+   pnpm run start:dev
+   ```
+
+8. **Explorar la documentación interactiva (Swagger):**
+   * **Entorno Local:** `http://localhost:3000/api/docs`
+   * **Entorno Producción (Render):** `https://sgaf-funval.onrender.com/api/docs`
+
+---
+
+## 👨‍💻 Autor
+
+**Manuel Mitacc** (`@mmitacc`) — *Full-Stack Developer*  
+Para mayores detalles sobre el proyecto o consultas técnicas, puedes contactarme en:
+
+* **GitHub:** [github.com/mmitacc](https://github.com/mmitacc)
+* **LinkedIn:** [://linkedin.com](https://www.://linkedin.com/)
+* **Teléfono:** +51 996 080 313 (Tacna - Perú)
+* **Email:** manuelmitacc@hotmail.com
+
+---
+
+## 📄 Licencia
 
 MIT License
 
