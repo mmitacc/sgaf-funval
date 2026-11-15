@@ -1,4 +1,4 @@
-# 🎓 API de Backend: TechUniversity — Sistema de Gestión Académica y Financiera (NestJS)
+﻿# 🎓 API de Backend: TechUniversity — Sistema de Gestión Académica y Financiera (NestJS)
 
 ## Descripción
 
@@ -38,7 +38,7 @@ Se adjunta el diagrama panorámico del proyecto en `SGAF-DER.png` (con el esquem
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/mmitacc/sgaf-funval
    cd sgaf-funval
    ```
 
@@ -83,7 +83,7 @@ Se adjunta el diagrama panorámico del proyecto en `SGAF-DER.png` (con el esquem
 Para mayores detalles sobre el proyecto o consultas técnicas, puedes contactarme en:
 
 * **GitHub:** [github.com/mmitacc](https://github.com/mmitacc)
-* **LinkedIn:** [://linkedin.com](https://www.://linkedin.com/)
+* **LinkedIn:** [://linkedin.com](https://www.linkedin.com/in/mmitacc/)
 * **Teléfono:** +51 996 080 313 (Tacna - Perú)
 * **Email:** manuelmitacc@hotmail.com
 
